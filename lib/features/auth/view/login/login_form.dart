@@ -21,17 +21,19 @@ class _LoginFormState extends State<LoginForm> {
       create: (context) => LoginFormBloc(getIt()),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
-        child: const Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _EmailInput(),
-            SizedBox(height: 16),
-            _PasswordInput(),
-            SizedBox(height: 16),
-            _Submit(),
-            SizedBox(height: 16),
-            _GoToSignup(),
-          ],
+        child: const AutofillGroup(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _EmailInput(),
+              SizedBox(height: 16),
+              _PasswordInput(),
+              SizedBox(height: 16),
+              _Submit(),
+              SizedBox(height: 16),
+              _GoToSignup(),
+            ],
+          ),
         ),
       ),
     );
@@ -49,6 +51,7 @@ class _EmailInput extends StatelessWidget {
           decoration: const InputDecoration(
             labelText: 'Email',
           ),
+          autofillHints: const [AutofillHints.email],
           autovalidateMode: state.showErrors
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
@@ -83,6 +86,8 @@ class _PasswordInput extends StatelessWidget {
           autovalidateMode: state.showErrors
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
+          autofillHints: const [AutofillHints.password],
+          obscureText: true,
           decoration: const InputDecoration(
             labelText: 'Password',
           ),
