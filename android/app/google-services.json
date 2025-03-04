@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "355316246511",
+    "project_id": "nobot383",
+    "storage_bucket": "nobot383.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355316246511:android:ced87fda6b27717c8af81a",
+        "android_client_info": {
+          "package_name": "com.example.nobot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrb-J9KqH1bk_5Wjoxpv2WI3usskefOC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
