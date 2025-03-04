@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nobot/injection.dart';
 
 import '../../../../core/models/email/email.dart';
 import '../../../../core/models/password/password.dart';
@@ -17,7 +18,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginFormBloc(),
+      create: (context) => LoginFormBloc(getIt()),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: const Column(

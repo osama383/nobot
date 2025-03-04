@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nobot/features/auth/data/auth.dart';
 
 import '../../../../core/models/email/email.dart';
 import '../../../../core/models/failure/failure.dart';
@@ -11,7 +12,7 @@ part 'signup_state.dart';
 part 'signup_bloc.freezed.dart';
 
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
-  SignupBloc() : super(SignupState.initial()) {
+  SignupBloc(Auth auth) : super(SignupState.initial()) {
     on<SignupEvent>((event, emit) async {
       if (state.submissionInProgress) return;
       await event.map(
@@ -23,6 +24,13 @@ class SignupBloc extends Bloc<SignupEvent, SignupState> {
         },
         onSubmit: (event) async {
           emit(state.copyWith(showErrors: true));
+          if (state.email.isInValid || state.password.isInValid) return;
+          emit(state.copyWith(submissionInProgress: true));
+          await auth.signUpWithEmailAndPassword(
+            email: state.email,
+            password: state.password,
+          );
+          emit(state.copyWith(submissionInProgress: false));
         },
       );
     });

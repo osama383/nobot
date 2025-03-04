@@ -469,6 +469,7 @@ abstract class _OnSubmit implements SignupEvent {
 
 /// @nodoc
 mixin _$SignupState {
+// required String userName,
   EmailAddress get email => throw _privateConstructorUsedError;
   Password get password => throw _privateConstructorUsedError;
   bool get submissionInProgress => throw _privateConstructorUsedError;
@@ -607,6 +608,7 @@ class _$SignupStateImpl implements _SignupState {
       required this.showErrors,
       required this.resultOption});
 
+// required String userName,
   @override
   final EmailAddress email;
   @override
@@ -659,7 +661,7 @@ abstract class _SignupState implements SignupState {
           required final Option<Either<Failure, Unit>> resultOption}) =
       _$SignupStateImpl;
 
-  @override
+  @override // required String userName,
   EmailAddress get email;
   @override
   Password get password;

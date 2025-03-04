@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/features/auth/application/signup/signup_bloc.dart';
+import 'package:nobot/injection.dart';
 
 import '../../../../core/models/email/email.dart';
 import '../../../../core/models/password/password.dart';
@@ -17,7 +18,7 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupBloc(),
+      create: (context) => SignupBloc(getIt()),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: const Column(

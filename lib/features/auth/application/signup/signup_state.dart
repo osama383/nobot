@@ -3,6 +3,7 @@ part of 'signup_bloc.dart';
 @freezed
 class SignupState with _$SignupState {
   const factory SignupState({
+    // required String userName,
     required EmailAddress email,
     required Password password,
     required bool submissionInProgress,
