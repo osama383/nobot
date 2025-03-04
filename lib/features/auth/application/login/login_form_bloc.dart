@@ -3,7 +3,8 @@ import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nobot/core/models/email/email.dart';
 
-import '../../../core/models/failure/failure.dart';
+import '../../../../core/models/failure/failure.dart';
+import '../../../../core/models/password/password.dart';
 
 part 'login_form_event.dart';
 part 'login_form_state.dart';

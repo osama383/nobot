@@ -19,21 +19,21 @@ mixin _$LoginFormEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress input) onEmailInput,
-    required TResult Function(String input) onPasswordInput,
+    required TResult Function(Password input) onPasswordInput,
     required TResult Function() onSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EmailAddress input)? onEmailInput,
-    TResult? Function(String input)? onPasswordInput,
+    TResult? Function(Password input)? onPasswordInput,
     TResult? Function()? onSubmit,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress input)? onEmailInput,
-    TResult Function(String input)? onPasswordInput,
+    TResult Function(Password input)? onPasswordInput,
     TResult Function()? onSubmit,
     required TResult orElse(),
   }) =>
@@ -145,7 +145,7 @@ class _$OnEmailInputImpl implements _OnEmailInput {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress input) onEmailInput,
-    required TResult Function(String input) onPasswordInput,
+    required TResult Function(Password input) onPasswordInput,
     required TResult Function() onSubmit,
   }) {
     return onEmailInput(input);
@@ -155,7 +155,7 @@ class _$OnEmailInputImpl implements _OnEmailInput {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EmailAddress input)? onEmailInput,
-    TResult? Function(String input)? onPasswordInput,
+    TResult? Function(Password input)? onPasswordInput,
     TResult? Function()? onSubmit,
   }) {
     return onEmailInput?.call(input);
@@ -165,7 +165,7 @@ class _$OnEmailInputImpl implements _OnEmailInput {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress input)? onEmailInput,
-    TResult Function(String input)? onPasswordInput,
+    TResult Function(Password input)? onPasswordInput,
     TResult Function()? onSubmit,
     required TResult orElse(),
   }) {
@@ -225,7 +225,7 @@ abstract class _$$OnPasswordInputImplCopyWith<$Res> {
           $Res Function(_$OnPasswordInputImpl) then) =
       __$$OnPasswordInputImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String input});
+  $Res call({Password input});
 }
 
 /// @nodoc
@@ -245,7 +245,7 @@ class __$$OnPasswordInputImplCopyWithImpl<$Res>
       null == input
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
     ));
   }
 }
@@ -256,7 +256,7 @@ class _$OnPasswordInputImpl implements _OnPasswordInput {
   const _$OnPasswordInputImpl(this.input);
 
   @override
-  final String input;
+  final Password input;
 
   @override
   String toString() {
@@ -285,7 +285,7 @@ class _$OnPasswordInputImpl implements _OnPasswordInput {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress input) onEmailInput,
-    required TResult Function(String input) onPasswordInput,
+    required TResult Function(Password input) onPasswordInput,
     required TResult Function() onSubmit,
   }) {
     return onPasswordInput(input);
@@ -295,7 +295,7 @@ class _$OnPasswordInputImpl implements _OnPasswordInput {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EmailAddress input)? onEmailInput,
-    TResult? Function(String input)? onPasswordInput,
+    TResult? Function(Password input)? onPasswordInput,
     TResult? Function()? onSubmit,
   }) {
     return onPasswordInput?.call(input);
@@ -305,7 +305,7 @@ class _$OnPasswordInputImpl implements _OnPasswordInput {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress input)? onEmailInput,
-    TResult Function(String input)? onPasswordInput,
+    TResult Function(Password input)? onPasswordInput,
     TResult Function()? onSubmit,
     required TResult orElse(),
   }) {
@@ -351,9 +351,9 @@ class _$OnPasswordInputImpl implements _OnPasswordInput {
 }
 
 abstract class _OnPasswordInput implements LoginFormEvent {
-  const factory _OnPasswordInput(final String input) = _$OnPasswordInputImpl;
+  const factory _OnPasswordInput(final Password input) = _$OnPasswordInputImpl;
 
-  String get input;
+  Password get input;
   @JsonKey(ignore: true)
   _$$OnPasswordInputImplCopyWith<_$OnPasswordInputImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -398,7 +398,7 @@ class _$OnSubmitImpl implements _OnSubmit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(EmailAddress input) onEmailInput,
-    required TResult Function(String input) onPasswordInput,
+    required TResult Function(Password input) onPasswordInput,
     required TResult Function() onSubmit,
   }) {
     return onSubmit();
@@ -408,7 +408,7 @@ class _$OnSubmitImpl implements _OnSubmit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(EmailAddress input)? onEmailInput,
-    TResult? Function(String input)? onPasswordInput,
+    TResult? Function(Password input)? onPasswordInput,
     TResult? Function()? onSubmit,
   }) {
     return onSubmit?.call();
@@ -418,7 +418,7 @@ class _$OnSubmitImpl implements _OnSubmit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(EmailAddress input)? onEmailInput,
-    TResult Function(String input)? onPasswordInput,
+    TResult Function(Password input)? onPasswordInput,
     TResult Function()? onSubmit,
     required TResult orElse(),
   }) {
@@ -470,7 +470,7 @@ abstract class _OnSubmit implements LoginFormEvent {
 /// @nodoc
 mixin _$LoginFormState {
   EmailAddress get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  Password get password => throw _privateConstructorUsedError;
   bool get submissionInProgress => throw _privateConstructorUsedError;
   bool get showErrors => throw _privateConstructorUsedError;
   Option<Either<Failure, Unit>> get resultOption =>
@@ -489,7 +489,7 @@ abstract class $LoginFormStateCopyWith<$Res> {
   @useResult
   $Res call(
       {EmailAddress email,
-      String password,
+      Password password,
       bool submissionInProgress,
       bool showErrors,
       Option<Either<Failure, Unit>> resultOption});
@@ -522,7 +522,7 @@ class _$LoginFormStateCopyWithImpl<$Res, $Val extends LoginFormState>
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
       submissionInProgress: null == submissionInProgress
           ? _value.submissionInProgress
           : submissionInProgress // ignore: cast_nullable_to_non_nullable
@@ -549,7 +549,7 @@ abstract class _$$LoginFormStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {EmailAddress email,
-      String password,
+      Password password,
       bool submissionInProgress,
       bool showErrors,
       Option<Either<Failure, Unit>> resultOption});
@@ -580,7 +580,7 @@ class __$$LoginFormStateImplCopyWithImpl<$Res>
       password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Password,
       submissionInProgress: null == submissionInProgress
           ? _value.submissionInProgress
           : submissionInProgress // ignore: cast_nullable_to_non_nullable
@@ -610,7 +610,7 @@ class _$LoginFormStateImpl implements _LoginFormState {
   @override
   final EmailAddress email;
   @override
-  final String password;
+  final Password password;
   @override
   final bool submissionInProgress;
   @override
@@ -654,7 +654,7 @@ class _$LoginFormStateImpl implements _LoginFormState {
 abstract class _LoginFormState implements LoginFormState {
   const factory _LoginFormState(
           {required final EmailAddress email,
-          required final String password,
+          required final Password password,
           required final bool submissionInProgress,
           required final bool showErrors,
           required final Option<Either<Failure, Unit>> resultOption}) =
@@ -663,7 +663,7 @@ abstract class _LoginFormState implements LoginFormState {
   @override
   EmailAddress get email;
   @override
-  String get password;
+  Password get password;
   @override
   bool get submissionInProgress;
   @override

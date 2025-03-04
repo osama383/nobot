@@ -4,7 +4,7 @@ part of 'login_form_bloc.dart';
 class LoginFormState with _$LoginFormState {
   const factory LoginFormState({
     required EmailAddress email,
-    required String password,
+    required Password password,
     required bool submissionInProgress,
     required bool showErrors,
     required Option<Either<Failure, Unit>> resultOption,
@@ -12,7 +12,7 @@ class LoginFormState with _$LoginFormState {
 
   factory LoginFormState.initial() => _LoginFormState(
         email: EmailAddress.empty(),
-        password: '',
+        password: Password.empty(),
         submissionInProgress: false,
         showErrors: false,
         resultOption: none(),

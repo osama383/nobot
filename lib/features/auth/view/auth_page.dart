@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/core/models/email/email.dart';
-import 'package:nobot/features/auth/bloc/login_form_bloc.dart';
+import 'package:nobot/core/models/password/password.dart';
+import 'package:nobot/features/auth/application/login/login_form_bloc.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -96,14 +97,15 @@ class _PasswordInput extends StatelessWidget {
           onChanged: (value) {
             context
                 .read<LoginFormBloc>()
-                .add(LoginFormEvent.onPasswordInput(value));
+                .add(LoginFormEvent.onPasswordInput(Password(value)));
           },
           validator: (_) {
-            return state.password.length < 5 ? 'Too short' : null;
-            // return state.email.value.fold(
-            //   (failure) => failure.asString,
-            //   (_) => null,
-            // );
+            return state.password.value.fold(
+              (failure) => failure.when(
+                tooShort: (_) => 'Too short',
+              ),
+              (_) => null,
+            );
           },
         );
       },
