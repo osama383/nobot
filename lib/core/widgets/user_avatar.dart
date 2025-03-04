@@ -13,6 +13,11 @@ class UserAvatar extends StatelessWidget {
       title: auth.currentUser!.email,
       menuChildren: [
         MenuItemButton(
+          child: const Text('Create new project'),
+          onPressed: () {},
+        ),
+        const PopupMenuDivider(),
+        MenuItemButton(
           child: const Text('Signout'),
           onPressed: () {
             auth.logout();
