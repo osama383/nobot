@@ -29,8 +29,25 @@ class Auth {
   }
 
   Future<void> started() async {
+    // db
+    //     .collection('users')
+    //     .withConverter<User>(
+    //       fromFirestore: (snap, _) => User.fromJson(snap.data()!),
+    //       toFirestore: (user, _) => user.toJson(),
+    //     )
+    //     .doc('36tejS4JDmRoP9BZze7evox9iP83')
+    //     .snapshots()
+    //     .listen((e) {
+    //   // _currentUser = e.data();
+    //   _currentUserStreamController.sink.add(e.data());
+    // });
+
+    await firebaseAuth.authStateChanges().first;
+    await firebaseAuth.userChanges().first;
+    await firebaseAuth.idTokenChanges().first;
     if (firebaseAuth.currentUser == null) {
       _currentUser = null;
+
       return;
     }
 
@@ -43,7 +60,8 @@ class Auth {
         .doc(firebaseAuth.currentUser!.uid)
         .snapshots()
         .listen((e) {
-      _currentUser = e.data();
+      // _currentUser = e.data();
+      _currentUserStreamController.sink.add(e.data());
     });
   }
 
@@ -52,33 +70,28 @@ class Auth {
     required Password password,
   }) async {
     try {
-      await firebaseAuth.createUserWithEmailAndPassword(
+      final credential = await firebaseAuth.createUserWithEmailAndPassword(
         email: email.getOrCrash,
         password: password.getOrCrash,
       );
-      // Future.delayed(Duration(milliseconds: 300));
 
-      // await db.collection('users').doc(currentUser!.id).set(User(
-      //       id: currentUser!.id,
-      //       email: email.getOrCrash,
-      //       userName: '',
-      //     ).toJson());
+      await db.collection('users').doc(firebaseAuth.currentUser!.uid).set(User(
+            id: credential.user!.uid,
+            email: email.getOrCrash,
+            userName: '',
+          ).toJson());
 
-      // Future.delayed(Duration(milliseconds: 300));
-      // db
-      //     .collection('users')
-      //     .doc(currentUser!.id)
-      //     .withConverter<User>(
-      //       fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-      //       toFirestore: (user, _) => user.toJson(),
-      //     )
-      //     .snapshots()
-      //     .listen((e) {
-      //   print(e);
-      //   _currentUserStreamController.sink.add(e.data());
-      // });
-      _currentUserStreamController.sink
-          .add(User(id: '', userName: 'some name', email: ''));
+      db
+          .collection('users')
+          .doc(firebaseAuth.currentUser!.uid)
+          .withConverter<User>(
+            fromFirestore: (snap, _) => User.fromJson(snap.data()!),
+            toFirestore: (user, _) => user.toJson(),
+          )
+          .snapshots()
+          .listen((e) {
+        _currentUserStreamController.sink.add(e.data());
+      });
       return right(unit);
     } on FirebaseAuthException catch (_) {
       _currentUserStreamController.sink.add(null);
@@ -96,19 +109,17 @@ class Auth {
         password: password.getOrCrash,
       );
 
-      // db
-      //     .collection('users')
-      //     .withConverter<User>(
-      //       fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-      //       toFirestore: (user, _) => user.toJson(),
-      //     )
-      //     .doc(firebaseAuth.currentUser!.uid)
-      //     .snapshots()
-      //     .listen((e) {
-      //   _currentUserStreamController.sink.add(e.data());
-      // });
-      _currentUserStreamController.sink
-          .add(User(id: '', userName: '', email: 'some email'));
+      db
+          .collection('users')
+          .withConverter<User>(
+            fromFirestore: (snap, _) => User.fromJson(snap.data()!),
+            toFirestore: (user, _) => user.toJson(),
+          )
+          .doc(firebaseAuth.currentUser!.uid)
+          .snapshots()
+          .listen((e) {
+        _currentUserStreamController.sink.add(e.data());
+      });
       return right(unit);
     } on FirebaseAuthException catch (_) {
       _currentUserStreamController.sink.add(null);

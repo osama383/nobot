@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +19,7 @@ void main() async {
   );
 
   configureDependencies();
+  getIt<FirebaseAuth>().setPersistence(Persistence.LOCAL);
   //ensure URL changes in the address bar when using push / pushNamed
   // more info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
   GoRouter.optionURLReflectsImperativeAPIs = true;

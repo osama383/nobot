@@ -14,7 +14,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import 'features/auth/data/auth.dart' as _i201;
-import 'firebae_module.dart' as _i836;
+import 'firebase_module.dart' as _i616;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -38,4 +38,4 @@ extension GetItInjectableX on _i174.GetIt {
   }
 }
 
-class _$InjectableModule extends _i836.InjectableModule {}
+class _$InjectableModule extends _i616.InjectableModule {}
