@@ -1,16 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
+import 'package:nobot/core/models/email/email.dart';
 
-part 'user.freezed.dart';
-part 'user.g.dart';
+import 'permission.dart';
 
-@freezed
-class User with _$User {
-  const User._();
-  const factory User({
-    required String id,
-    required String userName,
-    required String email,
-  }) = _User;
+part 'user.mapper.dart';
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+@MappableClass()
+class User with UserMappable {
+  final String id;
+  final EmailAddress email;
+  final Set<Permission> permissions;
+
+  const User({
+    required this.id,
+    required this.email,
+  }) : permissions = const {Permission.assets};
 }

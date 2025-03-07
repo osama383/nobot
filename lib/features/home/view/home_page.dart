@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart' hide FormState;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nobot/core/models/assets/assets.dart';
 import 'package:nobot/core/models/customer/customer.dart';
-import 'package:nobot/core/models/email/email.dart';
-import 'package:nobot/core/models/product/product.dart';
-import 'package:nobot/core/models/product/service_status.dart';
 import 'package:nobot/core/models/value_object/value_object.dart';
+import 'package:nobot/core/scaffold/nav/nav.dart';
+import 'package:nobot/core/scaffold/nav/nav_rail.dart';
 import 'package:nobot/core/widgets/form/bloc/form_bloc.dart';
-import 'package:nobot/core/widgets/modal_builder/modal_builder.dart';
-import 'package:nobot/core/widgets/user_avatar.dart';
+import 'package:nobot/injection.dart';
 
+import '../../../core/scaffold/view/base_scaffold.dart';
 import '../../auth/data/auth.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,30 +23,47 @@ class HomePage extends StatelessWidget {
       name: VString('Vikings'),
       products: {},
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [UserAvatar(auth)],
-      ),
+    final vehicle = Vehicle(
+      name: VString('Mustang'),
+      decalNumber: 'decal',
+    );
+    return BaseScaffold(
+      auth,
+      title: 'Home',
+      selectedItem: NavItem.home,
       body: Center(
-        child: Column(
-          children: [
-            const FormOne(),
-            Form(
-              inputs: [Input.vstring(customer.name)],
-              onSubmit: (inputs) {
-                print(customer.copyWith(name: inputs.first.value as VString));
-              },
-            ).build(context),
-            FilledButton(
-              onPressed: () {
-                FirebaseFirestore.instance
-                    .collection('random')
-                    .add({'data': 'data'});
-              },
-              child: const Text('creatge random dat'),
-            ),
-          ],
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 300),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Form(
+                inputs: [Input.vstring(customer.name)],
+                onSubmit: (inputs) {
+                  // print(customer.copyWith(name: inputs.first.value as VString));
+                },
+              ).build(context),
+              const SizedBox(height: 32),
+              Form(
+                inputs: [
+                  Input.vstring(vehicle.name),
+                ],
+                onSubmit: (inputs) {
+                  // print(vehicle
+                  //     .copyWith(name: inputs.first.value as VString)
+                  //     .toMap());
+                },
+              ).build(context),
+              FilledButton(
+                onPressed: () {
+                  FirebaseFirestore.instance
+                      .collection('random')
+                      .add({'data': 'data'});
+                },
+                child: const Text('creatge random dat'),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -81,45 +98,5 @@ class Form {
         },
       ),
     );
-  }
-}
-
-class FormOne extends StatelessWidget {
-  const FormOne({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final customer = Customer(
-      id: '',
-      name: VString('input'),
-      products: {
-        Grease(
-          status: ServiceStatus.active,
-          dueDate: DateTime.now(),
-          lastService: DateTime.now(),
-          serviceNotificationEmails: {
-            EmailAddress('some@email.com'),
-          },
-        )
-      },
-    );
-    return Form(
-      inputs: customer.products.first.serviceNotificationEmails.map(
-        (e) {
-          return Input.email(e);
-        },
-      ).toList(),
-      onSubmit: (inputs) {
-        final updatedCustomer = customer.copyWith(
-          products: {
-            customer.products.first.copyWith(
-              serviceNotificationEmails:
-                  inputs.map((e) => e.value as EmailAddress).toSet(),
-            ),
-          },
-        );
-        print(updatedCustomer);
-      },
-    ).build(context);
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nobot/injection.dart';
 
+import '../../features/assets/view/assets_page.dart';
 import '../../features/auth/data/auth.dart';
 import '../../features/auth/view/auth_page.dart';
 import '../../features/home/view/home_page.dart';
@@ -42,6 +43,15 @@ class HomePageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return HomePage(getIt());
+  }
+}
+
+@TypedGoRoute<AssetsPageRoute>(path: '/assets')
+@immutable
+class AssetsPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return AssetsPage(getIt());
   }
 }
 

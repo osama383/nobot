@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../scaffold/nav/nav.dart';
 import '../localization_labels.dart';
 
 class EsLocalizations extends DefaultLocalizations
@@ -1445,27 +1446,25 @@ class EsLocalizations extends DefaultLocalizations
     return 'Debe ser menor que $value';
   }
 
-  // @override
-  // String navrailItemLabels(NavItem item) {
-  //   switch (item) {
-  //     case NavItem.assets:
-  //       return 'Activos';
-  //     case NavItem.customers:
-  //       return 'Clientes';
-  //     case NavItem.reports:
-  //       return 'Informes';
-  //     case NavItem.trips:
-  //       return 'Rutas';
-  //     case NavItem.sales:
-  //       return 'Ventas';
-  //     case NavItem.home:
-  //       return 'Inicio';
-  //     case NavItem.settings:
-  //       return 'Ajustes';
-  //     case NavItem.admin:
-  //       return 'Admin';
-  //   }
-  // }
+  @override
+  String navItem(NavItem item) {
+    switch (item) {
+      case NavItem.assets:
+        return 'Activos';
+      case NavItem.customers:
+        return 'Clientes';
+      case NavItem.reports:
+        return 'Informes';
+      case NavItem.trips:
+        return 'Rutas';
+      case NavItem.sales:
+        return 'Ventas';
+      case NavItem.home:
+        return 'Inicio';
+      case NavItem.settings:
+        return 'Ajustes';
+    }
+  }
 
   @override
   String get noAuditLogsFound => 'No se encontraron registros de auditoría';

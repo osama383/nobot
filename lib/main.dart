@@ -1,7 +1,9 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nobot/core/models/value_object/mappers.dart';
 import 'package:nobot/injection.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 
@@ -27,6 +29,9 @@ void main() async {
   getIt<Auth>().currentUserStream.distinct().listen((event) {
     goRouter.refresh();
   });
+
+  MapperContainer.globals.use(const VStringMapper());
+  MapperContainer.globals.use(const EmailMapper());
 
   runApp(const Nobot());
 }

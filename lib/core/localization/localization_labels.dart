@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
 import '../models/customer/customer.dart';
+import '../scaffold/nav/nav.dart';
 
 abstract class LocalizationLabels extends DefaultLocalizations {
   // String smartDateRanges(SmartDates range);
@@ -106,7 +107,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get loadingCustomers;
   String get loadingRoute;
   String get close;
-  // String navrailItemLabels(NavItem item);
+  String navItem(NavItem item);
   String get resettingServiceContainersWarning;
   String get warningContainersHaveChanged;
   String get enterSkipReason;

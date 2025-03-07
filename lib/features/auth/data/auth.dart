@@ -8,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import '../../../core/models/email/email.dart';
 import '../../../core/models/failure/failure.dart';
 import '../../../core/models/password/password.dart';
+import '../../../core/models/user/permission.dart';
 import '../../../core/models/user/user.dart';
 
 @singleton
@@ -54,8 +55,8 @@ class Auth {
     db
         .collection('users')
         .withConverter<User>(
-          fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-          toFirestore: (user, _) => user.toJson(),
+          fromFirestore: (snap, _) => UserMapper.fromMap(snap.data()!),
+          toFirestore: (user, _) => user.toMap(),
         )
         .doc(firebaseAuth.currentUser!.uid)
         .snapshots()
@@ -77,16 +78,15 @@ class Auth {
 
       await db.collection('users').doc(firebaseAuth.currentUser!.uid).set(User(
             id: credential.user!.uid,
-            email: email.getOrCrash,
-            userName: '',
-          ).toJson());
+            email: email,
+          ).toMap());
 
       db
           .collection('users')
           .doc(firebaseAuth.currentUser!.uid)
           .withConverter<User>(
-            fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-            toFirestore: (user, _) => user.toJson(),
+            fromFirestore: (snap, _) => UserMapper.fromMap(snap.data()!),
+            toFirestore: (user, _) => user.toMap(),
           )
           .snapshots()
           .listen((e) {
@@ -112,8 +112,11 @@ class Auth {
       db
           .collection('users')
           .withConverter<User>(
-            fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-            toFirestore: (user, _) => user.toJson(),
+            fromFirestore: (snap, _) {
+              print(snap.data());
+              return UserMapper.fromMap(snap.data()!);
+            },
+            toFirestore: (user, _) => user.toMap(),
           )
           .doc(firebaseAuth.currentUser!.uid)
           .snapshots()

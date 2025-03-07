@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../scaffold/nav/nav.dart';
 import '../localization_labels.dart';
 
 class EnLocalizations extends DefaultLocalizations
@@ -1569,27 +1570,25 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get loadingRoute => 'Loading route ...';
 
-  // @override
-  // String navrailItemLabels(NavItem item) {
-  //   switch (item) {
-  //     case NavItem.home:
-  //       return 'Home';
-  //     case NavItem.trips:
-  //       return 'Routes';
-  //     case NavItem.customers:
-  //       return 'Customers';
-  //     case NavItem.reports:
-  //       return 'Reports';
-  //     case NavItem.assets:
-  //       return 'Assets';
-  //     case NavItem.sales:
-  //       return 'Sales';
-  //     case NavItem.settings:
-  //       return 'Settings';
-  //     case NavItem.admin:
-  //       return 'Admin';
-  //   }
-  // }
+  @override
+  String navItem(NavItem item) {
+    switch (item) {
+      case NavItem.home:
+        return 'Home';
+      case NavItem.trips:
+        return 'Routes';
+      case NavItem.customers:
+        return 'Customers';
+      case NavItem.reports:
+        return 'Reports';
+      case NavItem.assets:
+        return 'Assets';
+      case NavItem.sales:
+        return 'Sales';
+      case NavItem.settings:
+        return 'Settings';
+    }
+  }
 
   @override
   String get dateRange => 'Date range';

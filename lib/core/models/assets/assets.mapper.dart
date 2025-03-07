@@ -65,8 +65,8 @@ class VehicleMapper extends ClassMapperBase<Vehicle> {
   @override
   final String id = 'Vehicle';
 
-  static String _$name(Vehicle v) => v.name;
-  static const Field<Vehicle, String> _f$name = Field('name', _$name);
+  static VString _$name(Vehicle v) => v.name;
+  static const Field<Vehicle, VString> _f$name = Field('name', _$name);
   static String _$decalNumber(Vehicle v) => v.decalNumber;
   static const Field<Vehicle, String> _f$decalNumber =
       Field('decalNumber', _$decalNumber);
@@ -131,7 +131,7 @@ extension VehicleValueCopy<$R, $Out> on ObjectCopyWith<$R, Vehicle, $Out> {
 
 abstract class VehicleCopyWith<$R, $In extends Vehicle, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? name, String? decalNumber});
+  $R call({VString? name, String? decalNumber});
   VehicleCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -144,7 +144,7 @@ class _VehicleCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Vehicle> $mapper =
       VehicleMapper.ensureInitialized();
   @override
-  $R call({String? name, String? decalNumber}) => $apply(FieldCopyWithData({
+  $R call({VString? name, String? decalNumber}) => $apply(FieldCopyWithData({
         if (name != null) #name: name,
         if (decalNumber != null) #decalNumber: decalNumber
       }));
@@ -156,4 +156,102 @@ class _VehicleCopyWithImpl<$R, $Out>
   @override
   VehicleCopyWith<$R2, Vehicle, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _VehicleCopyWithImpl($value, $cast, t);
+}
+
+class DepotMapper extends ClassMapperBase<Depot> {
+  DepotMapper._();
+
+  static DepotMapper? _instance;
+  static DepotMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = DepotMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'Depot';
+
+  static VString _$name(Depot v) => v.name;
+  static const Field<Depot, VString> _f$name = Field('name', _$name);
+  static String _$address(Depot v) => v.address;
+  static const Field<Depot, String> _f$address = Field('address', _$address);
+
+  @override
+  final MappableFields<Depot> fields = const {
+    #name: _f$name,
+    #address: _f$address,
+  };
+
+  static Depot _instantiate(DecodingData data) {
+    return Depot(name: data.dec(_f$name), address: data.dec(_f$address));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static Depot fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<Depot>(map);
+  }
+
+  static Depot fromJson(String json) {
+    return ensureInitialized().decodeJson<Depot>(json);
+  }
+}
+
+mixin DepotMappable {
+  String toJson() {
+    return DepotMapper.ensureInitialized().encodeJson<Depot>(this as Depot);
+  }
+
+  Map<String, dynamic> toMap() {
+    return DepotMapper.ensureInitialized().encodeMap<Depot>(this as Depot);
+  }
+
+  DepotCopyWith<Depot, Depot, Depot> get copyWith =>
+      _DepotCopyWithImpl(this as Depot, $identity, $identity);
+  @override
+  String toString() {
+    return DepotMapper.ensureInitialized().stringifyValue(this as Depot);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return DepotMapper.ensureInitialized().equalsValue(this as Depot, other);
+  }
+
+  @override
+  int get hashCode {
+    return DepotMapper.ensureInitialized().hashValue(this as Depot);
+  }
+}
+
+extension DepotValueCopy<$R, $Out> on ObjectCopyWith<$R, Depot, $Out> {
+  DepotCopyWith<$R, Depot, $Out> get $asDepot =>
+      $base.as((v, t, t2) => _DepotCopyWithImpl(v, t, t2));
+}
+
+abstract class DepotCopyWith<$R, $In extends Depot, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({VString? name, String? address});
+  DepotCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _DepotCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Depot, $Out>
+    implements DepotCopyWith<$R, Depot, $Out> {
+  _DepotCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<Depot> $mapper = DepotMapper.ensureInitialized();
+  @override
+  $R call({VString? name, String? address}) => $apply(FieldCopyWithData(
+      {if (name != null) #name: name, if (address != null) #address: address}));
+  @override
+  Depot $make(CopyWithData data) => Depot(
+      name: data.get(#name, or: $value.name),
+      address: data.get(#address, or: $value.address));
+
+  @override
+  DepotCopyWith<$R2, Depot, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _DepotCopyWithImpl($value, $cast, t);
 }

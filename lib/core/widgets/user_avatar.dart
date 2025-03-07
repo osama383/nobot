@@ -10,7 +10,7 @@ class UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MenuChip(
-      title: auth.currentUser!.email,
+      title: auth.currentUser!.email.getOrCrash,
       menuChildren: [
         MenuItemButton(
           child: const Text('Create new project'),
