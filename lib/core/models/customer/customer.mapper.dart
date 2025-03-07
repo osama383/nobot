@@ -23,8 +23,8 @@ class CustomerMapper extends ClassMapperBase<Customer> {
 
   static String _$id(Customer v) => v.id;
   static const Field<Customer, String> _f$id = Field('id', _$id);
-  static String _$name(Customer v) => v.name;
-  static const Field<Customer, String> _f$name = Field('name', _$name);
+  static VString _$name(Customer v) => v.name;
+  static const Field<Customer, VString> _f$name = Field('name', _$name);
   static Set<Product> _$products(Customer v) => v.products;
   static const Field<Customer, Set<Product>> _f$products =
       Field('products', _$products);
@@ -92,7 +92,7 @@ extension CustomerValueCopy<$R, $Out> on ObjectCopyWith<$R, Customer, $Out> {
 
 abstract class CustomerCopyWith<$R, $In extends Customer, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, String? name, Set<Product>? products});
+  $R call({String? id, VString? name, Set<Product>? products});
   CustomerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -105,7 +105,7 @@ class _CustomerCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Customer> $mapper =
       CustomerMapper.ensureInitialized();
   @override
-  $R call({String? id, String? name, Set<Product>? products}) =>
+  $R call({String? id, VString? name, Set<Product>? products}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,

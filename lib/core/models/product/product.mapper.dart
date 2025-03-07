@@ -31,12 +31,17 @@ class ProductMapper extends ClassMapperBase<Product> {
   static DateTime _$lastService(Product v) => v.lastService;
   static const Field<Product, DateTime> _f$lastService =
       Field('lastService', _$lastService);
+  static Set<EmailAddress> _$serviceNotificationEmails(Product v) =>
+      v.serviceNotificationEmails;
+  static const Field<Product, Set<EmailAddress>> _f$serviceNotificationEmails =
+      Field('serviceNotificationEmails', _$serviceNotificationEmails);
 
   @override
   final MappableFields<Product> fields = const {
     #status: _f$status,
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
+    #serviceNotificationEmails: _f$serviceNotificationEmails,
   };
 
   static Product _instantiate(DecodingData data) {
@@ -64,7 +69,11 @@ mixin ProductMappable {
 
 abstract class ProductCopyWith<$R, $In extends Product, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({ServiceStatus? status, DateTime? dueDate, DateTime? lastService});
+  $R call(
+      {ServiceStatus? status,
+      DateTime? dueDate,
+      DateTime? lastService,
+      Set<EmailAddress>? serviceNotificationEmails});
   ProductCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -90,6 +99,10 @@ class UcoMapper extends SubClassMapperBase<Uco> {
   static DateTime _$lastService(Uco v) => v.lastService;
   static const Field<Uco, DateTime> _f$lastService =
       Field('lastService', _$lastService);
+  static Set<EmailAddress> _$serviceNotificationEmails(Uco v) =>
+      v.serviceNotificationEmails;
+  static const Field<Uco, Set<EmailAddress>> _f$serviceNotificationEmails =
+      Field('serviceNotificationEmails', _$serviceNotificationEmails);
   static RealDouble _$oilPrice(Uco v) => v.oilPrice;
   static const Field<Uco, RealDouble> _f$oilPrice =
       Field('oilPrice', _$oilPrice);
@@ -99,6 +112,7 @@ class UcoMapper extends SubClassMapperBase<Uco> {
     #status: _f$status,
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
+    #serviceNotificationEmails: _f$serviceNotificationEmails,
     #oilPrice: _f$oilPrice,
   };
 
@@ -114,6 +128,7 @@ class UcoMapper extends SubClassMapperBase<Uco> {
         status: data.dec(_f$status),
         dueDate: data.dec(_f$dueDate),
         lastService: data.dec(_f$lastService),
+        serviceNotificationEmails: data.dec(_f$serviceNotificationEmails),
         oilPrice: data.dec(_f$oilPrice));
   }
 
@@ -168,6 +183,7 @@ abstract class UcoCopyWith<$R, $In extends Uco, $Out>
       {ServiceStatus? status,
       DateTime? dueDate,
       DateTime? lastService,
+      Set<EmailAddress>? serviceNotificationEmails,
       RealDouble? oilPrice});
   UcoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -183,11 +199,14 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
           {ServiceStatus? status,
           DateTime? dueDate,
           DateTime? lastService,
+          Set<EmailAddress>? serviceNotificationEmails,
           RealDouble? oilPrice}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
         if (dueDate != null) #dueDate: dueDate,
         if (lastService != null) #lastService: lastService,
+        if (serviceNotificationEmails != null)
+          #serviceNotificationEmails: serviceNotificationEmails,
         if (oilPrice != null) #oilPrice: oilPrice
       }));
   @override
@@ -195,6 +214,8 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
       status: data.get(#status, or: $value.status),
       dueDate: data.get(#dueDate, or: $value.dueDate),
       lastService: data.get(#lastService, or: $value.lastService),
+      serviceNotificationEmails: data.get(#serviceNotificationEmails,
+          or: $value.serviceNotificationEmails),
       oilPrice: data.get(#oilPrice, or: $value.oilPrice));
 
   @override
@@ -225,12 +246,17 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   static DateTime _$lastService(Grease v) => v.lastService;
   static const Field<Grease, DateTime> _f$lastService =
       Field('lastService', _$lastService);
+  static Set<EmailAddress> _$serviceNotificationEmails(Grease v) =>
+      v.serviceNotificationEmails;
+  static const Field<Grease, Set<EmailAddress>> _f$serviceNotificationEmails =
+      Field('serviceNotificationEmails', _$serviceNotificationEmails);
 
   @override
   final MappableFields<Grease> fields = const {
     #status: _f$status,
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
+    #serviceNotificationEmails: _f$serviceNotificationEmails,
   };
 
   @override
@@ -244,7 +270,8 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
     return Grease(
         status: data.dec(_f$status),
         dueDate: data.dec(_f$dueDate),
-        lastService: data.dec(_f$lastService));
+        lastService: data.dec(_f$lastService),
+        serviceNotificationEmails: data.dec(_f$serviceNotificationEmails));
   }
 
   @override
@@ -294,7 +321,11 @@ extension GreaseValueCopy<$R, $Out> on ObjectCopyWith<$R, Grease, $Out> {
 abstract class GreaseCopyWith<$R, $In extends Grease, $Out>
     implements ProductCopyWith<$R, $In, $Out> {
   @override
-  $R call({ServiceStatus? status, DateTime? dueDate, DateTime? lastService});
+  $R call(
+      {ServiceStatus? status,
+      DateTime? dueDate,
+      DateTime? lastService,
+      Set<EmailAddress>? serviceNotificationEmails});
   GreaseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -305,17 +336,25 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
   @override
   late final ClassMapperBase<Grease> $mapper = GreaseMapper.ensureInitialized();
   @override
-  $R call({ServiceStatus? status, DateTime? dueDate, DateTime? lastService}) =>
+  $R call(
+          {ServiceStatus? status,
+          DateTime? dueDate,
+          DateTime? lastService,
+          Set<EmailAddress>? serviceNotificationEmails}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
         if (dueDate != null) #dueDate: dueDate,
-        if (lastService != null) #lastService: lastService
+        if (lastService != null) #lastService: lastService,
+        if (serviceNotificationEmails != null)
+          #serviceNotificationEmails: serviceNotificationEmails
       }));
   @override
   Grease $make(CopyWithData data) => Grease(
       status: data.get(#status, or: $value.status),
       dueDate: data.get(#dueDate, or: $value.dueDate),
-      lastService: data.get(#lastService, or: $value.lastService));
+      lastService: data.get(#lastService, or: $value.lastService),
+      serviceNotificationEmails: data.get(#serviceNotificationEmails,
+          or: $value.serviceNotificationEmails));
 
   @override
   GreaseCopyWith<$R2, Grease, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>

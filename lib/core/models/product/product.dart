@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:nobot/core/models/email/email.dart';
 import 'package:nobot/core/models/product/service_status.dart';
 
 import '../real_number.dart';
@@ -10,11 +11,13 @@ sealed class Product with ProductMappable {
   final ServiceStatus status;
   final DateTime dueDate;
   final DateTime lastService;
+  final Set<EmailAddress> serviceNotificationEmails;
 
   Product({
     required this.status,
     required this.dueDate,
     required this.lastService,
+    required this.serviceNotificationEmails,
   });
 }
 
@@ -26,6 +29,7 @@ class Uco extends Product with UcoMappable {
     required super.status,
     required super.dueDate,
     required super.lastService,
+    required super.serviceNotificationEmails,
     required this.oilPrice,
   });
 }
@@ -36,5 +40,6 @@ class Grease extends Product with GreaseMappable {
     required super.status,
     required super.dueDate,
     required super.lastService,
+    required super.serviceNotificationEmails,
   });
 }

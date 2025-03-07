@@ -20,9 +20,10 @@ class FormStateMapper extends ClassMapperBase<FormState> {
   @override
   final String id = 'FormState';
 
-  static List<Input<dynamic>> _$inputs(FormState v) => v.inputs;
-  static const Field<FormState, List<Input<dynamic>>> _f$inputs =
-      Field('inputs', _$inputs);
+  static List<Input<ValueObject<dynamic, dynamic>>> _$inputs(FormState v) =>
+      v.inputs;
+  static const Field<FormState, List<Input<ValueObject<dynamic, dynamic>>>>
+      _f$inputs = Field('inputs', _$inputs);
   static bool _$isEditing(FormState v) => v.isEditing;
   static const Field<FormState, bool> _f$isEditing =
       Field('isEditing', _$isEditing);
@@ -99,10 +100,13 @@ extension FormStateValueCopy<$R, $Out> on ObjectCopyWith<$R, FormState, $Out> {
 
 abstract class FormStateCopyWith<$R, $In extends FormState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, Input<dynamic>,
-      ObjectCopyWith<$R, Input<dynamic>, Input<dynamic>>> get inputs;
+  ListCopyWith<
+      $R,
+      Input<ValueObject<dynamic, dynamic>>,
+      ObjectCopyWith<$R, Input<ValueObject<dynamic, dynamic>>,
+          Input<ValueObject<dynamic, dynamic>>>> get inputs;
   $R call(
-      {List<Input<dynamic>>? inputs,
+      {List<Input<ValueObject<dynamic, dynamic>>>? inputs,
       bool? isEditing,
       bool? showErrors,
       bool? submissionInProgress});
@@ -118,13 +122,17 @@ class _FormStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<FormState> $mapper =
       FormStateMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, Input<dynamic>,
-          ObjectCopyWith<$R, Input<dynamic>, Input<dynamic>>>
-      get inputs => ListCopyWith($value.inputs,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(inputs: v));
+  ListCopyWith<
+      $R,
+      Input<ValueObject<dynamic, dynamic>>,
+      ObjectCopyWith<$R, Input<ValueObject<dynamic, dynamic>>,
+          Input<ValueObject<dynamic, dynamic>>>> get inputs => ListCopyWith(
+      $value.inputs,
+      (v, t) => ObjectCopyWith(v, $identity, t),
+      (v) => call(inputs: v));
   @override
   $R call(
-          {List<Input<dynamic>>? inputs,
+          {List<Input<ValueObject<dynamic, dynamic>>>? inputs,
           bool? isEditing,
           bool? showErrors,
           bool? submissionInProgress}) =>
