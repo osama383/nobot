@@ -48,7 +48,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
         drawer: context.useMobileLayout &&
                 widget.auth.currentUser!.permissions.isNotEmpty
             ? NavDrawer(
-                Nav(getIt()),
+                Nav(sl()),
                 selectedItem: widget.selectedItem,
               )
             : null,
@@ -58,7 +58,7 @@ class _BaseScaffoldState extends State<BaseScaffold> {
             if (!context.useMobileLayout &&
                 widget.auth.currentUser!.permissions.isNotEmpty)
               Navrail(
-                Nav(getIt()),
+                Nav(sl()),
                 selectedItem: widget.selectedItem,
               ),
             Expanded(

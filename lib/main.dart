@@ -21,12 +21,12 @@ void main() async {
   );
 
   configureDependencies();
-  getIt<FirebaseAuth>().setPersistence(Persistence.LOCAL);
+  sl<FirebaseAuth>().setPersistence(Persistence.LOCAL);
   //ensure URL changes in the address bar when using push / pushNamed
   // more info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
   GoRouter.optionURLReflectsImperativeAPIs = true;
-  await getIt<Auth>().started();
-  getIt<Auth>().currentUserStream.distinct().listen((event) {
+  await sl<Auth>().started();
+  sl<Auth>().currentUserStream.distinct().listen((event) {
     goRouter.refresh();
   });
 

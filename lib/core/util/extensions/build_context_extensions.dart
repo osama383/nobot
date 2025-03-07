@@ -8,6 +8,7 @@ import '../../localization/localization_labels.dart';
 enum WindowClass { compact, medium, expanded, large, extraLarge }
 
 extension BuildContextExtensions on BuildContext {
+  TextTheme get textTheme => Theme.of(this).textTheme;
   double get width => MediaQuery.of(this).size.width;
 
   WindowClass get windowClass {

@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
 import '../models/customer/customer.dart';
+import '../models/volume/volume.dart';
 import '../scaffold/nav/nav.dart';
 
 abstract class LocalizationLabels extends DefaultLocalizations {
@@ -660,7 +661,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
     bool abrv = false,
     bool titleCase = false,
   });
-  // String volumeValueWithUnit(Volume volume, {bool abrv = false});
+  String volumeValueWithUnit(Volume volume, {bool abrv = false});
   String weightUnit({bool abrv = false});
 
   String get completePreviousStops;

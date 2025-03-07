@@ -18,7 +18,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginFormBloc(getIt()),
+      create: (context) => LoginFormBloc(sl()),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: const AutofillGroup(

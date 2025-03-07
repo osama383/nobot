@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nobot/core/scaffold/nav/nav.dart';
-import 'package:nobot/core/scaffold/view/base_scaffold.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/core/util/extensions/extensions.dart';
 
+import '../../../core/scaffold/nav/nav.dart';
+import '../../../core/scaffold/view/base_scaffold.dart';
 import '../../auth/data/auth.dart';
+import '../controller/assets_bloc/assets_bloc.dart';
+import 'widgets/containers.dart';
+import 'widgets/depots.dart';
+import 'widgets/vehicles.dart';
 
 class AssetsPage extends StatelessWidget {
   final Auth auth;
@@ -11,82 +16,38 @@ class AssetsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final labels = context.localizationLabels;
-    return BaseScaffold(
-      auth,
-      title: labels.navItem(NavItem.assets),
-      selectedItem: NavItem.assets,
-      body: const Row(
-        children: [
-          Expanded(child: _Depots()),
-          SizedBox(width: 16),
-          Expanded(child: _Vehicles()),
-          SizedBox(width: 16),
-          Expanded(child: _Containers()),
-        ],
-      ),
-    );
-  }
-}
-
-class _Containers extends StatelessWidget {
-  const _Containers();
-
-  @override
-  Widget build(BuildContext context) {
-    final labels = context.localizationLabels;
-    return Card.filled(
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              labels.containers,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _Vehicles extends StatelessWidget {
-  const _Vehicles();
-
-  @override
-  Widget build(BuildContext context) {
-    final labels = context.localizationLabels;
-    return Card.filled(
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              labels.vehicles,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _Depots extends StatelessWidget {
-  const _Depots();
-
-  @override
-  Widget build(BuildContext context) {
-    final labels = context.localizationLabels;
-    return Card.filled(
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              labels.depots,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-          ),
-        ],
+    return BlocProvider(
+      create: (context) => AssetsBloc()..add(const AssetsEvent.started()),
+      child: BaseScaffold(
+        auth,
+        title: 'Assets',
+        selectedItem: NavItem.assets,
+        body: context.useMobileLayout
+            ? const SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Depots(),
+                    SizedBox(height: 12),
+                    Vehicles(),
+                    SizedBox(height: 12),
+                    Containers(),
+                    SizedBox(height: 16),
+                  ],
+                ),
+              )
+            : const Padding(
+                padding: EdgeInsets.only(bottom: 24),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(child: Depots()),
+                    SizedBox(width: 12),
+                    Expanded(child: Vehicles()),
+                    SizedBox(width: 12),
+                    Expanded(child: Containers()),
+                  ],
+                ),
+              ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class _SignupFormState extends State<SignupForm> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupBloc(getIt()),
+      create: (context) => SignupBloc(sl()),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: const Column(

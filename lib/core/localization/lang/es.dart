@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
 import '../localization_labels.dart';
 
@@ -1569,13 +1570,10 @@ class EsLocalizations extends DefaultLocalizations
   //   return titleCase ? text.titleCase : text;
   // }
 
-  // @override
-  // String volumeValueWithUnit(
-  //   Volume volume, {
-  //   bool abrv = false,
-  // }) {
-  //   return '${volume.unitsRound()} ${volumeUnit(abrv: abrv)}';
-  // }
+  @override
+  String volumeValueWithUnit(Volume volume, {bool abrv = false}) {
+    return '${volume.unitsRound()} ${volumeUnit(abrv: abrv)}';
+  }
 
   @override
   String get warningContainersHaveChanged =>

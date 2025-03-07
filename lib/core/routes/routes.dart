@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nobot/injection.dart';
 
-import '../../features/assets/view/assets_page.dart';
+import '../../features/assets_neo/view/assets_page.dart';
 import '../../features/auth/data/auth.dart';
 import '../../features/auth/view/auth_page.dart';
 import '../../features/home/view/home_page.dart';
@@ -42,7 +42,7 @@ class LoginPageRoute extends GoRouteData {
 class HomePageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return HomePage(getIt());
+    return HomePage(sl());
   }
 }
 
@@ -51,7 +51,7 @@ class HomePageRoute extends GoRouteData {
 class AssetsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return AssetsPage(getIt());
+    return AssetsPage(sl());
   }
 }
 
@@ -65,7 +65,7 @@ final goRouter = GoRouter(
   ],
   routes: $appRoutes,
   redirect: (BuildContext context, GoRouterState state) async {
-    return switch (getIt<Auth>().currentUser == null) {
+    return switch (sl<Auth>().currentUser == null) {
       false => state.matchedLocation == '/login' ? '/' : null,
       true => state.matchedLocation == '/login' ? null : '/login',
     };

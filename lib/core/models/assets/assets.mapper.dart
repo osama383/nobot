@@ -255,3 +255,131 @@ class _DepotCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Depot, $Out>
   DepotCopyWith<$R2, Depot, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _DepotCopyWithImpl($value, $cast, t);
 }
+
+class ContainerMapper extends ClassMapperBase<Container> {
+  ContainerMapper._();
+
+  static ContainerMapper? _instance;
+  static ContainerMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ContainerMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'Container';
+
+  static UniqueId _$id(Container v) => v.id;
+  static const Field<Container, UniqueId> _f$id = Field('id', _$id);
+  static VString _$name(Container v) => v.name;
+  static const Field<Container, VString> _f$name = Field('name', _$name);
+  static RealDouble _$height(Container v) => v.height;
+  static const Field<Container, RealDouble> _f$height =
+      Field('height', _$height);
+  static Volume _$capacity(Container v) => v.capacity;
+  static const Field<Container, Volume> _f$capacity =
+      Field('capacity', _$capacity);
+
+  @override
+  final MappableFields<Container> fields = const {
+    #id: _f$id,
+    #name: _f$name,
+    #height: _f$height,
+    #capacity: _f$capacity,
+  };
+
+  static Container _instantiate(DecodingData data) {
+    return Container(
+        id: data.dec(_f$id),
+        name: data.dec(_f$name),
+        height: data.dec(_f$height),
+        capacity: data.dec(_f$capacity));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static Container fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<Container>(map);
+  }
+
+  static Container fromJson(String json) {
+    return ensureInitialized().decodeJson<Container>(json);
+  }
+}
+
+mixin ContainerMappable {
+  String toJson() {
+    return ContainerMapper.ensureInitialized()
+        .encodeJson<Container>(this as Container);
+  }
+
+  Map<String, dynamic> toMap() {
+    return ContainerMapper.ensureInitialized()
+        .encodeMap<Container>(this as Container);
+  }
+
+  ContainerCopyWith<Container, Container, Container> get copyWith =>
+      _ContainerCopyWithImpl(this as Container, $identity, $identity);
+  @override
+  String toString() {
+    return ContainerMapper.ensureInitialized()
+        .stringifyValue(this as Container);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ContainerMapper.ensureInitialized()
+        .equalsValue(this as Container, other);
+  }
+
+  @override
+  int get hashCode {
+    return ContainerMapper.ensureInitialized().hashValue(this as Container);
+  }
+}
+
+extension ContainerValueCopy<$R, $Out> on ObjectCopyWith<$R, Container, $Out> {
+  ContainerCopyWith<$R, Container, $Out> get $asContainer =>
+      $base.as((v, t, t2) => _ContainerCopyWithImpl(v, t, t2));
+}
+
+abstract class ContainerCopyWith<$R, $In extends Container, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({UniqueId? id, VString? name, RealDouble? height, Volume? capacity});
+  ContainerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _ContainerCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, Container, $Out>
+    implements ContainerCopyWith<$R, Container, $Out> {
+  _ContainerCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<Container> $mapper =
+      ContainerMapper.ensureInitialized();
+  @override
+  $R call(
+          {UniqueId? id,
+          VString? name,
+          RealDouble? height,
+          Volume? capacity}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (name != null) #name: name,
+        if (height != null) #height: height,
+        if (capacity != null) #capacity: capacity
+      }));
+  @override
+  Container $make(CopyWithData data) => Container(
+      id: data.get(#id, or: $value.id),
+      name: data.get(#name, or: $value.name),
+      height: data.get(#height, or: $value.height),
+      capacity: data.get(#capacity, or: $value.capacity));
+
+  @override
+  ContainerCopyWith<$R2, Container, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _ContainerCopyWithImpl($value, $cast, t);
+}
