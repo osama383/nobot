@@ -13,6 +13,9 @@ class AssetMapper extends ClassMapperBase<Asset> {
   static AssetMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = AssetMapper._());
+      VehicleMapper.ensureInitialized();
+      DepotMapper.ensureInitialized();
+      ContainerMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -20,11 +23,17 @@ class AssetMapper extends ClassMapperBase<Asset> {
   @override
   final String id = 'Asset';
 
+  static String _$id(Asset v) => v.id;
+  static const Field<Asset, String> _f$id = Field('id', _$id);
+
   @override
-  final MappableFields<Asset> fields = const {};
+  final MappableFields<Asset> fields = const {
+    #id: _f$id,
+  };
 
   static Asset _instantiate(DecodingData data) {
-    throw MapperException.missingConstructor('Asset');
+    throw MapperException.missingSubclass(
+        'Asset', 'type', '${data.value['type']}');
   }
 
   @override
@@ -47,17 +56,18 @@ mixin AssetMappable {
 
 abstract class AssetCopyWith<$R, $In extends Asset, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call();
+  $R call({String? id});
   AssetCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class VehicleMapper extends ClassMapperBase<Vehicle> {
+class VehicleMapper extends SubClassMapperBase<Vehicle> {
   VehicleMapper._();
 
   static VehicleMapper? _instance;
   static VehicleMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = VehicleMapper._());
+      AssetMapper.ensureInitialized().addSubMapper(_instance!);
     }
     return _instance!;
   }
@@ -65,6 +75,8 @@ class VehicleMapper extends ClassMapperBase<Vehicle> {
   @override
   final String id = 'Vehicle';
 
+  static String _$id(Vehicle v) => v.id;
+  static const Field<Vehicle, String> _f$id = Field('id', _$id);
   static VString _$name(Vehicle v) => v.name;
   static const Field<Vehicle, VString> _f$name = Field('name', _$name);
   static String _$decalNumber(Vehicle v) => v.decalNumber;
@@ -73,13 +85,23 @@ class VehicleMapper extends ClassMapperBase<Vehicle> {
 
   @override
   final MappableFields<Vehicle> fields = const {
+    #id: _f$id,
     #name: _f$name,
     #decalNumber: _f$decalNumber,
   };
 
+  @override
+  final String discriminatorKey = 'type';
+  @override
+  final dynamic discriminatorValue = 'vehicle';
+  @override
+  late final ClassMapperBase superMapper = AssetMapper.ensureInitialized();
+
   static Vehicle _instantiate(DecodingData data) {
     return Vehicle(
-        name: data.dec(_f$name), decalNumber: data.dec(_f$decalNumber));
+        id: data.dec(_f$id),
+        name: data.dec(_f$name),
+        decalNumber: data.dec(_f$decalNumber));
   }
 
   @override
@@ -130,8 +152,9 @@ extension VehicleValueCopy<$R, $Out> on ObjectCopyWith<$R, Vehicle, $Out> {
 }
 
 abstract class VehicleCopyWith<$R, $In extends Vehicle, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  $R call({VString? name, String? decalNumber});
+    implements AssetCopyWith<$R, $In, $Out> {
+  @override
+  $R call({String? id, VString? name, String? decalNumber});
   VehicleCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -144,12 +167,15 @@ class _VehicleCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Vehicle> $mapper =
       VehicleMapper.ensureInitialized();
   @override
-  $R call({VString? name, String? decalNumber}) => $apply(FieldCopyWithData({
+  $R call({String? id, VString? name, String? decalNumber}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
         if (name != null) #name: name,
         if (decalNumber != null) #decalNumber: decalNumber
       }));
   @override
   Vehicle $make(CopyWithData data) => Vehicle(
+      id: data.get(#id, or: $value.id),
       name: data.get(#name, or: $value.name),
       decalNumber: data.get(#decalNumber, or: $value.decalNumber));
 
@@ -158,13 +184,14 @@ class _VehicleCopyWithImpl<$R, $Out>
       _VehicleCopyWithImpl($value, $cast, t);
 }
 
-class DepotMapper extends ClassMapperBase<Depot> {
+class DepotMapper extends SubClassMapperBase<Depot> {
   DepotMapper._();
 
   static DepotMapper? _instance;
   static DepotMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = DepotMapper._());
+      AssetMapper.ensureInitialized().addSubMapper(_instance!);
     }
     return _instance!;
   }
@@ -172,6 +199,8 @@ class DepotMapper extends ClassMapperBase<Depot> {
   @override
   final String id = 'Depot';
 
+  static String _$id(Depot v) => v.id;
+  static const Field<Depot, String> _f$id = Field('id', _$id);
   static VString _$name(Depot v) => v.name;
   static const Field<Depot, VString> _f$name = Field('name', _$name);
   static String _$address(Depot v) => v.address;
@@ -179,12 +208,23 @@ class DepotMapper extends ClassMapperBase<Depot> {
 
   @override
   final MappableFields<Depot> fields = const {
+    #id: _f$id,
     #name: _f$name,
     #address: _f$address,
   };
 
+  @override
+  final String discriminatorKey = 'type';
+  @override
+  final dynamic discriminatorValue = 'depot';
+  @override
+  late final ClassMapperBase superMapper = AssetMapper.ensureInitialized();
+
   static Depot _instantiate(DecodingData data) {
-    return Depot(name: data.dec(_f$name), address: data.dec(_f$address));
+    return Depot(
+        id: data.dec(_f$id),
+        name: data.dec(_f$name),
+        address: data.dec(_f$address));
   }
 
   @override
@@ -232,8 +272,9 @@ extension DepotValueCopy<$R, $Out> on ObjectCopyWith<$R, Depot, $Out> {
 }
 
 abstract class DepotCopyWith<$R, $In extends Depot, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  $R call({VString? name, String? address});
+    implements AssetCopyWith<$R, $In, $Out> {
+  @override
+  $R call({String? id, VString? name, String? address});
   DepotCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -244,10 +285,15 @@ class _DepotCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Depot, $Out>
   @override
   late final ClassMapperBase<Depot> $mapper = DepotMapper.ensureInitialized();
   @override
-  $R call({VString? name, String? address}) => $apply(FieldCopyWithData(
-      {if (name != null) #name: name, if (address != null) #address: address}));
+  $R call({String? id, VString? name, String? address}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (name != null) #name: name,
+        if (address != null) #address: address
+      }));
   @override
   Depot $make(CopyWithData data) => Depot(
+      id: data.get(#id, or: $value.id),
       name: data.get(#name, or: $value.name),
       address: data.get(#address, or: $value.address));
 
@@ -256,13 +302,14 @@ class _DepotCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Depot, $Out>
       _DepotCopyWithImpl($value, $cast, t);
 }
 
-class ContainerMapper extends ClassMapperBase<Container> {
+class ContainerMapper extends SubClassMapperBase<Container> {
   ContainerMapper._();
 
   static ContainerMapper? _instance;
   static ContainerMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ContainerMapper._());
+      AssetMapper.ensureInitialized().addSubMapper(_instance!);
     }
     return _instance!;
   }
@@ -270,8 +317,8 @@ class ContainerMapper extends ClassMapperBase<Container> {
   @override
   final String id = 'Container';
 
-  static UniqueId _$id(Container v) => v.id;
-  static const Field<Container, UniqueId> _f$id = Field('id', _$id);
+  static String _$id(Container v) => v.id;
+  static const Field<Container, String> _f$id = Field('id', _$id);
   static VString _$name(Container v) => v.name;
   static const Field<Container, VString> _f$name = Field('name', _$name);
   static RealDouble _$height(Container v) => v.height;
@@ -288,6 +335,13 @@ class ContainerMapper extends ClassMapperBase<Container> {
     #height: _f$height,
     #capacity: _f$capacity,
   };
+
+  @override
+  final String discriminatorKey = 'type';
+  @override
+  final dynamic discriminatorValue = 'container';
+  @override
+  late final ClassMapperBase superMapper = AssetMapper.ensureInitialized();
 
   static Container _instantiate(DecodingData data) {
     return Container(
@@ -346,8 +400,9 @@ extension ContainerValueCopy<$R, $Out> on ObjectCopyWith<$R, Container, $Out> {
 }
 
 abstract class ContainerCopyWith<$R, $In extends Container, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
-  $R call({UniqueId? id, VString? name, RealDouble? height, Volume? capacity});
+    implements AssetCopyWith<$R, $In, $Out> {
+  @override
+  $R call({String? id, VString? name, RealDouble? height, Volume? capacity});
   ContainerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -360,11 +415,7 @@ class _ContainerCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Container> $mapper =
       ContainerMapper.ensureInitialized();
   @override
-  $R call(
-          {UniqueId? id,
-          VString? name,
-          RealDouble? height,
-          Volume? capacity}) =>
+  $R call({String? id, VString? name, RealDouble? height, Volume? capacity}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,

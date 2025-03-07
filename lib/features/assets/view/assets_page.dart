@@ -4,6 +4,7 @@ import 'package:nobot/core/util/extensions/extensions.dart';
 
 import '../../../core/scaffold/nav/nav.dart';
 import '../../../core/scaffold/view/base_scaffold.dart';
+import '../../../injection.dart';
 import '../../auth/data/auth.dart';
 import '../controller/assets_bloc/assets_bloc.dart';
 import 'widgets/containers.dart';
@@ -17,7 +18,7 @@ class AssetsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AssetsBloc()..add(const AssetsEvent.started()),
+      create: (context) => AssetsBloc(sl())..add(const AssetsEvent.started()),
       child: BaseScaffold(
         auth,
         title: 'Assets',

@@ -1,7 +1,13 @@
 abstract class FirestoreDocument {
   final String id;
 
-  FirestoreDocument({required this.id});
+  const FirestoreDocument({required this.id});
+
+  String get collectionPath => throw Error();
+
+  Map<String, dynamic> toMap();
+
+  // FirestoreDocument fromMap();
 }
 
 

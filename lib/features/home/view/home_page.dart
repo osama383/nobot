@@ -1,14 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart' hide FormState;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/core/models/assets/assets.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 import 'package:nobot/core/models/value_object/value_object.dart';
 import 'package:nobot/core/scaffold/nav/nav.dart';
-import 'package:nobot/core/scaffold/nav/nav_rail.dart';
 import 'package:nobot/core/widgets/form/bloc/form_bloc.dart';
 import 'package:nobot/injection.dart';
 
+import '../../../core/repository.dart';
 import '../../../core/scaffold/view/base_scaffold.dart';
 import '../../auth/data/auth.dart';
 
@@ -24,6 +23,7 @@ class HomePage extends StatelessWidget {
       products: {},
     );
     final vehicle = Vehicle(
+      id: '',
       name: VString('Mustang'),
       decalNumber: 'decal',
     );
@@ -56,9 +56,33 @@ class HomePage extends StatelessWidget {
               ).build(context),
               FilledButton(
                 onPressed: () {
-                  FirebaseFirestore.instance
-                      .collection('random')
-                      .add({'data': 'data'});
+                  sl<Repository>().create<Asset>(
+                    Entities.assets,
+                    Vehicle(
+                      id: 'this is just an id',
+                      name: VString('tundra'),
+                      decalNumber: 'decal number',
+                    ),
+                  );
+                },
+                child: const Text('Add vehicle'),
+              ),
+              FilledButton(
+                onPressed: () {
+                  sl<Repository>().create<Asset>(
+                    Entities.assets,
+                    Depot(
+                      id: 'this is just an id',
+                      name: VString('tundra'),
+                      address: 'decal number',
+                    ),
+                  );
+                },
+                child: const Text('Add depot'),
+              ),
+              FilledButton(
+                onPressed: () {
+                  sl<Repository>().list<Asset>(Entities.assets);
                 },
                 child: const Text('creatge random dat'),
               ),

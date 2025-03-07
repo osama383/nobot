@@ -8,7 +8,6 @@ import 'package:injectable/injectable.dart';
 import '../../../core/models/email/email.dart';
 import '../../../core/models/failure/failure.dart';
 import '../../../core/models/password/password.dart';
-import '../../../core/models/user/permission.dart';
 import '../../../core/models/user/user.dart';
 
 @singleton
@@ -112,10 +111,7 @@ class Auth {
       db
           .collection('users')
           .withConverter<User>(
-            fromFirestore: (snap, _) {
-              print(snap.data());
-              return UserMapper.fromMap(snap.data()!);
-            },
+            fromFirestore: (snap, _) => UserMapper.fromMap(snap.data()!),
             toFirestore: (user, _) => user.toMap(),
           )
           .doc(firebaseAuth.currentUser!.uid)

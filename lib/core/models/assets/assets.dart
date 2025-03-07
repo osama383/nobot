@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:nobot/core/models/firestore_document.dart';
 
 import '../real_number.dart';
 import '../value_object/value_object.dart';
@@ -6,36 +7,46 @@ import '../volume/volume.dart';
 
 part 'assets.mapper.dart';
 
-@MappableClass()
-sealed class Asset with AssetMappable {
-  Asset();
+@MappableClass(discriminatorKey: 'type')
+sealed class Asset extends FirestoreDocument with AssetMappable {
+  Asset({required super.id});
+
+  @override
+  String get collectionPath => 'assets';
 }
 
-@MappableClass()
-class Vehicle with VehicleMappable {
+@MappableClass(discriminatorValue: 'vehicle')
+class Vehicle extends Asset with VehicleMappable {
   final VString name;
   final String decalNumber;
 
-  Vehicle({required this.name, required this.decalNumber});
+  Vehicle({
+    required super.id,
+    required this.name,
+    required this.decalNumber,
+  });
 }
 
-@MappableClass()
-class Depot with DepotMappable {
+@MappableClass(discriminatorValue: 'depot')
+class Depot extends Asset with DepotMappable {
   final VString name;
   final String address;
 
-  Depot({required this.name, required this.address});
+  Depot({
+    required super.id,
+    required this.name,
+    required this.address,
+  });
 }
 
-@MappableClass()
-class Container with ContainerMappable {
-  final UniqueId id;
+@MappableClass(discriminatorValue: 'container')
+class Container extends Asset with ContainerMappable {
   final VString name;
   final RealDouble height;
   final Volume capacity;
 
   Container({
-    required this.id,
+    required super.id,
     required this.name,
     required this.height,
     required this.capacity,
