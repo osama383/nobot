@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/core/models/email/email.dart';
 import 'package:nobot/core/models/value_object/value_object.dart';
 import 'package:uuid/uuid.dart';
+
+import '../../../models/failure/failure.dart';
 
 part 'form_event.dart';
 part 'form_state.dart';
@@ -13,7 +16,7 @@ part 'form_bloc.mapper.dart';
 class FormBloc extends Bloc<FormEvent, FormState> {
   FormBloc({
     required List<Input> inputs,
-    required void Function(List<Input> inputs) onSubmit,
+    required Future<void> Function(List<Input> inputs) submitHook,
   }) : super(FormState.initial(inputs, false)) {
     on<FormEvent>((event, emit) async {
       switch (event) {
@@ -25,7 +28,14 @@ class FormBloc extends Bloc<FormEvent, FormState> {
         case OnFormSubmitEvent():
           emit(state.copyWith(showErrors: true));
           if (state.inputs.any((e) => e.value.isInValid)) return;
-          onSubmit(state.inputs);
+          emit(state.copyWith(submissionInProgress: true));
+          await submitHook(state.inputs);
+          emit(
+            state.copyWith(
+              submissionInProgress: false,
+              resultOption: some(right(unit)),
+            ),
+          );
       }
     });
   }

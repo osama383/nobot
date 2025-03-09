@@ -109,12 +109,14 @@ class FormState with FormStateMappable {
   final bool isEditing;
   final bool showErrors;
   final bool submissionInProgress;
+  final Option<Either<Failure, Unit>> resultOption;
 
   FormState({
     required this.inputs,
     required this.isEditing,
     required this.showErrors,
     required this.submissionInProgress,
+    required this.resultOption,
   });
 
   factory FormState.initial(List<Input> inputs, bool isEditing) {
@@ -123,6 +125,7 @@ class FormState with FormStateMappable {
       isEditing: isEditing,
       showErrors: false,
       submissionInProgress: false,
+      resultOption: none(),
     );
   }
 

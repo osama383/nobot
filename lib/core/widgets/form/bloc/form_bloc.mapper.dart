@@ -33,6 +33,10 @@ class FormStateMapper extends ClassMapperBase<FormState> {
   static bool _$submissionInProgress(FormState v) => v.submissionInProgress;
   static const Field<FormState, bool> _f$submissionInProgress =
       Field('submissionInProgress', _$submissionInProgress);
+  static Option<Either<Failure, Unit>> _$resultOption(FormState v) =>
+      v.resultOption;
+  static const Field<FormState, Option<Either<Failure, Unit>>> _f$resultOption =
+      Field('resultOption', _$resultOption);
 
   @override
   final MappableFields<FormState> fields = const {
@@ -40,6 +44,7 @@ class FormStateMapper extends ClassMapperBase<FormState> {
     #isEditing: _f$isEditing,
     #showErrors: _f$showErrors,
     #submissionInProgress: _f$submissionInProgress,
+    #resultOption: _f$resultOption,
   };
 
   static FormState _instantiate(DecodingData data) {
@@ -47,7 +52,8 @@ class FormStateMapper extends ClassMapperBase<FormState> {
         inputs: data.dec(_f$inputs),
         isEditing: data.dec(_f$isEditing),
         showErrors: data.dec(_f$showErrors),
-        submissionInProgress: data.dec(_f$submissionInProgress));
+        submissionInProgress: data.dec(_f$submissionInProgress),
+        resultOption: data.dec(_f$resultOption));
   }
 
   @override
@@ -109,7 +115,8 @@ abstract class FormStateCopyWith<$R, $In extends FormState, $Out>
       {List<Input<ValueObject<dynamic, dynamic>>>? inputs,
       bool? isEditing,
       bool? showErrors,
-      bool? submissionInProgress});
+      bool? submissionInProgress,
+      Option<Either<Failure, Unit>>? resultOption});
   FormStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -135,13 +142,15 @@ class _FormStateCopyWithImpl<$R, $Out>
           {List<Input<ValueObject<dynamic, dynamic>>>? inputs,
           bool? isEditing,
           bool? showErrors,
-          bool? submissionInProgress}) =>
+          bool? submissionInProgress,
+          Option<Either<Failure, Unit>>? resultOption}) =>
       $apply(FieldCopyWithData({
         if (inputs != null) #inputs: inputs,
         if (isEditing != null) #isEditing: isEditing,
         if (showErrors != null) #showErrors: showErrors,
         if (submissionInProgress != null)
-          #submissionInProgress: submissionInProgress
+          #submissionInProgress: submissionInProgress,
+        if (resultOption != null) #resultOption: resultOption
       }));
   @override
   FormState $make(CopyWithData data) => FormState(
@@ -149,7 +158,8 @@ class _FormStateCopyWithImpl<$R, $Out>
       isEditing: data.get(#isEditing, or: $value.isEditing),
       showErrors: data.get(#showErrors, or: $value.showErrors),
       submissionInProgress:
-          data.get(#submissionInProgress, or: $value.submissionInProgress));
+          data.get(#submissionInProgress, or: $value.submissionInProgress),
+      resultOption: data.get(#resultOption, or: $value.resultOption));
 
   @override
   FormStateCopyWith<$R2, FormState, $Out2> $chain<$R2, $Out2>(

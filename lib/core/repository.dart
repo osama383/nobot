@@ -27,8 +27,18 @@ class Repository {
         );
   }
 
-  create<T extends FirestoreDocument>(Entities entity, T item) {
-    _ref(entity).add(item);
+  Future<void> create<T extends FirestoreDocument>(
+    Entities entity,
+    T item,
+  ) async {
+    await _ref(entity).add(item);
+  }
+
+  Future<void> edit<T extends FirestoreDocument>(
+    Entities entity,
+    T item,
+  ) async {
+    await _ref(entity).doc(item.id).update(item.toMap());
   }
 
   Stream<List<T>> list<T extends FirestoreDocument>(Entities entity) {
