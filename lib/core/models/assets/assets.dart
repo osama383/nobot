@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:nobot/core/models/firestore_document.dart';
 
+import '../address/address.dart';
 import '../real_number.dart';
 import '../value_object/value_object.dart';
 import '../volume/volume.dart';
@@ -30,7 +31,7 @@ class Vehicle extends Asset with VehicleMappable {
 @MappableClass(discriminatorValue: 'depot')
 class Depot extends Asset with DepotMappable {
   final VString name;
-  final String address;
+  final Address address;
 
   Depot({
     required super.id,

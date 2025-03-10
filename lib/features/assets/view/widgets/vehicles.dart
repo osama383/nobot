@@ -45,9 +45,10 @@ class _AddVehicleButton extends StatelessWidget {
     return TextButton(
       onPressed: () {
         shortFormModal(
+          title: labels.addVehicle,
           inputs: [
-            Input.vstring(VString.empty()),
-            Input.noValidation<String>(''),
+            Input.vstring(VString(''), labelText: labels.name),
+            Input.noValidation<String>('', labelText: labels.decalNumber),
           ],
           submitHook: (inputs) async {
             await sl<Repository>().create(
@@ -55,7 +56,7 @@ class _AddVehicleButton extends StatelessWidget {
               Vehicle(
                 id: '',
                 name: inputs[0].value as VString,
-                decalNumber: inputs[1].value.getOrCrash as String,
+                decalNumber: inputs[1].value as String,
               ),
             );
           },
@@ -92,9 +93,16 @@ class _Vehicles extends StatelessWidget {
                                       : Text(vehicle.id),
                                   onTap: () async {
                                     shortFormModal(
+                                      title: labels.editVehicle,
                                       inputs: [
-                                        Input.vstring(vehicle.name),
-                                        Input.noValidation(vehicle.decalNumber),
+                                        Input.vstring(
+                                          vehicle.name,
+                                          labelText: labels.name,
+                                        ),
+                                        Input.noValidation(
+                                          vehicle.decalNumber,
+                                          labelText: labels.decalNumber,
+                                        ),
                                       ],
                                       submitHook: (inputs) async {
                                         await sl<Repository>().edit(

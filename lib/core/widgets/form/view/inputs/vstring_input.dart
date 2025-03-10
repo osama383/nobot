@@ -7,7 +7,8 @@ import '../../domain/input.dart';
 
 class VStringInput extends StatelessWidget {
   final Input<VString> initial;
-  const VStringInput(this.initial, {super.key});
+  final String labelText;
+  const VStringInput(this.initial, {super.key, required this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class VStringInput extends StatelessWidget {
           autovalidateMode: state.showErrors
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          decoration: const InputDecoration(labelText: 'String'),
+          decoration: InputDecoration(labelText: labelText),
           onChanged: (value) => context
               .read<FormBloc>()
               .add(OnFormInputEvent(initial.copyWith(VString(value)))),

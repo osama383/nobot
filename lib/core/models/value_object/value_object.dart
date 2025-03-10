@@ -3,13 +3,25 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'value_object.freezed.dart';
 
-class ValueObject<FailureType, ValidType> {
+abstract class Value {
+  bool get isValid;
+  bool get isInValid;
+
+  // dynamic get getOrCrash;
+
+  const Value();
+}
+
+class ValueObject<FailureType, ValidType> extends Value {
   final Either<FailureType, ValidType> value;
 
   const ValueObject(this.value);
 
+  @override
   bool get isValid => value.isRight();
+  @override
   bool get isInValid => value.isLeft();
+  // @override
   ValidType get getOrCrash => value.fold((l) => throw Error(), id);
   String get getOrEmpty => value.fold((l) => '', (r) => r.toString());
   String get valueAsString =>

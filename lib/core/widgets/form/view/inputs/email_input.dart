@@ -7,7 +7,8 @@ import '../../domain/input.dart';
 
 class EmailInput extends StatelessWidget {
   final Input<EmailAddress> initial;
-  const EmailInput(this.initial, {super.key});
+  final String labelText;
+  const EmailInput(this.initial, {super.key, required this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class EmailInput extends StatelessWidget {
           autovalidateMode: state.showErrors
               ? AutovalidateMode.always
               : AutovalidateMode.disabled,
-          decoration: const InputDecoration(labelText: 'Email'),
+          decoration: InputDecoration(labelText: labelText),
           onChanged: (value) => context
               .read<FormBloc>()
               .add(OnFormInputEvent(initial.copyWith(EmailAddress(value)))),

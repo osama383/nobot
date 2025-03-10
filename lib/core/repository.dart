@@ -47,4 +47,10 @@ class Repository {
           (e) => e.docs.map((e) => e.data() as T).toList(),
         );
   }
+
+  // Stream<List<T>> listWhere<T extends FirestoreDocument>(Entities entity) {
+  //   return _ref(entity).where(field).snapshots().map(
+  //         (e) => e.docs.map((e) => e.data() as T).toList(),
+  //       );
+  // }
 }

@@ -6,65 +6,29 @@ import 'package:nobot/core/widgets/modal_builder/modal_builder.dart';
 import '../../domain/input.dart';
 
 ModalBuilder<FormBloc> shortFormModal({
+  required String title,
   required List<Input> inputs,
   required Future<void> Function(List<Input> inputs) submitHook,
 }) {
   return ShortFormModal(
+    theTitle: title,
     inputs: inputs,
     submitHook: submitHook,
   );
 }
 
 class ShortFormModal extends ShortModal<FormBloc> {
+  final String theTitle;
   final FormBloc _bloc;
 
   ShortFormModal({
+    required this.theTitle,
     required List<Input> inputs,
     required Future<void> Function(List<Input> inputs) submitHook,
   }) : _bloc = FormBloc(
           inputs: inputs,
           submitHook: submitHook,
         );
-
-  // List<Input> inputs(Option<Vehicle> vehicleOption) {
-  //   return vehicleOption.fold(
-  //     () => [Input.vstring(VString(''))],
-  //     (vehicle) => [
-  //       Input.vstring(vehicle.name),
-  //     ],
-  //   );
-  // }
-
-  // void Function(List<Input> inputs) submitHook(
-  //   Option<Vehicle> vehicleOption,
-  // ) {
-  //   return vehicleOption.fold(
-  //     () {
-  //       return (inputs) {
-  //         sl<Repository>().create(
-  //           Entities.assets,
-  //           Vehicle(
-  //             id: 'id',
-  //             name: inputs[0].value as VString,
-  //             decalNumber: '',
-  //           ),
-  //         );
-  //       };
-  //     },
-  //     (vehicle) {
-  //       return (inputs) {
-  //         sl<Repository>().create(
-  //           Entities.assets,
-  //           vehicle.copyWith(
-  //             id: 'id',
-  //             name: inputs[0].value as VString,
-  //             decalNumber: '',
-  //           ),
-  //         );
-  //       };
-  //     },
-  //   );
-  // }
 
   @override
   FormBloc? get bloc => _bloc;
@@ -113,6 +77,6 @@ class ShortFormModal extends ShortModal<FormBloc> {
 
   @override
   String title(BuildContext context) {
-    return _bloc.state.isEditing ? 'Edit vehicle' : 'Add vehicle';
+    return theTitle;
   }
 }

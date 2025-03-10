@@ -32,6 +32,7 @@ void main() async {
 
   MapperContainer.globals.use(const VStringMapper());
   MapperContainer.globals.use(const EmailMapper());
+  MapperContainer.globals.use(const LatLngMapper());
 
   runApp(const Nobot());
 }

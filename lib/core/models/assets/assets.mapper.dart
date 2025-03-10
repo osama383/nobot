@@ -192,6 +192,7 @@ class DepotMapper extends SubClassMapperBase<Depot> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = DepotMapper._());
       AssetMapper.ensureInitialized().addSubMapper(_instance!);
+      AddressMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -203,8 +204,8 @@ class DepotMapper extends SubClassMapperBase<Depot> {
   static const Field<Depot, String> _f$id = Field('id', _$id);
   static VString _$name(Depot v) => v.name;
   static const Field<Depot, VString> _f$name = Field('name', _$name);
-  static String _$address(Depot v) => v.address;
-  static const Field<Depot, String> _f$address = Field('address', _$address);
+  static Address _$address(Depot v) => v.address;
+  static const Field<Depot, Address> _f$address = Field('address', _$address);
 
   @override
   final MappableFields<Depot> fields = const {
@@ -273,8 +274,9 @@ extension DepotValueCopy<$R, $Out> on ObjectCopyWith<$R, Depot, $Out> {
 
 abstract class DepotCopyWith<$R, $In extends Depot, $Out>
     implements AssetCopyWith<$R, $In, $Out> {
+  AddressCopyWith<$R, Address, Address> get address;
   @override
-  $R call({String? id, VString? name, String? address});
+  $R call({String? id, VString? name, Address? address});
   DepotCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -285,7 +287,10 @@ class _DepotCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Depot, $Out>
   @override
   late final ClassMapperBase<Depot> $mapper = DepotMapper.ensureInitialized();
   @override
-  $R call({String? id, VString? name, String? address}) =>
+  AddressCopyWith<$R, Address, Address> get address =>
+      $value.address.copyWith.$chain((v) => call(address: v));
+  @override
+  $R call({String? id, VString? name, Address? address}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,

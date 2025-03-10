@@ -7,7 +7,8 @@ import '../../domain/input.dart';
 
 class TextInput extends StatelessWidget {
   final Input<AlwaysValid<String>> initial;
-  const TextInput(this.initial, {super.key});
+  final String labelText;
+  const TextInput(this.initial, {super.key, required this.labelText});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class TextInput extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           initialValue: initial.value.valueAsString,
-          decoration: const InputDecoration(labelText: 'String'),
+          decoration: InputDecoration(labelText: labelText),
           onChanged: (value) => context.read<FormBloc>().add(
                 OnFormInputEvent(
                   initial.copyWith(AlwaysValid<String>(value)),
