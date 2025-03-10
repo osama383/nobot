@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nobot/core/widgets/form/bloc/form_bloc.dart';
 import 'package:nobot/core/widgets/modal_builder/modal_builder.dart';
 
+import '../../domain/input.dart';
+
 ModalBuilder<FormBloc> shortFormModal({
   required List<Input> inputs,
   required Future<void> Function(List<Input> inputs) submitHook,

@@ -5,9 +5,9 @@ import '../../../../core/models/assets/assets.dart';
 import '../../../../core/models/value_object/value_object.dart';
 import '../../../../core/repository.dart';
 import '../../../../core/widgets/common_loading.dart';
-import '../../../../core/widgets/form/bloc/form_bloc.dart';
+import '../../../../core/widgets/form/domain/input.dart';
+import '../../../../core/widgets/form/view/form_modal/short_form_modal.dart';
 import '../../../../injection.dart';
-import 'vehicle_form.dart';
 
 class Vehicles extends StatelessWidget {
   const Vehicles({super.key});
@@ -23,7 +23,7 @@ class Vehicles extends StatelessWidget {
               labels.vehicles,
               style: context.textTheme.headlineSmall,
             ),
-            trailing: _AddVehicleButton(),
+            trailing: const _AddVehicleButton(),
           ),
           context.useMobileLayout
               ? const _Vehicles()
@@ -47,7 +47,7 @@ class _AddVehicleButton extends StatelessWidget {
         shortFormModal(
           inputs: [
             Input.vstring(VString.empty()),
-            Input.optional<String>(''),
+            Input.noValidation<String>(''),
           ],
           submitHook: (inputs) async {
             await sl<Repository>().create(
@@ -94,7 +94,7 @@ class _Vehicles extends StatelessWidget {
                                     shortFormModal(
                                       inputs: [
                                         Input.vstring(vehicle.name),
-                                        Input.optional(vehicle.decalNumber),
+                                        Input.noValidation(vehicle.decalNumber),
                                       ],
                                       submitHook: (inputs) async {
                                         await sl<Repository>().edit(

@@ -1,13 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nobot/core/models/email/email.dart';
 import 'package:nobot/core/models/value_object/value_object.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../models/failure/failure.dart';
+import '../domain/input.dart';
 
 part 'form_event.dart';
 part 'form_state.dart';
