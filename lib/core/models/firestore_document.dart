@@ -1,13 +1,16 @@
-abstract class FirestoreDocument {
+import 'package:dart_mappable/dart_mappable.dart';
+
+@MappableClass()
+class FirestoreDocument {
   final String id;
 
   const FirestoreDocument({required this.id});
 
   String get collectionPath => throw Error();
 
-  Map<String, dynamic> toMap();
-
-  // FirestoreDocument fromMap();
+  Map<String, dynamic> toMap() {
+    return {};
+  }
 }
 
 

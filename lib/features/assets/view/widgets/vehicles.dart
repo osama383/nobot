@@ -47,14 +47,15 @@ class _AddVehicleButton extends StatelessWidget {
         shortFormModal(
           inputs: [
             Input.vstring(VString.empty()),
+            Input.optional<String>(''),
           ],
           submitHook: (inputs) async {
             await sl<Repository>().create(
               Entities.assets,
               Vehicle(
-                id: 'id',
+                id: '',
                 name: inputs[0].value as VString,
-                decalNumber: '',
+                decalNumber: inputs[1].value.getOrCrash as String,
               ),
             );
           },
@@ -86,19 +87,22 @@ class _Vehicles extends StatelessWidget {
                               (vehicle) {
                                 return ListTile(
                                   title: Text(vehicle.name.getOrCrash),
-                                  subtitle: vehicle.decalNumber.isEmpty
+                                  subtitle: vehicle.id.isEmpty
                                       ? null
-                                      : Text(vehicle.decalNumber),
+                                      : Text(vehicle.id),
                                   onTap: () async {
                                     shortFormModal(
                                       inputs: [
                                         Input.vstring(vehicle.name),
+                                        Input.optional(vehicle.decalNumber),
                                       ],
                                       submitHook: (inputs) async {
-                                        await sl<Repository>().create(
+                                        await sl<Repository>().edit(
                                           Entities.assets,
                                           vehicle.copyWith(
                                             name: inputs[0].value as VString,
+                                            decalNumber:
+                                                inputs[1].value as String,
                                           ),
                                         );
                                       },

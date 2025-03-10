@@ -5,16 +5,21 @@ class Input<T extends ValueObject> {
   final T value;
 
   Input._(this.value, this.id);
-  static Input<T> fromProp<T extends ValueObject>(T o) {
-    return switch (o) {
-      EmailAddress e => Input<T>._(e as T, const Uuid().v1()),
-      VString e => Input<T>._(e as T, const Uuid().v1()),
-      ValueObject() => throw UnimplementedError(),
-    };
-  }
+  // static Input<T> fromProp<T extends ValueObject>(T o) {
+  //   return switch (o) {
+  //     EmailAddress e => Input<T>._(e as T, const Uuid().v1()),
+  //     VString e => Input<T>._(e as T, const Uuid().v1()),
+  //     String e => Input<T>._(e as T, const Uuid().v1()),
+  //     ValueObject() => throw UnimplementedError(),
+  //   };
+  // }
 
   static Input<EmailAddress> email(EmailAddress e) {
     return Input<EmailAddress>._(e, const Uuid().v1());
+  }
+
+  static Input<AlwaysValid<T>> optional<T extends Object>(T e) {
+    return Input._(AlwaysValid<T>(e), const Uuid().v1());
   }
 
   static Input<VString> vstring(VString e) {
@@ -29,8 +34,31 @@ class Input<T extends ValueObject> {
     return switch (this) {
       Input<EmailAddress> e => EmailInput(e),
       Input<VString> e => VStringInput(e),
+      Input<AlwaysValid<String>> e => TextInput(e),
       Input<T>() => const Placeholder(),
     };
+  }
+}
+
+class TextInput extends StatelessWidget {
+  final Input<AlwaysValid<String>> initial;
+  const TextInput(this.initial, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FormBloc, FormState>(
+      builder: (context, state) {
+        return TextFormField(
+          initialValue: initial.value.valueAsString,
+          decoration: const InputDecoration(labelText: 'String'),
+          onChanged: (value) => context.read<FormBloc>().add(
+                OnFormInputEvent(
+                  initial.copyWith(AlwaysValid<String>(value)),
+                ),
+              ),
+        );
+      },
+    );
   }
 }
 

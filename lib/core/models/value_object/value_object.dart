@@ -33,6 +33,22 @@ class ValueObject<FailureType, ValidType> {
   String toString() => 'Value($value)';
 }
 
+class AlwaysValid<T extends Object> extends ValueObject<T, T> {
+  AlwaysValid(T input) : super(right(input));
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is VString && other.value == value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
+  @override
+  String toString() => 'AlwaysValid($valueAsString)';
+}
+
 class VString extends ValueObject<String, String> {
   VString(String? input) : super(validate(input));
 

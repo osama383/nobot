@@ -22,7 +22,8 @@ class Repository {
     };
 
     return db.collection(collectionPath).withConverter<T>(
-          fromFirestore: (snap, _) => mapper(snap.data()!) as T,
+          fromFirestore: (snap, _) =>
+              mapper(snap.data()!..addAll({'id': snap.id})) as T,
           toFirestore: (model, _) => model.toMap(),
         );
   }
