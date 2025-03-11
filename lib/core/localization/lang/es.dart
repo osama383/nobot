@@ -1,8 +1,10 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../models/product/product.dart';
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
+import '../../smart_dates/smart_dates.dart';
 import '../localization_labels.dart';
 
 class EsLocalizations extends DefaultLocalizations
@@ -2649,13 +2651,13 @@ class EsLocalizations extends DefaultLocalizations
   @override
   String get created => 'Creado';
 
-  // @override
-  // String products(Product product) {
-  //   return switch (product) {
-  //     Product.uco => 'Aceite',
-  //     Product.grease => 'Trap',
-  //   };
-  // }
+  @override
+  String products(Products product) {
+    return switch (product) {
+      Products.uco => 'Aceite',
+      Products.grease => 'Trap',
+    };
+  }
 
   @override
   String get location => 'Ubicación';
@@ -2821,16 +2823,16 @@ class EsLocalizations extends DefaultLocalizations
   @override
   String get noOtherOptionsAvailable => 'No hay otras opciones disponibles';
 
-  // @override
-  // String smartDateRanges(SmartDates smartDate) {
-  //   return switch (smartDate) {
-  //     SmartDates.last30Days => 'Últimos 30 días',
-  //     SmartDates.today => 'Hoy',
-  //     SmartDates.yesterday => 'Ayer',
-  //     SmartDates.lastMonth => 'Mes pasado',
-  //     SmartDates.lastQuarter => 'Último trimestre',
-  //   };
-  // }
+  @override
+  String smartDateRanges(SmartDates smartDate) {
+    return switch (smartDate) {
+      SmartDates.last30Days => 'Últimos 30 días',
+      SmartDates.today => 'Hoy',
+      SmartDates.yesterday => 'Ayer',
+      SmartDates.lastMonth => 'Mes pasado',
+      SmartDates.lastQuarter => 'Último trimestre',
+    };
+  }
 
   @override
   String get totalCapacity => 'Capacidad total';

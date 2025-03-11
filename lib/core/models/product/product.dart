@@ -6,6 +6,8 @@ import '../real_number.dart';
 
 part 'product.mapper.dart';
 
+enum Products { uco, grease }
+
 @MappableClass(discriminatorKey: 'type')
 sealed class Product with ProductMappable {
   final ServiceStatus status;

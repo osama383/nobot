@@ -5,6 +5,7 @@ import 'package:nobot/injection.dart';
 import '../../features/assets/view/assets_page.dart';
 import '../../features/auth/data/auth.dart';
 import '../../features/auth/view/auth_page.dart';
+import '../../features/customers/view/index/customers_page.dart';
 import '../../features/home/view/home_page.dart';
 import '../../navigator_key.dart';
 import '../not_found/not_found_page.dart';
@@ -43,6 +44,15 @@ class HomePageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return HomePage(sl());
+  }
+}
+
+@TypedGoRoute<HomePageRoute>(path: '/customers')
+@immutable
+class CustomersPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return CustomersPage(sl());
   }
 }
 

@@ -3,9 +3,10 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import '../models/customer/customer.dart';
 import '../models/volume/volume.dart';
 import '../scaffold/nav/nav.dart';
+import '../smart_dates/smart_dates.dart';
 
 abstract class LocalizationLabels extends DefaultLocalizations {
-  // String smartDateRanges(SmartDates range);
+  String smartDateRanges(SmartDates range);
   //Table builder
 
   String get noFiltersApplied;
@@ -62,7 +63,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get allGreaseTrapsPumped;
   String get greaseTrapsNotPumped;
   String get due;
-  // String products(Product product);
+  String products(Products product);
   String get location;
   String get dueDate;
   String get dueDateType;

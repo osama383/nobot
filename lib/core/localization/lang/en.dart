@@ -3,6 +3,7 @@ import 'package:nobot/core/models/customer/customer.dart';
 
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
+import '../../smart_dates/smart_dates.dart';
 import '../localization_labels.dart';
 
 class EnLocalizations extends DefaultLocalizations
@@ -2656,13 +2657,13 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get created => 'Created';
 
-  // @override
-  // String products(Product product) {
-  //   return switch (product) {
-  //     Product.uco => 'Oil',
-  //     Product.grease => 'Trap',
-  //   };
-  // }
+  @override
+  String products(Product product) {
+    return switch (product) {
+      Product.uco => 'Oil',
+      Product.grease => 'Trap',
+    };
+  }
 
   @override
   String get location => 'Location';
@@ -2827,16 +2828,16 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get noOtherOptionsAvailable => 'No other options available';
 
-  // @override
-  // String smartDateRanges(SmartDates smartDate) {
-  //   return switch (smartDate) {
-  //     SmartDates.last30Days => 'Last 30 days',
-  //     SmartDates.today => 'Today',
-  //     SmartDates.yesterday => 'Yesterday',
-  //     SmartDates.lastMonth => 'Last month',
-  //     SmartDates.lastQuarter => 'Last quarter',
-  //   };
-  // }
+  @override
+  String smartDateRanges(SmartDates smartDate) {
+    return switch (smartDate) {
+      SmartDates.last30Days => 'Last 30 days',
+      SmartDates.today => 'Today',
+      SmartDates.yesterday => 'Yesterday',
+      SmartDates.lastMonth => 'Last month',
+      SmartDates.lastQuarter => 'Last quarter',
+    };
+  }
 
   @override
   String get totalCapacity => 'Total capacity';

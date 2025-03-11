@@ -13,6 +13,7 @@ class CustomerMapper extends ClassMapperBase<Customer> {
   static CustomerMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = CustomerMapper._());
+      AddressMapper.ensureInitialized();
       ProductMapper.ensureInitialized();
     }
     return _instance!;
@@ -25,6 +26,9 @@ class CustomerMapper extends ClassMapperBase<Customer> {
   static const Field<Customer, String> _f$id = Field('id', _$id);
   static VString _$name(Customer v) => v.name;
   static const Field<Customer, VString> _f$name = Field('name', _$name);
+  static Address _$address(Customer v) => v.address;
+  static const Field<Customer, Address> _f$address =
+      Field('address', _$address);
   static Set<Product> _$products(Customer v) => v.products;
   static const Field<Customer, Set<Product>> _f$products =
       Field('products', _$products);
@@ -33,6 +37,7 @@ class CustomerMapper extends ClassMapperBase<Customer> {
   final MappableFields<Customer> fields = const {
     #id: _f$id,
     #name: _f$name,
+    #address: _f$address,
     #products: _f$products,
   };
 
@@ -40,6 +45,7 @@ class CustomerMapper extends ClassMapperBase<Customer> {
     return Customer(
         id: data.dec(_f$id),
         name: data.dec(_f$name),
+        address: data.dec(_f$address),
         products: data.dec(_f$products));
   }
 
@@ -92,7 +98,9 @@ extension CustomerValueCopy<$R, $Out> on ObjectCopyWith<$R, Customer, $Out> {
 
 abstract class CustomerCopyWith<$R, $In extends Customer, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, VString? name, Set<Product>? products});
+  AddressCopyWith<$R, Address, Address> get address;
+  $R call(
+      {String? id, VString? name, Address? address, Set<Product>? products});
   CustomerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -105,16 +113,25 @@ class _CustomerCopyWithImpl<$R, $Out>
   late final ClassMapperBase<Customer> $mapper =
       CustomerMapper.ensureInitialized();
   @override
-  $R call({String? id, VString? name, Set<Product>? products}) =>
+  AddressCopyWith<$R, Address, Address> get address =>
+      $value.address.copyWith.$chain((v) => call(address: v));
+  @override
+  $R call(
+          {String? id,
+          VString? name,
+          Address? address,
+          Set<Product>? products}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,
+        if (address != null) #address: address,
         if (products != null) #products: products
       }));
   @override
   Customer $make(CopyWithData data) => Customer(
       id: data.get(#id, or: $value.id),
       name: data.get(#name, or: $value.name),
+      address: data.get(#address, or: $value.address),
       products: data.get(#products, or: $value.products));
 
   @override
