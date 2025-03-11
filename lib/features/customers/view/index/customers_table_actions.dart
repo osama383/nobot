@@ -51,7 +51,7 @@ class _DepotSelector extends StatelessWidget {
 
   Widget menuItem(
     BuildContext context,
-    dartz.Option<DepotModel> depotOption,
+    dartz.Option<Depot> depotOption,
   ) {
     final labels = context.localizationLabels;
     return PointerInterceptor(

@@ -1,6 +1,7 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
 import '../models/customer/customer.dart';
+import '../models/product/product.dart';
 import '../models/volume/volume.dart';
 import '../scaffold/nav/nav.dart';
 import '../smart_dates/smart_dates.dart';

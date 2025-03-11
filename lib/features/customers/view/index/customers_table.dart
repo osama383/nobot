@@ -1,15 +1,15 @@
-import 'package:cost_client/core/localization/localization_labels.dart';
-import 'package:cost_client/core/table_builder/domain/filter.dart';
-import 'package:cost_client/core/columns/customer/customer_columns.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/columns/columns.dart';
+import '../../../../core/columns/customer/customer_columns.dart';
+import '../../../../core/localization/localization_labels.dart';
 import '../../../../core/models/customer/customer.dart';
-import '../../../../core/models/products.dart';
-import '../../../../core/table_builder/controller/table_builder_bloc/table_builder_bloc.dart';
+import '../../../../core/models/product/product.dart';
+import '../../../../core/table-builder/controller/table_builder_bloc/table_builder_bloc.dart';
+import '../../../../core/table-builder/domain/filter.dart';
 
-TableBuilderBloc<CustomerModel> customersIndexTableBloc({
-  required List<CustomerModel> customers,
+TableBuilderBloc<Customer> customersIndexTableBloc({
+  required List<Customer> customers,
   required LocalizationLabels labels,
 }) {
   return TableBuilderBloc(
@@ -37,13 +37,13 @@ TableBuilderBloc<CustomerModel> customersIndexTableBloc({
   );
 }
 
-List<TableColumn<CustomerModel, Object>> _columns(
+List<TableColumn<Customer, Object>> _columns(
   LocalizationLabels labels,
 ) {
-  final columns = CustomerColumns<CustomerModel>(
+  final columns = CustomerColumns<Customer>(
     labels,
     prefixDateColumnsWithProduct: true,
-    getCustomer: (CustomerModel e) => e,
+    getCustomer: (Customer e) => e,
   );
   return [
     columns.name(const EdgeInsets.only(left: 16, right: 8)),
@@ -54,7 +54,7 @@ List<TableColumn<CustomerModel, Object>> _columns(
 
     //uco
     columns.needForScheduling(
-      Product.uco,
+      Products.uco,
       groupId: Columns.customerOil.name,
       includeHelperText: true,
       title: labels.products(Product.uco),
