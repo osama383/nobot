@@ -88,13 +88,8 @@ mixin _$PageSpec {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Serializes this PageSpec to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PageSpecCopyWith<PageSpec> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -119,8 +114,6 @@ class _$PageSpecCopyWithImpl<$Res, $Val extends PageSpec>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,8 +127,6 @@ class _$PageSpecCopyWithImpl<$Res, $Val extends PageSpec>
     ) as $Val);
   }
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TableSpecCopyWith<$Res> get tableSpec {
@@ -167,8 +158,6 @@ class __$$CustomersPageSpecImplCopyWithImpl<$Res>
       $Res Function(_$CustomersPageSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -221,13 +210,11 @@ class _$CustomersPageSpecImpl implements CustomersPageSpec {
                 other.tableSpec == tableSpec));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, depotId, tableSpec);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CustomersPageSpecImplCopyWith<_$CustomersPageSpecImpl> get copyWith =>
@@ -333,11 +320,8 @@ abstract class CustomersPageSpec implements PageSpec {
   String get depotId;
   @override
   TableSpec get tableSpec;
-
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CustomersPageSpecImplCopyWith<_$CustomersPageSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -364,8 +348,6 @@ class __$$TripsPageSpecImplCopyWithImpl<$Res>
       _$TripsPageSpecImpl _value, $Res Function(_$TripsPageSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -418,13 +400,11 @@ class _$TripsPageSpecImpl implements TripsPageSpec {
                 other.tableSpec == tableSpec));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, depotId, tableSpec);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TripsPageSpecImplCopyWith<_$TripsPageSpecImpl> get copyWith =>
@@ -529,11 +509,8 @@ abstract class TripsPageSpec implements PageSpec {
   String get depotId;
   @override
   TableSpec get tableSpec;
-
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TripsPageSpecImplCopyWith<_$TripsPageSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -563,8 +540,6 @@ class __$$ReportsPageSpecImplCopyWithImpl<$Res>
       _$ReportsPageSpecImpl _value, $Res Function(_$ReportsPageSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -621,13 +596,11 @@ class _$ReportsPageSpecImpl implements ReportsPageSpec {
                 other.tableSpec == tableSpec));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, dateSelection, tableSpec);
 
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReportsPageSpecImplCopyWith<_$ReportsPageSpecImpl> get copyWith =>
@@ -735,11 +708,8 @@ abstract class ReportsPageSpec implements PageSpec {
   Either<SmartDates, DateTimeRange> get dateSelection;
   @override
   TableSpec get tableSpec;
-
-  /// Create a copy of PageSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReportsPageSpecImplCopyWith<_$ReportsPageSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

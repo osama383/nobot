@@ -91,8 +91,8 @@ class _SmartDateInputState extends State<SmartDateInput> {
                 smartDate = null;
                 dateRange = result;
                 dateRange = DateTimeRange(
-                  start: Utc(result.start).copyToStartOfDay().utc,
-                  end: Utc(result.end).copyToEndOfDay().utc,
+                  start: Utc(result.start).copyToStartOfDay().value,
+                  end: Utc(result.end).copyToEndOfDay().value,
                 );
               });
 

@@ -18,7 +18,7 @@ Map<String, dynamic> _$$CustomersPageSpecImplToJson(
         _$CustomersPageSpecImpl instance) =>
     <String, dynamic>{
       'depotId': instance.depotId,
-      'tableSpec': instance.tableSpec.toJson(),
+      'tableSpec': instance.tableSpec,
       'runtimeType': instance.$type,
     };
 
@@ -32,7 +32,7 @@ _$TripsPageSpecImpl _$$TripsPageSpecImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TripsPageSpecImplToJson(_$TripsPageSpecImpl instance) =>
     <String, dynamic>{
       'depotId': instance.depotId,
-      'tableSpec': instance.tableSpec.toJson(),
+      'tableSpec': instance.tableSpec,
       'runtimeType': instance.$type,
     };
 
@@ -50,6 +50,6 @@ Map<String, dynamic> _$$ReportsPageSpecImplToJson(
     <String, dynamic>{
       'dateSelection': const ReportsDateSelectionJsonConverter()
           .toJson(instance.dateSelection),
-      'tableSpec': instance.tableSpec.toJson(),
+      'tableSpec': instance.tableSpec,
       'runtimeType': instance.$type,
     };

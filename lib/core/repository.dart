@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nobot/core/models/assets/assets.dart';
+import 'package:nobot/core/models/customer/customer.dart';
 import 'package:nobot/core/models/firestore_document.dart';
 import 'package:nobot/core/models/user/user.dart';
 
-enum Entities { user, assets }
+enum Entities { user, customer, asset }
 
 @LazySingleton()
 class Repository {
@@ -14,11 +15,13 @@ class Repository {
   CollectionReference<T> _ref<T extends FirestoreDocument>(Entities entity) {
     final collectionPath = switch (entity) {
       Entities.user => 'users',
-      Entities.assets => 'assets',
+      Entities.asset => 'assets',
+      Entities.customer => 'customers',
     };
     final mapper = switch (entity) {
       Entities.user => UserMapper.fromMap,
-      Entities.assets => AssetMapper.fromMap,
+      Entities.asset => AssetMapper.fromMap,
+      Entities.customer => CustomerMapper.fromMap,
     };
 
     return db.collection(collectionPath).withConverter<T>(

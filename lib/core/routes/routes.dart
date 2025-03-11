@@ -47,7 +47,7 @@ class HomePageRoute extends GoRouteData {
   }
 }
 
-@TypedGoRoute<HomePageRoute>(path: '/customers')
+@TypedGoRoute<CustomersPageRoute>(path: '/customers')
 @immutable
 class CustomersPageRoute extends GoRouteData {
   @override

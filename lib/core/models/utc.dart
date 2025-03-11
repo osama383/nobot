@@ -1,10 +1,14 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timezone/timezone.dart';
 
-class Utc with EquatableMixin implements Comparable<Utc> {
+part 'utc.mapper.dart';
+
+@MappableClass()
+class Utc with UtcMappable, EquatableMixin implements Comparable<Utc> {
   final DateTime _valueInUtc;
 
   Utc(DateTime value) : _valueInUtc = value.toUtc();
@@ -20,8 +24,8 @@ class Utc with EquatableMixin implements Comparable<Utc> {
     return result == null ? null : Utc(result);
   }
 
-  DateTime get utc => _valueInUtc;
-  DateTime get ctz => TZDateTime.from(utc, local).toLocal();
+  DateTime get value => _valueInUtc;
+  DateTime get ctz => TZDateTime.from(value, local).toLocal();
 
   @override
   int compareTo(Utc other) => _valueInUtc.compareTo(other._valueInUtc);
@@ -79,7 +83,7 @@ class Utc with EquatableMixin implements Comparable<Utc> {
   }
 
   Utc copyToStartOfDay() {
-    return copyWith(
+    return copyUtc(
       hour: 0,
       minute: 0,
       second: 0,
@@ -89,7 +93,7 @@ class Utc with EquatableMixin implements Comparable<Utc> {
   }
 
   Utc copyToEndOfDay() {
-    return copyWith(
+    return copyUtc(
       hour: 23,
       minute: 59,
       second: 59,
@@ -98,7 +102,7 @@ class Utc with EquatableMixin implements Comparable<Utc> {
     );
   }
 
-  Utc copyWith({
+  Utc copyUtc({
     int? year,
     int? month,
     int? day,
@@ -126,7 +130,8 @@ class Utc with EquatableMixin implements Comparable<Utc> {
   List<Object?> get props => [_valueInUtc];
 }
 
-class UtcOption with EquatableMixin {
+@MappableClass(includeCustomMappers: [OptionUtcMapper()])
+class UtcOption with UtcOptionMappable, EquatableMixin {
   final Option<Utc> _option;
 
   UtcOption.none() : _option = none();
@@ -147,4 +152,26 @@ class UtcOption with EquatableMixin {
 
   @override
   List<Object?> get props => [_option];
+}
+
+class OptionUtcMapper extends SimpleMapper<Option<Utc>> {
+  const OptionUtcMapper();
+
+  @override
+  Option<Utc> decode(dynamic value) {
+    return value['type'] == 'none'
+        ? none()
+        : some(UtcMapper.fromMap(value['value']));
+  }
+
+  @override
+  dynamic encode(Option<Utc> self) {
+    return self.fold(
+      () => {'type': 'none'},
+      (date) => {
+        'type': 'some',
+        'value': date.toMap(),
+      },
+    );
+  }
 }

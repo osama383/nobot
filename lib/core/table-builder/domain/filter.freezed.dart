@@ -78,9 +78,6 @@ class _$TableColumnCopyWithImpl<T extends Object, V extends Object, $Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -104,8 +101,6 @@ class __$$PrimitiveColumnImplCopyWithImpl<T extends Object, V extends Object,
       $Res Function(_$PrimitiveColumnImpl<T, V>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,8 +119,6 @@ class __$$PrimitiveColumnImplCopyWithImpl<T extends Object, V extends Object,
     ));
   }
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColumnarCopyWith<T, V, $Res> get column {
@@ -165,9 +158,7 @@ class _$PrimitiveColumnImpl<T extends Object, V extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, showFilter, column);
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PrimitiveColumnImplCopyWith<T, V, _$PrimitiveColumnImpl<T, V>>
@@ -251,10 +242,7 @@ abstract class PrimitiveColumn<T extends Object, V extends Object>
   bool get showFilter;
   @override
   Columnar<T, V> get column;
-
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PrimitiveColumnImplCopyWith<T, V, _$PrimitiveColumnImpl<T, V>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -280,8 +268,6 @@ class __$$CollectionColumnImplCopyWithImpl<T extends Object, V extends Object,
       $Res Function(_$CollectionColumnImpl<T, V>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -299,8 +285,6 @@ class __$$CollectionColumnImplCopyWithImpl<T extends Object, V extends Object,
     ));
   }
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColumnarCopyWith<T, String, $Res> get column {
@@ -342,9 +326,7 @@ class _$CollectionColumnImpl<T extends Object, V extends Object>
   int get hashCode => Object.hash(runtimeType, column,
       const DeepCollectionEquality().hash(multiselectFilter));
 
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CollectionColumnImplCopyWith<T, V, _$CollectionColumnImpl<T, V>>
@@ -428,10 +410,7 @@ abstract class CollectionColumn<T extends Object, V extends Object>
   @override
   Columnar<T, String> get column;
   dynamic get multiselectFilter;
-
-  /// Create a copy of TableColumn
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CollectionColumnImplCopyWith<T, V, _$CollectionColumnImpl<T, V>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -443,9 +422,7 @@ mixin _$ColumnDecoration {
   int get flex => throw _privateConstructorUsedError;
   EdgeInsets get padding => throw _privateConstructorUsedError;
 
-  /// Create a copy of ColumnDecoration
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ColumnDecorationCopyWith<ColumnDecoration> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -469,8 +446,6 @@ class _$ColumnDecorationCopyWithImpl<$Res, $Val extends ColumnDecoration>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ColumnDecoration
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -519,8 +494,6 @@ class __$$ColumnDecorationImplCopyWithImpl<$Res>
       $Res Function(_$ColumnDecorationImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ColumnDecoration
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -593,9 +566,7 @@ class _$ColumnDecorationImpl implements _ColumnDecoration {
   int get hashCode =>
       Object.hash(runtimeType, minWidth, maxWidth, flex, padding);
 
-  /// Create a copy of ColumnDecoration
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ColumnDecorationImplCopyWith<_$ColumnDecorationImpl> get copyWith =>
@@ -618,11 +589,8 @@ abstract class _ColumnDecoration implements ColumnDecoration {
   int get flex;
   @override
   EdgeInsets get padding;
-
-  /// Create a copy of ColumnDecoration
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ColumnDecorationImplCopyWith<_$ColumnDecorationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -639,9 +607,7 @@ mixin _$Columnar<T extends Object, V extends Object> {
   TableData<V> Function(T) get data => throw _privateConstructorUsedError;
   String Function(List<T>)? get total => throw _privateConstructorUsedError;
 
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ColumnarCopyWith<T, V, Columnar<T, V>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -676,8 +642,6 @@ class _$ColumnarCopyWithImpl<T extends Object, V extends Object, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -731,8 +695,6 @@ class _$ColumnarCopyWithImpl<T extends Object, V extends Object, $Res,
     ) as $Val);
   }
 
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColumnDecorationCopyWith<$Res> get decoration {
@@ -773,8 +735,6 @@ class __$$ColumnarImplCopyWithImpl<T extends Object, V extends Object, $Res>
       _$ColumnarImpl<T, V> _value, $Res Function(_$ColumnarImpl<T, V>) _then)
       : super(_value, _then);
 
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -899,9 +859,7 @@ class _$ColumnarImpl<T extends Object, V extends Object>
   int get hashCode => Object.hash(runtimeType, id, groupId, name,
       showNameInHeader, decoration, isVisible, textStyle, data, total);
 
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ColumnarImplCopyWith<T, V, _$ColumnarImpl<T, V>> get copyWith =>
@@ -941,11 +899,8 @@ abstract class _Columnar<T extends Object, V extends Object>
   TableData<V> Function(T) get data;
   @override
   String Function(List<T>)? get total;
-
-  /// Create a copy of Columnar
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ColumnarImplCopyWith<T, V, _$ColumnarImpl<T, V>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -956,9 +911,7 @@ mixin _$ColumnGroup {
   String get title => throw _privateConstructorUsedError;
   bool get isVisible => throw _privateConstructorUsedError;
 
-  /// Create a copy of ColumnGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ColumnGroupCopyWith<ColumnGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -982,8 +935,6 @@ class _$ColumnGroupCopyWithImpl<$Res, $Val extends ColumnGroup>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ColumnGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1027,8 +978,6 @@ class __$$ColumnGroupImplCopyWithImpl<$Res>
       _$ColumnGroupImpl _value, $Res Function(_$ColumnGroupImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ColumnGroup
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1085,9 +1034,7 @@ class _$ColumnGroupImpl implements _ColumnGroup {
   @override
   int get hashCode => Object.hash(runtimeType, id, title, isVisible);
 
-  /// Create a copy of ColumnGroup
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ColumnGroupImplCopyWith<_$ColumnGroupImpl> get copyWith =>
@@ -1106,11 +1053,8 @@ abstract class _ColumnGroup implements ColumnGroup {
   String get title;
   @override
   bool get isVisible;
-
-  /// Create a copy of ColumnGroup
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ColumnGroupImplCopyWith<_$ColumnGroupImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1220,9 +1164,7 @@ mixin _$Filter<T extends Object, V extends Object> {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FilterCopyWith<T, V, Filter<T, V>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1250,8 +1192,6 @@ class _$FilterCopyWithImpl<T extends Object, V extends Object, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1307,8 +1247,6 @@ class __$$PrimitiveFilterImplCopyWithImpl<T extends Object, V extends Object,
       $Res Function(_$PrimitiveFilterImpl<T, V>) _then)
       : super(_value, _then);
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1417,9 +1355,7 @@ class _$PrimitiveFilterImpl<T extends Object, V extends Object>
       filterIcon,
       filteredIcon);
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PrimitiveFilterImplCopyWith<T, V, _$PrimitiveFilterImpl<T, V>>
@@ -1572,11 +1508,8 @@ abstract class PrimitiveFilter<T extends Object, V extends Object>
   Widget? get filterIcon;
   @override
   Widget? get filteredIcon;
-
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PrimitiveFilterImplCopyWith<T, V, _$PrimitiveFilterImpl<T, V>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1612,8 +1545,6 @@ class __$$MultiselectFilterImplCopyWithImpl<T extends Object, V extends Object,
       $Res Function(_$MultiselectFilterImpl<T, V>) _then)
       : super(_value, _then);
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1784,9 +1715,7 @@ class _$MultiselectFilterImpl<T extends Object, V extends Object>
       filterIcon,
       filteredIcon);
 
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MultiselectFilterImplCopyWith<T, V, _$MultiselectFilterImpl<T, V>>
@@ -1979,11 +1908,8 @@ abstract class MultiselectFilter<T extends Object, V extends Object>
   Widget? get filterIcon;
   @override
   Widget? get filteredIcon;
-
-  /// Create a copy of Filter
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MultiselectFilterImplCopyWith<T, V, _$MultiselectFilterImpl<T, V>>
       get copyWith => throw _privateConstructorUsedError;
 }

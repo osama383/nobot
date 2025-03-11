@@ -10,6 +10,7 @@ List<RouteBase> get $appRoutes => [
       $notFoundPageRoute,
       $loginPageRoute,
       $homePageRoute,
+      $customersPageRoute,
       $assetsPageRoute,
     ];
 
@@ -68,6 +69,29 @@ extension $HomePageRouteExtension on HomePageRoute {
 
   String get location => GoRouteData.$location(
         '/',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $customersPageRoute => GoRouteData.$route(
+      path: '/customers',
+      factory: $CustomersPageRouteExtension._fromState,
+    );
+
+extension $CustomersPageRouteExtension on CustomersPageRoute {
+  static CustomersPageRoute _fromState(GoRouterState state) =>
+      CustomersPageRoute();
+
+  String get location => GoRouteData.$location(
+        '/customers',
       );
 
   void go(BuildContext context) => context.go(location);

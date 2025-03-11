@@ -156,9 +156,6 @@ class _$TableBuilderEventCopyWithImpl<T extends Object, Type extends Object,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -183,8 +180,6 @@ class __$$OnSpecInputImplCopyWithImpl<T extends Object, Type extends Object,
       $Res Function(_$OnSpecInputImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -203,8 +198,6 @@ class __$$OnSpecInputImplCopyWithImpl<T extends Object, Type extends Object,
     ));
   }
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TableSpecCopyWith<$Res> get spec {
@@ -243,9 +236,7 @@ class _$OnSpecInputImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, spec, importFilters);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnSpecInputImplCopyWith<T, Type, _$OnSpecInputImpl<T, Type>>
@@ -404,10 +395,7 @@ abstract class _OnSpecInput<T extends Object, Type extends Object>
 
   TableSpec get spec;
   bool get importFilters;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnSpecInputImplCopyWith<T, Type, _$OnSpecInputImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -431,8 +419,6 @@ class __$$SetItemsImplCopyWithImpl<T extends Object, Type extends Object, $Res>
       $Res Function(_$SetItemsImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -478,9 +464,7 @@ class _$SetItemsImpl<T extends Object, Type extends Object>
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SetItemsImplCopyWith<T, Type, _$SetItemsImpl<T, Type>> get copyWith =>
@@ -636,10 +620,7 @@ abstract class _SetItems<T extends Object, Type extends Object>
   const factory _SetItems(final List<T> items) = _$SetItemsImpl<T, Type>;
 
   List<T> get items;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SetItemsImplCopyWith<T, Type, _$SetItemsImpl<T, Type>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -668,8 +649,6 @@ class __$$OnToggleGroupVisibilityImplCopyWithImpl<T extends Object,
       $Res Function(_$OnToggleGroupVisibilityImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -683,8 +662,6 @@ class __$$OnToggleGroupVisibilityImplCopyWithImpl<T extends Object,
     ));
   }
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ColumnGroupCopyWith<$Res> get group {
@@ -719,9 +696,7 @@ class _$OnToggleGroupVisibilityImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, group);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnToggleGroupVisibilityImplCopyWith<T, Type,
@@ -879,10 +854,7 @@ abstract class _OnToggleGroupVisibility<T extends Object, Type extends Object>
       _$OnToggleGroupVisibilityImpl<T, Type>;
 
   ColumnGroup get group;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnToggleGroupVisibilityImplCopyWith<T, Type,
           _$OnToggleGroupVisibilityImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
@@ -910,8 +882,6 @@ class __$$OnToggleColumnVisibilityImplCopyWithImpl<T extends Object,
       $Res Function(_$OnToggleColumnVisibilityImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -952,9 +922,7 @@ class _$OnToggleColumnVisibilityImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, columnId);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnToggleColumnVisibilityImplCopyWith<T, Type,
@@ -1112,10 +1080,7 @@ abstract class _OnToggleColumnVisibility<T extends Object, Type extends Object>
       _$OnToggleColumnVisibilityImpl<T, Type>;
 
   String get columnId;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnToggleColumnVisibilityImplCopyWith<T, Type,
           _$OnToggleColumnVisibilityImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
@@ -1143,8 +1108,6 @@ class __$$OnSetFilterPressedImplCopyWithImpl<T extends Object,
       $Res Function(_$OnSetFilterPressedImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1202,9 +1165,7 @@ class _$OnSetFilterPressedImpl<T extends Object, Type extends Object>
   int get hashCode => Object.hash(runtimeType, columnId,
       const DeepCollectionEquality().hash(_appliedCriteria));
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnSetFilterPressedImplCopyWith<T, Type, _$OnSetFilterPressedImpl<T, Type>>
@@ -1363,10 +1324,7 @@ abstract class _OnSetFilterPressed<T extends Object, Type extends Object>
 
   String get columnId;
   List<AppliedCriterion<Type>> get appliedCriteria;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnSetFilterPressedImplCopyWith<T, Type, _$OnSetFilterPressedImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1390,9 +1348,6 @@ class __$$OnAllFiltersClearedImplCopyWithImpl<T extends Object,
       _$OnAllFiltersClearedImpl<T, Type> _value,
       $Res Function(_$OnAllFiltersClearedImpl<T, Type>) _then)
       : super(_value, _then);
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1585,8 +1540,6 @@ class __$$OnFilterClearedImplCopyWithImpl<T extends Object, Type extends Object,
       $Res Function(_$OnFilterClearedImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1627,9 +1580,7 @@ class _$OnFilterClearedImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, columnId);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnFilterClearedImplCopyWith<T, Type, _$OnFilterClearedImpl<T, Type>>
@@ -1786,10 +1737,7 @@ abstract class _OnFilterCleared<T extends Object, Type extends Object>
       _$OnFilterClearedImpl<T, Type>;
 
   String get columnId;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnFilterClearedImplCopyWith<T, Type, _$OnFilterClearedImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1814,8 +1762,6 @@ class __$$OnItemHoverStartImplCopyWithImpl<T extends Object,
       $Res Function(_$OnItemHoverStartImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1856,9 +1802,7 @@ class _$OnItemHoverStartImpl<T extends Object, Type extends Object>
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(item));
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnItemHoverStartImplCopyWith<T, Type, _$OnItemHoverStartImpl<T, Type>>
@@ -2015,10 +1959,7 @@ abstract class _OnItemHoverStart<T extends Object, Type extends Object>
       _$OnItemHoverStartImpl<T, Type>;
 
   T get item;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnItemHoverStartImplCopyWith<T, Type, _$OnItemHoverStartImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2040,9 +1981,6 @@ class __$$OnItemHoverEndImplCopyWithImpl<T extends Object, Type extends Object,
   __$$OnItemHoverEndImplCopyWithImpl(_$OnItemHoverEndImpl<T, Type> _value,
       $Res Function(_$OnItemHoverEndImpl<T, Type>) _then)
       : super(_value, _then);
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2234,8 +2172,6 @@ class __$$OnExportImplCopyWithImpl<T extends Object, Type extends Object, $Res>
       $Res Function(_$OnExportImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2276,9 +2212,7 @@ class _$OnExportImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, filename);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnExportImplCopyWith<T, Type, _$OnExportImpl<T, Type>> get copyWith =>
@@ -2434,10 +2368,7 @@ abstract class _OnExport<T extends Object, Type extends Object>
   const factory _OnExport(final String filename) = _$OnExportImpl<T, Type>;
 
   String get filename;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnExportImplCopyWith<T, Type, _$OnExportImpl<T, Type>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2464,8 +2395,6 @@ class __$$OnSortPressedImplCopyWithImpl<T extends Object, Type extends Object,
       $Res Function(_$OnSortPressedImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2479,8 +2408,6 @@ class __$$OnSortPressedImplCopyWithImpl<T extends Object, Type extends Object,
     ));
   }
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SortCopyWith<T, Type, $Res> get sort {
@@ -2515,9 +2442,7 @@ class _$OnSortPressedImpl<T extends Object, Type extends Object>
   @override
   int get hashCode => Object.hash(runtimeType, sort);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OnSortPressedImplCopyWith<T, Type, _$OnSortPressedImpl<T, Type>>
@@ -2674,10 +2599,7 @@ abstract class _OnSortPressed<T extends Object, Type extends Object>
       _$OnSortPressedImpl<T, Type>;
 
   Sort<T, Type> get sort;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OnSortPressedImplCopyWith<T, Type, _$OnSortPressedImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2704,8 +2626,6 @@ class __$$UpdateCollectionFilterOptionsImplCopyWithImpl<T extends Object,
       $Res Function(_$UpdateCollectionFilterOptionsImpl<T, Type>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2763,9 +2683,7 @@ class _$UpdateCollectionFilterOptionsImpl<T extends Object, Type extends Object>
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_options), columnId);
 
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateCollectionFilterOptionsImplCopyWith<T, Type,
@@ -2925,10 +2843,7 @@ abstract class _UpdateCollectionFilterOptions<T extends Object,
 
   Set<Type> get options;
   String get columnId;
-
-  /// Create a copy of TableBuilderEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UpdateCollectionFilterOptionsImplCopyWith<T, Type,
           _$UpdateCollectionFilterOptionsImpl<T, Type>>
       get copyWith => throw _privateConstructorUsedError;
@@ -2947,9 +2862,7 @@ mixin _$TableBuilderState<T extends Object> {
   bool get showTotals => throw _privateConstructorUsedError;
   List<ColumnGroup> get columnGroups => throw _privateConstructorUsedError;
 
-  /// Create a copy of TableBuilderState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TableBuilderStateCopyWith<T, TableBuilderState<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2984,8 +2897,6 @@ class _$TableBuilderStateCopyWithImpl<T extends Object, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TableBuilderState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3074,8 +2985,6 @@ class __$$TableBuilderStateImplCopyWithImpl<T extends Object, $Res>
       $Res Function(_$TableBuilderStateImpl<T>) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableBuilderState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3248,9 +3157,7 @@ class _$TableBuilderStateImpl<T extends Object> extends _TableBuilderState<T> {
       showTotals,
       const DeepCollectionEquality().hash(_columnGroups));
 
-  /// Create a copy of TableBuilderState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TableBuilderStateImplCopyWith<T, _$TableBuilderStateImpl<T>>
@@ -3295,11 +3202,8 @@ abstract class _TableBuilderState<T extends Object>
   bool get showTotals;
   @override
   List<ColumnGroup> get columnGroups;
-
-  /// Create a copy of TableBuilderState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TableBuilderStateImplCopyWith<T, _$TableBuilderStateImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }

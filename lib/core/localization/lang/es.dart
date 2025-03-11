@@ -2652,8 +2652,8 @@ class EsLocalizations extends DefaultLocalizations
   String get created => 'Creado';
 
   @override
-  String products(Products product) {
-    return switch (product) {
+  String products(Products e) {
+    return switch (e) {
       Products.uco => 'Aceite',
       Products.grease => 'Trap',
     };

@@ -52,7 +52,7 @@ class _AddVehicleButton extends StatelessWidget {
           ],
           submitHook: (inputs) async {
             await sl<Repository>().create(
-              Entities.assets,
+              Entities.asset,
               Vehicle(
                 id: '',
                 name: inputs[0].value as VString,
@@ -74,7 +74,7 @@ class _Vehicles extends StatelessWidget {
   Widget build(BuildContext context) {
     final labels = context.localizationLabels;
     return StreamBuilder<List<Asset>>(
-        stream: sl<Repository>().list(Entities.assets),
+        stream: sl<Repository>().list(Entities.asset),
         builder: (context, snapshot) {
           return !snapshot.hasData
               ? const CommonLoading()
@@ -106,7 +106,7 @@ class _Vehicles extends StatelessWidget {
                                       ],
                                       submitHook: (inputs) async {
                                         await sl<Repository>().edit(
-                                          Entities.assets,
+                                          Entities.asset,
                                           vehicle.copyWith(
                                             name: inputs[0].value as VString,
                                             decalNumber:

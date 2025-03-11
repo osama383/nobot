@@ -2659,10 +2659,10 @@ class EnLocalizations extends DefaultLocalizations
   String get created => 'Created';
 
   @override
-  String products(Products product) {
-    return switch (product) {
+  String products(Products e) {
+    return switch (e) {
       Products.uco => 'Oil',
-      Products.grease => 'Trap',
+      Products.grease => 'Grease',
     };
   }
 

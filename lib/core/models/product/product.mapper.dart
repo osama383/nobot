@@ -15,6 +15,8 @@ class ProductMapper extends ClassMapperBase<Product> {
       MapperContainer.globals.use(_instance = ProductMapper._());
       UcoMapper.ensureInitialized();
       GreaseMapper.ensureInitialized();
+      ServiceStatusMapper.ensureInitialized();
+      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -25,11 +27,11 @@ class ProductMapper extends ClassMapperBase<Product> {
   static ServiceStatus _$status(Product v) => v.status;
   static const Field<Product, ServiceStatus> _f$status =
       Field('status', _$status);
-  static DateTime _$dueDate(Product v) => v.dueDate;
-  static const Field<Product, DateTime> _f$dueDate =
+  static UtcOption _$dueDate(Product v) => v.dueDate;
+  static const Field<Product, UtcOption> _f$dueDate =
       Field('dueDate', _$dueDate);
-  static DateTime _$lastService(Product v) => v.lastService;
-  static const Field<Product, DateTime> _f$lastService =
+  static UtcOption _$lastService(Product v) => v.lastService;
+  static const Field<Product, UtcOption> _f$lastService =
       Field('lastService', _$lastService);
   static Set<EmailAddress> _$serviceNotificationEmails(Product v) =>
       v.serviceNotificationEmails;
@@ -69,10 +71,12 @@ mixin ProductMappable {
 
 abstract class ProductCopyWith<$R, $In extends Product, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
   $R call(
       {ServiceStatus? status,
-      DateTime? dueDate,
-      DateTime? lastService,
+      UtcOption? dueDate,
+      UtcOption? lastService,
       Set<EmailAddress>? serviceNotificationEmails});
   ProductCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -85,6 +89,8 @@ class UcoMapper extends SubClassMapperBase<Uco> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = UcoMapper._());
       ProductMapper.ensureInitialized().addSubMapper(_instance!);
+      ServiceStatusMapper.ensureInitialized();
+      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -94,10 +100,10 @@ class UcoMapper extends SubClassMapperBase<Uco> {
 
   static ServiceStatus _$status(Uco v) => v.status;
   static const Field<Uco, ServiceStatus> _f$status = Field('status', _$status);
-  static DateTime _$dueDate(Uco v) => v.dueDate;
-  static const Field<Uco, DateTime> _f$dueDate = Field('dueDate', _$dueDate);
-  static DateTime _$lastService(Uco v) => v.lastService;
-  static const Field<Uco, DateTime> _f$lastService =
+  static UtcOption _$dueDate(Uco v) => v.dueDate;
+  static const Field<Uco, UtcOption> _f$dueDate = Field('dueDate', _$dueDate);
+  static UtcOption _$lastService(Uco v) => v.lastService;
+  static const Field<Uco, UtcOption> _f$lastService =
       Field('lastService', _$lastService);
   static Set<EmailAddress> _$serviceNotificationEmails(Uco v) =>
       v.serviceNotificationEmails;
@@ -179,10 +185,14 @@ extension UcoValueCopy<$R, $Out> on ObjectCopyWith<$R, Uco, $Out> {
 abstract class UcoCopyWith<$R, $In extends Uco, $Out>
     implements ProductCopyWith<$R, $In, $Out> {
   @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
+  @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
+  @override
   $R call(
       {ServiceStatus? status,
-      DateTime? dueDate,
-      DateTime? lastService,
+      UtcOption? dueDate,
+      UtcOption? lastService,
       Set<EmailAddress>? serviceNotificationEmails,
       RealDouble? oilPrice});
   UcoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -195,10 +205,16 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
   @override
   late final ClassMapperBase<Uco> $mapper = UcoMapper.ensureInitialized();
   @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate =>
+      $value.dueDate.copyWith.$chain((v) => call(dueDate: v));
+  @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService =>
+      $value.lastService.copyWith.$chain((v) => call(lastService: v));
+  @override
   $R call(
           {ServiceStatus? status,
-          DateTime? dueDate,
-          DateTime? lastService,
+          UtcOption? dueDate,
+          UtcOption? lastService,
           Set<EmailAddress>? serviceNotificationEmails,
           RealDouble? oilPrice}) =>
       $apply(FieldCopyWithData({
@@ -231,6 +247,8 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = GreaseMapper._());
       ProductMapper.ensureInitialized().addSubMapper(_instance!);
+      ServiceStatusMapper.ensureInitialized();
+      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -241,10 +259,11 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   static ServiceStatus _$status(Grease v) => v.status;
   static const Field<Grease, ServiceStatus> _f$status =
       Field('status', _$status);
-  static DateTime _$dueDate(Grease v) => v.dueDate;
-  static const Field<Grease, DateTime> _f$dueDate = Field('dueDate', _$dueDate);
-  static DateTime _$lastService(Grease v) => v.lastService;
-  static const Field<Grease, DateTime> _f$lastService =
+  static UtcOption _$dueDate(Grease v) => v.dueDate;
+  static const Field<Grease, UtcOption> _f$dueDate =
+      Field('dueDate', _$dueDate);
+  static UtcOption _$lastService(Grease v) => v.lastService;
+  static const Field<Grease, UtcOption> _f$lastService =
       Field('lastService', _$lastService);
   static Set<EmailAddress> _$serviceNotificationEmails(Grease v) =>
       v.serviceNotificationEmails;
@@ -321,10 +340,14 @@ extension GreaseValueCopy<$R, $Out> on ObjectCopyWith<$R, Grease, $Out> {
 abstract class GreaseCopyWith<$R, $In extends Grease, $Out>
     implements ProductCopyWith<$R, $In, $Out> {
   @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
+  @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
+  @override
   $R call(
       {ServiceStatus? status,
-      DateTime? dueDate,
-      DateTime? lastService,
+      UtcOption? dueDate,
+      UtcOption? lastService,
       Set<EmailAddress>? serviceNotificationEmails});
   GreaseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -336,10 +359,16 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
   @override
   late final ClassMapperBase<Grease> $mapper = GreaseMapper.ensureInitialized();
   @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate =>
+      $value.dueDate.copyWith.$chain((v) => call(dueDate: v));
+  @override
+  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService =>
+      $value.lastService.copyWith.$chain((v) => call(lastService: v));
+  @override
   $R call(
           {ServiceStatus? status,
-          DateTime? dueDate,
-          DateTime? lastService,
+          UtcOption? dueDate,
+          UtcOption? lastService,
           Set<EmailAddress>? serviceNotificationEmails}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,

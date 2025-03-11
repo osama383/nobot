@@ -27,12 +27,8 @@ mixin _$TableSpec {
   Option<SortSpec> get sortOption => throw _privateConstructorUsedError;
   List<FilterSpec> get filters => throw _privateConstructorUsedError;
 
-  /// Serializes this TableSpec to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of TableSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $TableSpecCopyWith<TableSpec> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,8 +56,6 @@ class _$TableSpecCopyWithImpl<$Res, $Val extends TableSpec>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of TableSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,8 +114,6 @@ class __$$TableSpecImplCopyWithImpl<$Res>
       _$TableSpecImpl _value, $Res Function(_$TableSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TableSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -221,7 +213,7 @@ class _$TableSpecImpl implements _TableSpec {
             const DeepCollectionEquality().equals(other._filters, _filters));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -231,9 +223,7 @@ class _$TableSpecImpl implements _TableSpec {
       sortOption,
       const DeepCollectionEquality().hash(_filters));
 
-  /// Create a copy of TableSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TableSpecImplCopyWith<_$TableSpecImpl> get copyWith =>
@@ -269,11 +259,8 @@ abstract class _TableSpec implements TableSpec {
   Option<SortSpec> get sortOption;
   @override
   List<FilterSpec> get filters;
-
-  /// Create a copy of TableSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TableSpecImplCopyWith<_$TableSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -287,12 +274,8 @@ mixin _$SortSpec {
   String get columnId => throw _privateConstructorUsedError;
   bool get ascending => throw _privateConstructorUsedError;
 
-  /// Serializes this SortSpec to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SortSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SortSpecCopyWith<SortSpec> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -315,8 +298,6 @@ class _$SortSpecCopyWithImpl<$Res, $Val extends SortSpec>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SortSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -355,8 +336,6 @@ class __$$SortSpecImplCopyWithImpl<$Res>
       _$SortSpecImpl _value, $Res Function(_$SortSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SortSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -405,13 +384,11 @@ class _$SortSpecImpl implements _SortSpec {
                 other.ascending == ascending));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, columnId, ascending);
 
-  /// Create a copy of SortSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SortSpecImplCopyWith<_$SortSpecImpl> get copyWith =>
@@ -437,11 +414,8 @@ abstract class _SortSpec implements SortSpec {
   String get columnId;
   @override
   bool get ascending;
-
-  /// Create a copy of SortSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SortSpecImplCopyWith<_$SortSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -456,12 +430,8 @@ mixin _$FilterSpec {
   List<FilterCriterionSpec> get criteriaSpecs =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this FilterSpec to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FilterSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FilterSpecCopyWith<FilterSpec> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -485,8 +455,6 @@ class _$FilterSpecCopyWithImpl<$Res, $Val extends FilterSpec>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FilterSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -525,8 +493,6 @@ class __$$FilterSpecImplCopyWithImpl<$Res>
       _$FilterSpecImpl _value, $Res Function(_$FilterSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -583,14 +549,12 @@ class _$FilterSpecImpl implements _FilterSpec {
                 .equals(other._criteriaSpecs, _criteriaSpecs));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, columnId,
       const DeepCollectionEquality().hash(_criteriaSpecs));
 
-  /// Create a copy of FilterSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FilterSpecImplCopyWith<_$FilterSpecImpl> get copyWith =>
@@ -617,11 +581,8 @@ abstract class _FilterSpec implements FilterSpec {
   String get columnId;
   @override
   List<FilterCriterionSpec> get criteriaSpecs;
-
-  /// Create a copy of FilterSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FilterSpecImplCopyWith<_$FilterSpecImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -697,13 +658,8 @@ mixin _$FilterCriterionSpec {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Serializes this FilterCriterionSpec to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $FilterCriterionSpecCopyWith<FilterCriterionSpec> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -727,8 +683,6 @@ class _$FilterCriterionSpecCopyWithImpl<$Res, $Val extends FilterCriterionSpec>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -765,8 +719,6 @@ class __$$StringFilterCriterionSpecImplCopyWithImpl<$Res>
       $Res Function(_$StringFilterCriterionSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -818,13 +770,11 @@ class _$StringFilterCriterionSpecImpl implements StringFilterCriterionSpec {
             (identical(other.target, target) || other.target == target));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, target);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StringFilterCriterionSpecImplCopyWith<_$StringFilterCriterionSpecImpl>
@@ -925,11 +875,8 @@ abstract class StringFilterCriterionSpec implements FilterCriterionSpec {
   String get name;
   @override
   String get target;
-
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StringFilterCriterionSpecImplCopyWith<_$StringFilterCriterionSpecImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -956,8 +903,6 @@ class __$$NumberFilterCriterionSpecImplCopyWithImpl<$Res>
       $Res Function(_$NumberFilterCriterionSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1009,13 +954,11 @@ class _$NumberFilterCriterionSpecImpl implements NumberFilterCriterionSpec {
             (identical(other.target, target) || other.target == target));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, target);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NumberFilterCriterionSpecImplCopyWith<_$NumberFilterCriterionSpecImpl>
@@ -1116,11 +1059,8 @@ abstract class NumberFilterCriterionSpec implements FilterCriterionSpec {
   String get name;
   @override
   double get target;
-
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NumberFilterCriterionSpecImplCopyWith<_$NumberFilterCriterionSpecImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1147,8 +1087,6 @@ class __$$DateFilterCriterionSpecImplCopyWithImpl<$Res>
       $Res Function(_$DateFilterCriterionSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1200,13 +1138,11 @@ class _$DateFilterCriterionSpecImpl implements DateFilterCriterionSpec {
             (identical(other.target, target) || other.target == target));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, target);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DateFilterCriterionSpecImplCopyWith<_$DateFilterCriterionSpecImpl>
@@ -1307,11 +1243,8 @@ abstract class DateFilterCriterionSpec implements FilterCriterionSpec {
   String get name;
   @override
   DateTime get target;
-
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DateFilterCriterionSpecImplCopyWith<_$DateFilterCriterionSpecImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1338,8 +1271,6 @@ class __$$CollectionFilterCriterionSpecImplCopyWithImpl<$Res>
       $Res Function(_$CollectionFilterCriterionSpecImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1401,14 +1332,12 @@ class _$CollectionFilterCriterionSpecImpl
             const DeepCollectionEquality().equals(other._target, _target));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, name, const DeepCollectionEquality().hash(_target));
 
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CollectionFilterCriterionSpecImplCopyWith<
@@ -1510,11 +1439,8 @@ abstract class CollectionFilterCriterionSpec implements FilterCriterionSpec {
   String get name;
   @override
   Set<String> get target;
-
-  /// Create a copy of FilterCriterionSpec
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CollectionFilterCriterionSpecImplCopyWith<
           _$CollectionFilterCriterionSpecImpl>
       get copyWith => throw _privateConstructorUsedError;

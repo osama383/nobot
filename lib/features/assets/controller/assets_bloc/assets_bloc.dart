@@ -15,7 +15,7 @@ class AssetsBloc extends Bloc<AssetsEvent, AssetsState> {
     on<AssetsEvent>((event, emit) async {
       await event.map(
         started: (event) async {
-          repository.list<Asset>(Entities.assets).listen((assets) {
+          repository.list<Asset>(Entities.asset).listen((assets) {
             // emit(state.copyWith(
             //     vehiclesOrFailureOption:
             //         some(right(assets.whereType<Vehicle>().toList()))));

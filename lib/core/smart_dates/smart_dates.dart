@@ -24,25 +24,25 @@ DateTimeRange toDateRange(SmartDates smartRange, Utc now) {
       start = end.copyToStartOfDay();
     case SmartDates.lastMonth:
       end = now
-          .copyWith(day: 1)
+          .copyUtc(day: 1)
           .copyToStartOfDay()
           .subtract(const Duration(seconds: 1));
-      start = end.copyWith(day: 1);
+      start = end.copyUtc(day: 1);
     case SmartDates.lastQuarter:
       end = now
-          .copyWith(
+          .copyUtc(
             month: now.month - ((now.month + 2) % 3).floor(),
             day: 1,
           )
           .copyToStartOfDay()
           .subtract(const Duration(seconds: 1))
-          .copyWith(
+          .copyUtc(
             year: now.year - (now.month > 3 ? 0 : 1),
           );
-      start = end.copyWith(month: end.month - 2, day: 1).copyToStartOfDay();
+      start = end.copyUtc(month: end.month - 2, day: 1).copyToStartOfDay();
   }
   return DateTimeRange(
-    start: start.copyToStartOfDay().utc,
-    end: end.copyToEndOfDay().utc,
+    start: start.copyToStartOfDay().value,
+    end: end.copyToEndOfDay().value,
   );
 }

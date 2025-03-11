@@ -14,5 +14,5 @@ class User extends FirestoreDocument with UserMappable {
   const User({
     required super.id,
     required this.email,
-  }) : permissions = const {Permission.assets};
+  }) : permissions = const {Permission.customers, Permission.assets};
 }

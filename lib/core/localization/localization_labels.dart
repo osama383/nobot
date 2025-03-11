@@ -64,7 +64,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get allGreaseTrapsPumped;
   String get greaseTrapsNotPumped;
   String get due;
-  String products(Products product);
+  String products(Products e);
   String get location;
   String get dueDate;
   String get dueDateType;

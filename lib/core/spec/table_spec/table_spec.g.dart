@@ -28,7 +28,7 @@ Map<String, dynamic> _$$TableSpecImplToJson(_$TableSpecImpl instance) =>
       'hiddenGroupIds': instance.hiddenGroupIds.toList(),
       'hiddenColumnIds': instance.hiddenColumnIds.toList(),
       'sortOption': const SortOptionConverter().toJson(instance.sortOption),
-      'filters': instance.filters.map((e) => e.toJson()).toList(),
+      'filters': instance.filters,
     };
 
 _$SortSpecImpl _$$SortSpecImplFromJson(Map<String, dynamic> json) =>
@@ -54,7 +54,7 @@ _$FilterSpecImpl _$$FilterSpecImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$FilterSpecImplToJson(_$FilterSpecImpl instance) =>
     <String, dynamic>{
       'columnId': instance.columnId,
-      'criteriaSpecs': instance.criteriaSpecs.map((e) => e.toJson()).toList(),
+      'criteriaSpecs': instance.criteriaSpecs,
     };
 
 _$StringFilterCriterionSpecImpl _$$StringFilterCriterionSpecImplFromJson(

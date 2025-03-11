@@ -1,5 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:nobot/core/models/firestore_document.dart';
+import 'package:nobot/core/models/product/service_status.dart';
+import 'package:nobot/core/util/extensions/extensions.dart';
 
 import '../address/address.dart';
 import '../product/product.dart';
@@ -19,4 +21,26 @@ class Customer extends FirestoreDocument with CustomerMappable {
     required this.address,
     required this.products,
   });
+
+  Product? product(Products type) {
+    return products.toList().firstWhereOrNull((e) => e.type == type);
+  }
+
+  Customer activateProduct(Products type) {
+    final existingProduct = product(type);
+    if (existingProduct != null) {
+      return copyWith(
+        products: products
+          ..remove(product(type))
+          ..add(existingProduct.copyWith(status: ServiceStatus.active)),
+      );
+    }
+
+    final initializedProduct = switch (type) {
+      Products.uco => Uco.initialize(),
+      Products.grease => Grease.initialize(),
+    };
+
+    return copyWith(products: products..add(initializedProduct));
+  }
 }

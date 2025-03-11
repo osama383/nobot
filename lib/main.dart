@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nobot/core/models/utc.dart';
 import 'package:nobot/core/models/value_object/mappers.dart';
 import 'package:nobot/injection.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
@@ -33,6 +34,7 @@ void main() async {
   MapperContainer.globals.use(const VStringMapper());
   MapperContainer.globals.use(const EmailMapper());
   MapperContainer.globals.use(const LatLngMapper());
+  MapperContainer.globals.use(const OptionUtcMapper());
 
   runApp(const Nobot());
 }

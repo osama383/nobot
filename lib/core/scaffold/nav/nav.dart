@@ -90,7 +90,7 @@ extension NavItemExtension on NavItem {
       case NavItem.trips:
         HomePageRoute().go(context);
       case NavItem.customers:
-        HomePageRoute().go(context);
+        CustomersPageRoute().go(context);
       case NavItem.reports:
         HomePageRoute().go(context);
       case NavItem.sales:

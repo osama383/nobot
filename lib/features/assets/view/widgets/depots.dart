@@ -41,7 +41,7 @@ class Depots extends StatelessWidget {
                   ],
                   submitHook: (inputs) async {
                     await sl<Repository>().create(
-                      Entities.assets,
+                      Entities.asset,
                       Depot(
                         id: '',
                         name: inputs[0].value as VString,
@@ -71,7 +71,7 @@ class _Depots extends StatelessWidget {
   Widget build(BuildContext context) {
     final labels = context.localizationLabels;
     return StreamBuilder<List<Asset>>(
-        stream: sl<Repository>().list(Entities.assets),
+        stream: sl<Repository>().list(Entities.asset),
         builder: (context, snapshot) {
           return !snapshot.hasData
               ? const CommonLoading()
@@ -98,7 +98,7 @@ class _Depots extends StatelessWidget {
                                     ],
                                     submitHook: (inputs) async {
                                       await sl<Repository>().edit(
-                                        Entities.assets,
+                                        Entities.asset,
                                         depot.copyWith(
                                           name: inputs[0].value as VString,
                                           address: inputs[1].value as Address,
