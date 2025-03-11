@@ -1,0 +1,97 @@
+Paths forward:
+Continue walking
+Replace gRPC or MongoDB or .Net or Flutter
+Restart
+Possibly months of no progress
+Better get it right!
+
+
+Handle migration of all customers by Sep 1
+
+ Steps involved in restarting:
+Learn a new framework
+Research best practices, document them
+
+Current cost of hosting and servers: 1500 - 2000 USD
+
+Goals of an ideal tech stack:
+
+ Database goals:
+ Generally speaking, we should embrace the NoSql paradigm if we use a NoSql database or vice versa.
+ Following are some refactors needed to do that:
+    - real time updates for any object or list of objects
+    - all assets should be retrieved in a single databse query
+        (right now it takes 3 seperate db queries to fetch vehicles, containers and depots)
+
+ FE options:
+  - Flutter, Vue, React
+  - Flutter:
+    - Dart makes Osama's heart flutter.
+    - existing codebase that can be reused to a great degree
+    - tableBuilder and modal builder have been refined over months
+    - the FormBuilder thingy being worked on currently has great potential also
+    - Nathan also has experience with Flutter
+    - Flutter works well with Firebase
+
+    - Flutter autofill is still an issue
+    - Flutter developers might not be easy to hire for
+    - Ai is not great at Flutter
+
+  - Vue:
+    - easier to outsource development
+    - Ai good
+
+    - learn Vue, establish best practices.
+    - find the correct packages for routing, state management etc
+
+  - React:
+    - better tooling and community
+    - Ai good
+
+    - learn react, establish best practices.
+    - find the correct packages for routing, state management etc
+
+ BE options:
+  - firebase, dotNet, node
+  - firebase:
+    - very fast to develop with (Baas)
+    - real time updates
+
+  - dotNet:
+   - existing codebase
+   - Nathan has experience with dotNet
+   - easy to hire for
+
+   - working with dotNet on VSCode is a real pain
+
+
+ Database options:
+  - NoSql
+    - firestore, MongoDB, Supabase,
+    - MongoDB:
+        - Nathan has experience with it
+        - no real time updates so far (possible in the future)
+        - but we should start using it like a NoSql database
+    - firestore:
+        - osama has experience with it
+        - real time updates for free
+
+
+  - Sql
+    - MySQL, Postgres, MicrosoftSQL
+
+
+
+Estimates for a full rebuild:
+ - Kevin (tech stack of his choice):
+    - React, Node, Next, Postgres, OpenApi, Tailwind
+    - 6 month all out project
+         (with tasks and polymorphoic products implented only in data models, but ui and user abilities do not change)
+
+ - Osama (tech stack of his choice)
+    - Flutter, Firebae
+
+
+Current tech stack with refactor (major refactors):
+
+Change Techstack (rebuild):

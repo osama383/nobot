@@ -1,4 +1,3 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -175,7 +174,6 @@ class VIntError with _$VIntError {
   String toString() => asString;
 }
 
-@MappableClass()
 class VDouble extends ValueObject<VDoubleError, double> {
   double? max, min;
 

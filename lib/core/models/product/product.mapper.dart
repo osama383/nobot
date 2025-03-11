@@ -109,9 +109,8 @@ class UcoMapper extends SubClassMapperBase<Uco> {
       v.serviceNotificationEmails;
   static const Field<Uco, Set<EmailAddress>> _f$serviceNotificationEmails =
       Field('serviceNotificationEmails', _$serviceNotificationEmails);
-  static RealDouble _$oilPrice(Uco v) => v.oilPrice;
-  static const Field<Uco, RealDouble> _f$oilPrice =
-      Field('oilPrice', _$oilPrice);
+  static int _$oilPrice(Uco v) => v.oilPrice;
+  static const Field<Uco, int> _f$oilPrice = Field('oilPrice', _$oilPrice);
 
   @override
   final MappableFields<Uco> fields = const {
@@ -194,7 +193,7 @@ abstract class UcoCopyWith<$R, $In extends Uco, $Out>
       UtcOption? dueDate,
       UtcOption? lastService,
       Set<EmailAddress>? serviceNotificationEmails,
-      RealDouble? oilPrice});
+      int? oilPrice});
   UcoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -216,7 +215,7 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
           UtcOption? dueDate,
           UtcOption? lastService,
           Set<EmailAddress>? serviceNotificationEmails,
-          RealDouble? oilPrice}) =>
+          int? oilPrice}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
         if (dueDate != null) #dueDate: dueDate,

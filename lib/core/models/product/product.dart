@@ -2,7 +2,6 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:nobot/core/models/email/email.dart';
 import 'package:nobot/core/models/product/service_status.dart';
 
-import '../real_number.dart';
 import '../utc.dart';
 
 part 'product.mapper.dart';
@@ -35,7 +34,7 @@ sealed class Product with ProductMappable {
 
 @MappableClass(discriminatorValue: 'uco')
 class Uco extends Product with UcoMappable {
-  final RealDouble oilPrice;
+  final int oilPrice;
 
   Uco({
     required super.status,
@@ -46,7 +45,7 @@ class Uco extends Product with UcoMappable {
   });
 
   Uco.initialize()
-      : oilPrice = RealDouble(0),
+      : oilPrice = 0,
         super.initialize();
 
   @override

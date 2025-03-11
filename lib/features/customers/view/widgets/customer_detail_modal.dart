@@ -5,6 +5,8 @@ import 'package:nobot/core/models/product/service_status.dart';
 import 'package:nobot/core/repository.dart';
 import 'package:nobot/core/util/extensions/extensions.dart';
 import 'package:nobot/core/widgets/modal_builder/modal_builder.dart';
+import 'package:nobot/features/customers/view/widgets/grease_details.dart';
+import 'package:nobot/features/customers/view/widgets/oil_details.dart';
 
 import '../../../../core/models/customer/customer.dart';
 import '../../../../injection.dart';
@@ -48,7 +50,10 @@ class CustomerDetailModal extends LongModal<CustomerDetailsBloc> {
                     ...state.customer.products
                         .where((e) => e.status == ServiceStatus.active)
                         .map((e) {
-                      return Tab(text: labels.products(e.type));
+                      return switch (e) {
+                        Uco() => UcoDetails(e),
+                        Grease() => GreaseDetails(e),
+                      };
                     })
                   ],
                 ),

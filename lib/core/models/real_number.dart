@@ -1,4 +1,3 @@
-import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
 
 import 'value_object/value_object.dart';
@@ -37,7 +36,6 @@ class RealInt extends RealNumber with EquatableMixin {
   }
 }
 
-@MappableClass()
 class RealDouble extends RealNumber with EquatableMixin {
   final VDouble value;
 
