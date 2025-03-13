@@ -37,8 +37,8 @@ class Customer extends FirestoreDocument with CustomerMappable {
     }
 
     final initializedProduct = switch (type) {
-      Products.uco => Uco.initialize(),
-      Products.grease => Grease.initialize(),
+      Products.uco => Uco.initialize(this),
+      Products.grease => Grease.initialize(this),
     };
 
     return copyWith(products: products..add(initializedProduct));

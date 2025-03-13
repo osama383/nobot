@@ -37,6 +37,9 @@ class ProductMapper extends ClassMapperBase<Product> {
       v.serviceNotificationEmails;
   static const Field<Product, Set<EmailAddress>> _f$serviceNotificationEmails =
       Field('serviceNotificationEmails', _$serviceNotificationEmails);
+  static LatLng _$location(Product v) => v.location;
+  static const Field<Product, LatLng> _f$location =
+      Field('location', _$location);
 
   @override
   final MappableFields<Product> fields = const {
@@ -44,6 +47,7 @@ class ProductMapper extends ClassMapperBase<Product> {
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
+    #location: _f$location,
   };
 
   static Product _instantiate(DecodingData data) {
@@ -77,7 +81,8 @@ abstract class ProductCopyWith<$R, $In extends Product, $Out>
       {ServiceStatus? status,
       UtcOption? dueDate,
       UtcOption? lastService,
-      Set<EmailAddress>? serviceNotificationEmails});
+      Set<EmailAddress>? serviceNotificationEmails,
+      LatLng? location});
   ProductCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -109,6 +114,8 @@ class UcoMapper extends SubClassMapperBase<Uco> {
       v.serviceNotificationEmails;
   static const Field<Uco, Set<EmailAddress>> _f$serviceNotificationEmails =
       Field('serviceNotificationEmails', _$serviceNotificationEmails);
+  static LatLng _$location(Uco v) => v.location;
+  static const Field<Uco, LatLng> _f$location = Field('location', _$location);
   static int _$oilPrice(Uco v) => v.oilPrice;
   static const Field<Uco, int> _f$oilPrice = Field('oilPrice', _$oilPrice);
 
@@ -118,6 +125,7 @@ class UcoMapper extends SubClassMapperBase<Uco> {
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
+    #location: _f$location,
     #oilPrice: _f$oilPrice,
   };
 
@@ -134,6 +142,7 @@ class UcoMapper extends SubClassMapperBase<Uco> {
         dueDate: data.dec(_f$dueDate),
         lastService: data.dec(_f$lastService),
         serviceNotificationEmails: data.dec(_f$serviceNotificationEmails),
+        location: data.dec(_f$location),
         oilPrice: data.dec(_f$oilPrice));
   }
 
@@ -193,6 +202,7 @@ abstract class UcoCopyWith<$R, $In extends Uco, $Out>
       UtcOption? dueDate,
       UtcOption? lastService,
       Set<EmailAddress>? serviceNotificationEmails,
+      LatLng? location,
       int? oilPrice});
   UcoCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -215,6 +225,7 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
           UtcOption? dueDate,
           UtcOption? lastService,
           Set<EmailAddress>? serviceNotificationEmails,
+          LatLng? location,
           int? oilPrice}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
@@ -222,6 +233,7 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
         if (lastService != null) #lastService: lastService,
         if (serviceNotificationEmails != null)
           #serviceNotificationEmails: serviceNotificationEmails,
+        if (location != null) #location: location,
         if (oilPrice != null) #oilPrice: oilPrice
       }));
   @override
@@ -231,6 +243,7 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
       lastService: data.get(#lastService, or: $value.lastService),
       serviceNotificationEmails: data.get(#serviceNotificationEmails,
           or: $value.serviceNotificationEmails),
+      location: data.get(#location, or: $value.location),
       oilPrice: data.get(#oilPrice, or: $value.oilPrice));
 
   @override
@@ -264,6 +277,9 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   static UtcOption _$lastService(Grease v) => v.lastService;
   static const Field<Grease, UtcOption> _f$lastService =
       Field('lastService', _$lastService);
+  static LatLng _$location(Grease v) => v.location;
+  static const Field<Grease, LatLng> _f$location =
+      Field('location', _$location);
   static Set<EmailAddress> _$serviceNotificationEmails(Grease v) =>
       v.serviceNotificationEmails;
   static const Field<Grease, Set<EmailAddress>> _f$serviceNotificationEmails =
@@ -274,6 +290,7 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
     #status: _f$status,
     #dueDate: _f$dueDate,
     #lastService: _f$lastService,
+    #location: _f$location,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
   };
 
@@ -289,6 +306,7 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
         status: data.dec(_f$status),
         dueDate: data.dec(_f$dueDate),
         lastService: data.dec(_f$lastService),
+        location: data.dec(_f$location),
         serviceNotificationEmails: data.dec(_f$serviceNotificationEmails));
   }
 
@@ -347,6 +365,7 @@ abstract class GreaseCopyWith<$R, $In extends Grease, $Out>
       {ServiceStatus? status,
       UtcOption? dueDate,
       UtcOption? lastService,
+      LatLng? location,
       Set<EmailAddress>? serviceNotificationEmails});
   GreaseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -368,11 +387,13 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
           {ServiceStatus? status,
           UtcOption? dueDate,
           UtcOption? lastService,
+          LatLng? location,
           Set<EmailAddress>? serviceNotificationEmails}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
         if (dueDate != null) #dueDate: dueDate,
         if (lastService != null) #lastService: lastService,
+        if (location != null) #location: location,
         if (serviceNotificationEmails != null)
           #serviceNotificationEmails: serviceNotificationEmails
       }));
@@ -381,6 +402,7 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
       status: data.get(#status, or: $value.status),
       dueDate: data.get(#dueDate, or: $value.dueDate),
       lastService: data.get(#lastService, or: $value.lastService),
+      location: data.get(#location, or: $value.location),
       serviceNotificationEmails: data.get(#serviceNotificationEmails,
           or: $value.serviceNotificationEmails));
 
