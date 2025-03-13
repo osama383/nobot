@@ -57,6 +57,10 @@ class Repository {
     await _ref(entity).doc(item.id).update(item.toMap());
   }
 
+  Future<List<T>> getList<T extends FirestoreDocument>(Entities entity) async {
+    return (await _ref<T>(entity).get()).docs.map((e) => e.data()).toList();
+  }
+
   Stream<List<T>> list<T extends FirestoreDocument>(Entities entity) {
     return _ref<T>(entity).snapshots().map(
           (e) => e.docs.map((e) => e.data()).toList(),

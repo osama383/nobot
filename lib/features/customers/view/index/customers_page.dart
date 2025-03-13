@@ -36,10 +36,10 @@ class _CustomersPageState extends State<CustomersPage> {
         SizedBox(width: 16),
         _AddCustomerButton(),
       ],
-      body: StreamBuilder(
-        stream: sl<Repository>().list<Customer>(Entities.customer),
+      body: FutureBuilder(
+        initialData: const <Customer>[],
+        future: sl<Repository>().getList<Customer>(Entities.customer),
         builder: (context, snapshot) {
-          print(snapshot);
           return !snapshot.hasData
               ? Text(labels.loading)
               : snapshot.hasError
