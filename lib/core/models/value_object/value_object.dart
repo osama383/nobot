@@ -1,3 +1,4 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -83,6 +84,7 @@ class VString extends ValueObject<String, String> {
   String toString() => 'VString($valueAsString)';
 }
 
+// @MappableClass()
 class CaseInsensitiveString {
   final String value;
   CaseInsensitiveString(this.value);

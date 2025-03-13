@@ -13,12 +13,14 @@ part 'customer.mapper.dart';
 class Customer extends FirestoreDocument with CustomerMappable {
   final VString name;
   final Address address;
+  // final Set<String> tags;
   final Set<Product> products;
 
   Customer({
     required super.id,
     required this.name,
     required this.address,
+    // required this.tags,
     required this.products,
   });
 

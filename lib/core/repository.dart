@@ -38,6 +38,18 @@ class Repository {
     await _ref(entity).add(item);
   }
 
+  Future<void> createManyCustomers<T extends FirestoreDocument>(
+    Entities entity,
+    List<Customer> items,
+  ) async {
+    final batch = db.batch();
+    final collRef = _ref(entity);
+    for (final customer in items) {
+      batch.set(collRef.doc(), customer);
+    }
+    batch.commit();
+  }
+
   Future<void> edit<T extends FirestoreDocument>(
     Entities entity,
     T item,
@@ -46,8 +58,8 @@ class Repository {
   }
 
   Stream<List<T>> list<T extends FirestoreDocument>(Entities entity) {
-    return _ref(entity).snapshots().map(
-          (e) => e.docs.map((e) => e.data() as T).toList(),
+    return _ref<T>(entity).snapshots().map(
+          (e) => e.docs.map((e) => e.data()).toList(),
         );
   }
 

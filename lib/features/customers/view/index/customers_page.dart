@@ -1,4 +1,6 @@
+import 'package:faker/faker.dart' hide Address;
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nobot/core/models/address/address.dart';
 import 'package:nobot/core/models/value_object/value_object.dart';
 import 'package:nobot/core/repository.dart';
@@ -29,10 +31,15 @@ class _CustomersPageState extends State<CustomersPage> {
       widget.auth,
       title: labels.customers,
       selectedItem: NavItem.customers,
-      actions: const [_AddCustomerButton()],
+      actions: const [
+        _AddFakeCustomers(),
+        SizedBox(width: 16),
+        _AddCustomerButton(),
+      ],
       body: StreamBuilder(
         stream: sl<Repository>().list<Customer>(Entities.customer),
         builder: (context, snapshot) {
+          print(snapshot);
           return !snapshot.hasData
               ? Text(labels.loading)
               : snapshot.hasError
@@ -40,11 +47,13 @@ class _CustomersPageState extends State<CustomersPage> {
                   : snapshot.data!.isEmpty
                       ? const Text('no customers')
                       : ListView.builder(
+                          itemExtent: 50,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             final customers = snapshot.data!;
                             return Card.filled(
                               child: ListTile(
+                                leading: Text(index.toString()),
                                 title: Text(customers[index].name.getOrCrash),
                                 onTap: () {
                                   CustomerDetailModal(customers[index]).show();
@@ -55,6 +64,40 @@ class _CustomersPageState extends State<CustomersPage> {
                         );
         },
       ),
+    );
+  }
+}
+
+class _AddFakeCustomers extends StatelessWidget {
+  const _AddFakeCustomers();
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        final customers = List.generate(
+          10000,
+          (index) {
+            return Customer(
+              id: Faker().guid.guid(),
+              name: VString(faker.person.name()),
+              address: Address(
+                VString(faker.address.streetAddress()),
+                LatLng(
+                  faker.geo.latitude(),
+                  faker.geo.longitude(),
+                ),
+              ),
+              products: {},
+            );
+          },
+        );
+        sl<Repository>().createManyCustomers(
+          Entities.customer,
+          customers,
+        );
+      },
+      child: const Text('Seed data'),
     );
   }
 }

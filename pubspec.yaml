@@ -74,6 +74,7 @@ dependencies:
   firestore_ui: ^1.30.0
   firebase_ui_firestore: ^1.7.1
   rxdart: ^0.28.0
+  faker: ^2.2.0
 
 dev_dependencies:
   flutter_test:
