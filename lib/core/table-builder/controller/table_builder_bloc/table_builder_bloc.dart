@@ -235,16 +235,24 @@ class TableBuilderBloc<T extends Object>
             );
           },
           setItems: (event) {
+            final filteredItems = filteredAndSorted(
+              event.items,
+              state.filters,
+              state.sortOption,
+            );
+
             emit(
               state.copyWith(
                 items: event.items,
-                filteredItems: filteredAndSorted(
-                  event.items,
-                  state.filters,
-                  state.sortOption,
-                ),
+                filteredItems: filteredItems.sublist(0, 100),
               ),
             );
+            // Future.delayed(const Duration(seconds: 2));
+            // emit(
+            //   state.copyWith(
+            //     filteredItems: filteredItems,
+            //   ),
+            // );
           },
           onAllFiltersCleared: (event) {
             final filters = List<Filter<T, Object>>.from(

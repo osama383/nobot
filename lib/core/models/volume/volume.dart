@@ -109,9 +109,6 @@ class Volume extends Equatable {
 
       case SI.imperial:
         return unit / VolumeToVolumeRatios.gallonsToImperialGallons;
-
-      default:
-        return unit;
     }
   }
 
@@ -123,8 +120,6 @@ class Volume extends Equatable {
         return gallons;
       case SI.imperial:
         return gallons * VolumeToVolumeRatios.gallonsToImperialGallons;
-      default:
-        return gallons;
     }
   }
 

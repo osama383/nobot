@@ -1,19 +1,28 @@
+import 'package:dartz/dartz.dart' as dartz;
 import 'package:faker/faker.dart' hide Address;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:nobot/core/models/address/address.dart';
-import 'package:nobot/core/models/value_object/value_object.dart';
-import 'package:nobot/core/repository.dart';
-import 'package:nobot/core/scaffold/nav/nav.dart';
-import 'package:nobot/core/scaffold/view/base_scaffold.dart';
 import 'package:nobot/core/util/extensions/extensions.dart';
-import 'package:nobot/core/widgets/form/view/form_modal/short_form_modal.dart';
-import 'package:nobot/features/customers/view/widgets/customer_detail_modal.dart';
 
+import '../../../../core/models/address/address.dart';
 import '../../../../core/models/customer/customer.dart';
-import '../../../../core/widgets/form/domain/input.dart';
+import '../../../../core/models/value_object/value_object.dart';
+import '../../../../core/repository.dart';
+import '../../../../core/routes/routes.dart';
+import '../../../../core/scaffold/nav/nav.dart';
+import '../../../../core/scaffold/view/base_scaffold.dart';
+import '../../../../core/spec/data/spec_repository.dart';
+import '../../../../core/table-builder/controller/table_builder_bloc/table_builder_bloc.dart';
+import '../../../../core/table-builder/view/actions/active_filters.dart';
+import '../../../../core/table-builder/view/table_builder/table_builder.dart';
+import '../../../../core/widgets/wip_overlay.dart';
 import '../../../../injection.dart';
 import '../../../auth/data/auth.dart';
+import '../../controller/customers_bloc/customers_bloc.dart';
+import '../widgets/customer_detail_modal.dart';
+import 'customers_table.dart';
+import 'table_actions.dart';
 
 class CustomersPage extends StatefulWidget {
   final Auth auth;
@@ -24,47 +33,246 @@ class CustomersPage extends StatefulWidget {
 }
 
 class _CustomersPageState extends State<CustomersPage> {
+  late final CustomersBloc _bloc;
+  late final TableBuilderBloc<Customer> customersTableBloc;
+
+  @override
+  void didChangeDependencies() {
+    final specOption = sl<SpecRepository>().customersPageSpec;
+    customersTableBloc = customersIndexTableBloc(
+      labels: context.localizationLabels,
+      specOption: specOption.fold(
+        () => dartz.none(),
+        (spec) => dartz.some(spec.tableSpec),
+      ),
+    );
+
+    _bloc = CustomersBloc(
+      sl(),
+      sl(),
+      sl(),
+    )..add(const CustomersEvent.started());
+
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
     final labels = context.localizationLabels;
-    return BaseScaffold(
-      widget.auth,
-      title: labels.customers,
-      selectedItem: NavItem.customers,
-      actions: const [
-        _AddFakeCustomers(),
-        SizedBox(width: 16),
-        _AddCustomerButton(),
-      ],
-      body: FutureBuilder(
-        initialData: const <Customer>[],
-        future: sl<Repository>().getList<Customer>(Entities.customer),
-        builder: (context, snapshot) {
-          return !snapshot.hasData
-              ? Text(labels.loading)
-              : snapshot.hasError
-                  ? Text(labels.unknownError)
-                  : snapshot.data!.isEmpty
-                      ? const Text('no customers')
-                      : ListView.builder(
-                          itemExtent: 50,
-                          itemCount: snapshot.data!.length,
-                          itemBuilder: (context, index) {
-                            final customers = snapshot.data!;
-                            return Card.filled(
-                              child: ListTile(
-                                leading: Text(index.toString()),
-                                title: Text(customers[index].name.getOrCrash),
-                                onTap: () {
-                                  CustomerDetailModal(customers[index]).show();
-                                },
+
+    return BlocProvider.value(
+      value: _bloc,
+      child: MultiBlocListener(
+        listeners: [
+          // BlocListener<CustomersBloc, CustomersState>(
+          //   listenWhen: (previous, current) => previous.tags != current.tags,
+          //   listener: (context, state) {
+          //     customersTableBloc.add(
+          //       TableBuilderEvent<CustomerModel,
+          //           Tag>.updateCollectionFilterOptions(
+          //         state.tags.toSet(),
+          //         columnId: CustomerColumn.tags.name,
+          //       ),
+          //     );
+          //   },
+          // ),
+          BlocListener<CustomersBloc, CustomersState>(
+            listenWhen: (previous, current) =>
+                previous.isLoading != current.isLoading,
+            listener: (context, state) {
+              sl<SpecRepository>().customersPageSpec.fold(
+                    () => null,
+                    (pageSpec) => customersTableBloc.add(
+                      TableBuilderEvent.onSpecInput(
+                        pageSpec.tableSpec,
+                        importFilters: true,
+                      ),
+                    ),
+                  );
+            },
+          ),
+          BlocListener<CustomersBloc, CustomersState>(
+            listenWhen: (previous, current) =>
+                previous.isLoading != current.isLoading ||
+                previous.selectedDepotOption != current.selectedDepotOption ||
+                previous.customersUpdated != current.customersUpdated,
+            listener: (context, state) {
+              customersTableBloc.add(
+                TableBuilderEvent.setItems(
+                  state.customers,
+                  // state.selectedDepotOption.fold(
+                  //   () => state.customers,
+                  //   (selectedDepot) {
+                  //     return state.customers.where(
+                  //       (e) {
+                  //         return e.depotIds.contains(
+                  //           selectedDepot.id.getOrCrash,
+                  //         );
+                  //       },
+                  //     ).toList();
+                  //   },
+                  // ),
+                ),
+              );
+            },
+          ),
+          BlocListener<CustomersBloc, CustomersState>(
+            listenWhen: (previous, current) =>
+                previous.isLoading != current.isLoading ||
+                previous.selectedDepotOption != current.selectedDepotOption ||
+                previous.customersUpdated != current.customersUpdated,
+            listener: (context, state) {
+              customersTableBloc.add(
+                TableBuilderEvent.setItems(
+                  state.customers,
+                  // state.selectedDepotOption.fold(
+                  //   () => state.customers,
+                  //   (selectedDepot) {
+                  //     return state.customers.where(
+                  //       (e) {
+                  //         return e.depotIds.contains(
+                  //           selectedDepot.id.getOrCrash,
+                  //         );
+                  //       },
+                  //     ).toList();
+                  //   },
+                  // ),
+                ),
+              );
+            },
+          ),
+        ],
+        child: BlocBuilder<CustomersBloc, CustomersState>(
+          builder: (context, state) {
+            final stopwatch = Stopwatch()..start();
+            try {
+              return BaseScaffold(
+                widget.auth,
+                title: labels.customersTitle,
+                selectedItem: NavItem.customers,
+                actions: const [
+                  _AddFakeCustomers(),
+                ],
+                bottomNavigationBar: context.useMobileLayout
+                    ? BottomAppBar(
+                        child: Row(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: BlocProvider.value(
+                                  value: customersTableBloc,
+                                  child: const ActiveFilters<Customer>(),
+                                ),
                               ),
-                            );
-                          },
-                        );
-        },
+                            ),
+                          ],
+                        ),
+                      )
+                    : null,
+                body: Padding(
+                  padding: EdgeInsets.only(
+                    bottom: context.useMobileLayout ? 12 : 24,
+                  ),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (state.depots.isEmpty && !state.isLoading) ...[
+                            const Spacer(),
+                            Center(
+                              child: Text(
+                                labels.depotMustBeCreatedToAddCustomer,
+                              ),
+                            ),
+                            Center(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 16),
+                                child: FilledButton(
+                                  onPressed: () =>
+                                      AssetsPageRoute().go(context),
+                                  child: Text(labels.updateAssets),
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                          ],
+                          if (state.depots.isNotEmpty || state.isLoading) ...[
+                            Expanded(
+                              child: Card.filled(
+                                clipBehavior: Clip.hardEdge,
+                                child: BlocProvider.value(
+                                  value: customersTableBloc,
+                                  child: Column(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.all(16),
+                                        child: TableActions(),
+                                      ),
+                                      Expanded(
+                                        child: TableBuilder<Customer>(
+                                          showTopBorder: true,
+                                          rowHeight:
+                                              context.useMobileLayout ? 85 : 60,
+                                          onRowTap: (customer) async =>
+                                              await onCustomerOpened(
+                                            customer,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
+                      ),
+                      WipOverlay(state.isLoading),
+                    ],
+                  ),
+                ),
+              );
+            } finally {
+              stopwatch.stop();
+              print(
+                'customers page build: ${stopwatch.elapsed.inMilliseconds}',
+              );
+            }
+          },
+        ),
       ),
     );
+  }
+
+  Future<void> onCustomerOpened(Customer customer) async {
+    CustomerDetailModal(customer);
+    // modal.updates.listen((updatedCustomer) {
+    //   _bloc.add(
+    //     CustomersEvent.onCustomerUpdated(
+    //       updatedCustomer,
+    //     ),
+    //   );
+    // });
+    // final result = await modal.show();
+
+    if (context.mounted) {
+      // if (result is CustomerModel) {
+      //   _bloc.add(
+      //     CustomersEvent.onCustomerUpdated(
+      //       result,
+      //     ),
+      //   );
+      // } else if (result is CustomerDelete) {
+      //   _bloc.add(
+      //     CustomersEvent.onCustomerDeleted(
+      //       result.customerId,
+      //     ),
+      //   );
+      // }
+    }
   }
 }
 
@@ -98,38 +306,6 @@ class _AddFakeCustomers extends StatelessWidget {
         );
       },
       child: const Text('Seed data'),
-    );
-  }
-}
-
-class _AddCustomerButton extends StatelessWidget {
-  const _AddCustomerButton();
-
-  @override
-  Widget build(BuildContext context) {
-    final labels = context.localizationLabels;
-    return FilledButton(
-      onPressed: () {
-        shortFormModal(
-          title: labels.addCustomerTitle,
-          inputs: [
-            Input.vstring(VString.empty(), labelText: labels.name),
-            Input.address(Address.empty(), labelText: labels.address),
-          ],
-          submitHook: (inputs) async {
-            sl<Repository>().create(
-              Entities.customer,
-              Customer(
-                id: '',
-                name: inputs[0].value as VString,
-                address: inputs[1].value as Address,
-                products: {},
-              ),
-            );
-          },
-        ).show();
-      },
-      child: Text(labels.add),
     );
   }
 }

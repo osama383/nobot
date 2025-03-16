@@ -96,191 +96,191 @@ class ColumnsBuilder<T extends Object> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TableBuilderBloc<T>, TableBuilderState<T>>(
-      builder: (context, state) {
-        return LayoutBuilder(
-          builder: (context, constraints) {
-            final columnWidths = calculateColumnWidths();
-            return Column(
-              children: [
-                SizedBox(
-                  height: 60,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        top: showTopBorder
-                            ? BorderSide(
-                                width: 1,
-                                color: Colors.grey.shade400,
-                              )
-                            : BorderSide.none,
-                        bottom: BorderSide(
-                          width: 0.5,
-                          color: Colors.grey.shade400,
-                        ),
-                        right: rightBorder ?? BorderSide.none,
+    final stopwatch = Stopwatch()..start();
+    try {
+      return BlocBuilder<TableBuilderBloc<T>, TableBuilderState<T>>(
+        builder: (context, state) {
+          final columnWidths = calculateColumnWidths();
+          return Column(
+            children: [
+              SizedBox(
+                height: 60,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: showTopBorder
+                          ? BorderSide(
+                              width: 1,
+                              color: Colors.grey.shade400,
+                            )
+                          : BorderSide.none,
+                      bottom: BorderSide(
+                        width: 0.5,
+                        color: Colors.grey.shade400,
                       ),
-                    ),
-                    child: Row(
-                      children: [
-                        ...columns.map(
-                          (column) {
-                            return SizedBox(
-                              width: columnWidths[column],
-                              child: ColumnHeader<T>(column),
-                            );
-                          },
-                        ),
-                      ],
+                      right: rightBorder ?? BorderSide.none,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Stack(
+                  child: Row(
                     children: [
-                      SizedBox(
-                        width: tableWidth ?? totalMinWidth + 1,
-                        child: ListView.builder(
-                          itemExtent: rowHeight ?? 60,
-                          padding: EdgeInsets.zero,
-                          controller: scrollController,
-                          itemCount: state.filteredItems.length + 1,
-                          itemBuilder: (context, index) {
-                            if (index == state.filteredItems.length) {
-                              return const SizedBox(height: totalRowHeight);
-                            }
-                            final item = state.filteredItems[index];
-                            return MouseRegion(
-                              cursor: onRowTap != null
-                                  ? SystemMouseCursors.click
-                                  : SystemMouseCursors.basic,
-                              onEnter: (_) {
-                                if (onRowTap != null) {
-                                  context.read<TableBuilderBloc<T>>().add(
-                                        TableBuilderEvent.onItemHoverStart(
-                                          item,
-                                        ),
-                                      );
-                                }
-                              },
-                              onExit: (_) {
-                                if (onRowTap != null) {
-                                  context.read<TableBuilderBloc<T>>().add(
-                                        const TableBuilderEvent
-                                            .onItemHoverEnd(),
-                                      );
-                                }
-                              },
-                              child: InkWell(
-                                mouseCursor: onRowTap != null
-                                    ? SystemMouseCursors.click
-                                    : SystemMouseCursors.basic,
-                                onTap: () {
-                                  if (onRowTap != null) {
-                                    onRowTap!(item);
-                                  }
-                                },
-                                child: SizedBox(
-                                  height: 60,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: state.hoveredItemOption.fold(
-                                        () => null,
-                                        (a) => a == item
-                                            ? const Color(0xfff7f6f8)
-                                            : null,
-                                      ),
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          width: 0.5,
-                                          color: Colors.grey.shade400,
-                                        ),
-                                        right: rightBorder ?? BorderSide.none,
-                                      ),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        ...columns.map(
-                                          (column) {
-                                            final data = column.data(item);
-                                            return Container(
-                                              width: columnWidths[column],
-                                              padding:
-                                                  column.decoration.padding,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: DefaultTextStyle.merge(
-                                                  style: column.textStyle
-                                                      ?.call(item),
-                                                  child: data.child ??
-                                                      Text(
-                                                        data.value.toString(),
-                                                      ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                      ...columns.map(
+                        (column) {
+                          return SizedBox(
+                            width: columnWidths[column],
+                            child: ColumnHeader<T>(column),
+                          );
+                        },
                       ),
-                      if (state.showTotals)
-                        Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Card.filled(
-                            child: Container(
-                              height: totalRowHeight,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  top: BorderSide(
-                                    width: 0.5,
-                                    color: Colors.grey.shade400,
-                                  ),
-                                  right: rightBorder ?? BorderSide.none,
-                                ),
-                              ),
-                              child: Row(
-                                children: [
-                                  ...columns.map(
-                                    (column) {
-                                      return SizedBox(
-                                        width: calculateColumnWidths()[column],
-                                        child: column.total != null
-                                            ? Padding(
-                                                padding:
-                                                    column.decoration.padding,
-                                                child: Text(
-                                                  column.total!(
-                                                    state.filteredItems,
-                                                  ),
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              )
-                                            : const Text(''),
-                                      );
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),
-              ],
-            );
-          },
-        );
-      },
-    );
+              ),
+              Expanded(
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      width: tableWidth ?? totalMinWidth + 1,
+                      child: ListView.builder(
+                        itemExtent: rowHeight ?? 60,
+                        padding: EdgeInsets.zero,
+                        controller: scrollController,
+                        itemCount: state.filteredItems.length + 1,
+                        itemBuilder: (context, index) {
+                          if (index == state.filteredItems.length) {
+                            return const SizedBox(height: totalRowHeight);
+                          }
+                          final item = state.filteredItems[index];
+                          return MouseRegion(
+                            cursor: onRowTap != null
+                                ? SystemMouseCursors.click
+                                : SystemMouseCursors.basic,
+                            onEnter: (_) {
+                              if (onRowTap != null) {
+                                context.read<TableBuilderBloc<T>>().add(
+                                      TableBuilderEvent.onItemHoverStart(
+                                        item,
+                                      ),
+                                    );
+                              }
+                            },
+                            onExit: (_) {
+                              if (onRowTap != null) {
+                                context.read<TableBuilderBloc<T>>().add(
+                                      const TableBuilderEvent.onItemHoverEnd(),
+                                    );
+                              }
+                            },
+                            child: InkWell(
+                              mouseCursor: onRowTap != null
+                                  ? SystemMouseCursors.click
+                                  : SystemMouseCursors.basic,
+                              onTap: () {
+                                if (onRowTap != null) {
+                                  onRowTap!(item);
+                                }
+                              },
+                              child: SizedBox(
+                                height: 60,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: state.hoveredItemOption.fold(
+                                      () => null,
+                                      (a) => a == item
+                                          ? const Color(0xfff7f6f8)
+                                          : null,
+                                    ),
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        width: 0.5,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                      right: rightBorder ?? BorderSide.none,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      ...columns.map(
+                                        (column) {
+                                          final data = column.data(item);
+                                          return Container(
+                                            width: columnWidths[column],
+                                            padding: column.decoration.padding,
+                                            child: Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: DefaultTextStyle.merge(
+                                                style: column.textStyle
+                                                    ?.call(item),
+                                                child: data.child ??
+                                                    Text(
+                                                      data.value.toString(),
+                                                    ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    if (state.showTotals)
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Card.filled(
+                          child: Container(
+                            height: totalRowHeight,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                top: BorderSide(
+                                  width: 0.5,
+                                  color: Colors.grey.shade400,
+                                ),
+                                right: rightBorder ?? BorderSide.none,
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                ...columns.map(
+                                  (column) {
+                                    return SizedBox(
+                                      width: columnWidths[column],
+                                      child: column.total != null
+                                          ? Padding(
+                                              padding:
+                                                  column.decoration.padding,
+                                              child: Text(
+                                                column.total!(
+                                                  state.filteredItems,
+                                                ),
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            )
+                                          : const Text(''),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } finally {
+      stopwatch.stop();
+      print('table build:${stopwatch.elapsed.inMilliseconds}');
+    }
   }
 }

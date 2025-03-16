@@ -5,7 +5,7 @@ import 'package:nobot/features/customers/view/widgets/last_service_date_widget.d
 import '../../../../core/models/product/product.dart';
 import '../../controller/customer_details/customer_details_bloc.dart';
 import 'due_date.dart';
-import 'service_emails_widget.dart';
+import 'service_emails/service_emails_widget.dart';
 
 class GreaseDetails extends StatelessWidget {
   final Grease grease;

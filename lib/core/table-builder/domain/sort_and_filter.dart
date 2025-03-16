@@ -8,13 +8,19 @@ List<T> filteredAndSorted<T extends Object>(
   List<Filter<T, dynamic>> filters,
   Option<Sort<T, dynamic>> sortOption,
 ) {
+  final stopwatch = Stopwatch()..start();
   final filteredItems = filtered(itemsToFilter, filters);
 
   if (filteredItems.length < 2) return filteredItems;
 
   return sortOption.fold(
     () => filteredItems,
-    (sort) => sorted(filteredItems, sort),
+    (sort) {
+      stopwatch.stop();
+      final a = sorted(filteredItems, sort);
+      print('filter and sort:${stopwatch.elapsed.inMilliseconds}');
+      return a;
+    },
   );
 }
 
@@ -24,12 +30,12 @@ List<T> filtered<T extends Object>(
 ) {
   if (itemsToFilter.isEmpty) return itemsToFilter;
 
-  List<T> filteredItems = [...itemsToFilter];
   final activeFilters = filters.where((e) => e.appliedCriteria.isNotEmpty);
-  if (activeFilters.isNotEmpty) {
-    for (final filter in activeFilters) {
-      filteredItems = filteredItems.where((item) => filter.test(item)).toList();
-    }
+  if (activeFilters.isEmpty) return itemsToFilter;
+
+  List<T> filteredItems = List.from(itemsToFilter);
+  for (final filter in activeFilters) {
+    filteredItems = filteredItems.where((item) => filter.test(item)).toList();
   }
 
   return filteredItems;

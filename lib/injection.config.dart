@@ -14,6 +14,7 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
 import 'core/repository.dart' as _i717;
+import 'core/spec/data/spec_repository.dart' as _i349;
 import 'features/auth/data/auth.dart' as _i201;
 import 'firebase_module.dart' as _i616;
 
@@ -31,6 +32,10 @@ extension GetItInjectableX on _i174.GetIt {
     final injectableModule = _$InjectableModule();
     gh.lazySingleton<_i59.FirebaseAuth>(() => injectableModule.firebaseAuth);
     gh.lazySingleton<_i974.FirebaseFirestore>(() => injectableModule.firestore);
+    gh.factory<_i349.SpecRepository>(() => _i349.SpecRepository(
+          gh<_i59.FirebaseAuth>(),
+          gh<_i974.FirebaseFirestore>(),
+        ));
     gh.lazySingleton<_i717.Repository>(
         () => _i717.Repository(gh<_i974.FirebaseFirestore>()));
     gh.singleton<_i201.Auth>(() => _i201.Auth(

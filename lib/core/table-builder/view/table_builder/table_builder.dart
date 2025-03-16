@@ -18,46 +18,6 @@ part '../filter_menu/multiselect_filter_menu.dart';
 part '../filter_menu/number_filter_menu.dart';
 part '../filter_menu/string_filter_menu.dart';
 
-class TableBuilderWrapper<T extends Object> extends StatelessWidget {
-  TableBuilderWrapper({
-    super.key,
-    required String tableId,
-    this.rowHeight,
-    this.onRowTap,
-    required List<TableColumn<T, Object>> builders,
-    required List<T> theItems,
-    required int theFreezedColumnsCount,
-    this.showTopBorder = false,
-  }) : bloc = TableBuilderBloc<T>(
-          tableId: tableId,
-          builders: builders,
-          theItems: theItems,
-          theFreezedColumnsCount: theFreezedColumnsCount,
-        );
-
-  final double? rowHeight;
-  final void Function(T item)? onRowTap;
-  final bool showTopBorder;
-
-  final TableBuilderBloc<T> bloc;
-
-  setItems(List<T> theItems) {
-    bloc.add(TableBuilderEvent<T, String>.setItems(theItems));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<TableBuilderBloc<T>>.value(
-      value: bloc,
-      child: TableBuilder<T>(
-        onRowTap: onRowTap,
-        rowHeight: rowHeight,
-        showTopBorder: showTopBorder,
-      ),
-    );
-  }
-}
-
 class TableBuilder<T extends Object> extends StatefulWidget {
   const TableBuilder({
     super.key,
@@ -105,10 +65,7 @@ class _TableBuilderState<T extends Object> extends State<TableBuilder<T>> {
             return state.totalMinWidthOfAllVisibleColumns < constraints.maxWidth
                 ? ColumnsBuilder(
                     tableWidth: constraints.maxWidth,
-                    columns: state.columns
-                        .where((e) => !state.hiddenGroups.contains(e.groupId))
-                        .where((e) => e.isVisible)
-                        .toList(),
+                    columns: state.allVisibleColumns,
                     onRowTap: widget.onRowTap,
                     rowHeight: widget.rowHeight,
                     scrollController: _singleScrollController,
