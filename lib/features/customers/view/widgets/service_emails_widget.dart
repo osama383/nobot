@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nobot/core/models/email/email.dart';
 import 'package:nobot/core/util/extensions/extensions.dart';
 import 'package:nobot/core/widgets/form/view/form_modal/short_form_modal.dart';
 
 import '../../../../core/models/product/product.dart';
+import '../../../../core/widgets/form/domain/input.dart';
 
 class ServiceEmailsWidget extends StatelessWidget {
   final Product product;
@@ -23,7 +25,12 @@ class ServiceEmailsWidget extends StatelessWidget {
       onTap: () {
         shortFormModal(
           title: 'Manage emails',
-          inputs: [],
+          inputs: [
+            Input.collection(
+              EmailAddress('input@gmail.com'),
+              labelText: 'collection',
+            ),
+          ],
           submitHook: (inputs) async {},
         ).show();
       },
