@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nobot/core/models/address/address.dart';
 import 'package:nobot/core/widgets/form/view/inputs/address_input.dart';
+import 'package:nobot/core/widgets/form/view/inputs/collection_input.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../models/email/email.dart';
@@ -15,6 +16,12 @@ class Input<T extends Value> {
   final T value;
 
   Input._(this.value, this.id, this.labelText);
+
+  static Input<EmailAddress> collection(
+    EmailAddress e, {
+    required String labelText,
+  }) =>
+      Input._(e, const Uuid().v1(), labelText);
 
   static Input<EmailAddress> email(
     EmailAddress e, {
@@ -46,7 +53,8 @@ class Input<T extends Value> {
 
   Widget build(BuildContext context) {
     return switch (this) {
-      Input<EmailAddress> e => EmailInput(e, labelText: labelText),
+      Input<EmailAddress> e => CollectionFormInput(
+          {e.value.getOrCrash}), //EmailInput(e, labelText: labelText),
       Input<VString> e => VStringInput(e, labelText: labelText),
       Input<Address> e => AddressInput(e, labelText: labelText),
       Input<AlwaysValid<String>> e => TextInput(e, labelText: labelText),
