@@ -5,6 +5,7 @@ import 'package:nobot/core/models/product/service_status.dart';
 
 import '../customer/customer.dart';
 import '../utc.dart';
+import '../volume/volume.dart';
 
 part 'product.mapper.dart';
 
@@ -60,15 +61,19 @@ class Uco extends Product with UcoMappable {
 
 @MappableClass(discriminatorValue: 'grease')
 class Grease extends Product with GreaseMappable {
+  final Volume capacity;
   Grease({
     required super.status,
     required super.dueDate,
     required super.lastService,
     required super.location,
     required super.serviceNotificationEmails,
+    required this.capacity,
   });
 
-  Grease.initialize(super.customer) : super.initialize();
+  Grease.initialize(super.customer)
+      : capacity = Volume.empty(),
+        super.initialize();
 
   @override
   Products get type => Products.grease;

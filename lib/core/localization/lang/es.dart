@@ -2,6 +2,7 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
 import '../../models/product/product.dart';
+import '../../models/tasks/service_grease/service_grease.dart';
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
 import '../../smart_dates/smart_dates.dart';
@@ -1081,19 +1082,19 @@ class EsLocalizations extends DefaultLocalizations
   @override
   String get totalRemainingAmount => 'Cantidad total restante';
 
-  // @override
-  // String tripStatus(TripStatus status) {
-  //   switch (status) {
-  //     case TripStatus.draft:
-  //       return 'Borrador';
-  //     case TripStatus.scheduled:
-  //       return 'Programado';
-  //     case TripStatus.inprogress:
-  //       return 'En progreso';
-  //     case TripStatus.complete:
-  //       return 'Completo';
-  //   }
-  // }
+  @override
+  String tripStatus(TripStatus status) {
+    switch (status) {
+      case TripStatus.draft:
+        return 'Borrador';
+      case TripStatus.scheduled:
+        return 'Programado';
+      case TripStatus.inprogress:
+        return 'En progreso';
+      case TripStatus.completed:
+        return 'Completo';
+    }
+  }
 
   @override
   String get truckIsFull => 'El camión está lleno';

@@ -244,7 +244,7 @@ class TableBuilderBloc<T extends Object>
             emit(
               state.copyWith(
                 items: event.items,
-                filteredItems: filteredItems.sublist(0, 100),
+                filteredItems: filteredItems,
               ),
             );
             // Future.delayed(const Duration(seconds: 2));

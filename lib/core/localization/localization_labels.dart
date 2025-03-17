@@ -2,6 +2,7 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
 import '../models/customer/customer.dart';
 import '../models/product/product.dart';
+import '../models/tasks/service_grease/service_grease.dart';
 import '../models/volume/volume.dart';
 import '../scaffold/nav/nav.dart';
 import '../smart_dates/smart_dates.dart';
@@ -606,7 +607,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get endLabel;
   String get noDriverAssigned;
   // String waypointStatus(WaypointStatus status);
-  // String tripStatus(TripStatus status);
+  String tripStatus(TripStatus status);
   // String skipReasonText(SkipReason status);
   // String measurementTypesName(
   // MeasurementTypes type, {

@@ -2,6 +2,7 @@ import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
 import '../../models/product/product.dart';
+import '../../models/tasks/service_grease/service_grease.dart';
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
 import '../../smart_dates/smart_dates.dart';
@@ -447,19 +448,19 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get invalidRouteStatus => 'Invalid route status';
 
-  // @override
-  // String tripStatus(TripStatus status) {
-  //   switch (status) {
-  //     case TripStatus.draft:
-  //       return 'Draft';
-  //     case TripStatus.scheduled:
-  //       return 'Scheduled';
-  //     case TripStatus.inprogress:
-  //       return 'In Progress';
-  //     case TripStatus.complete:
-  //       return 'Completed';
-  //   }
-  // }
+  @override
+  String tripStatus(TripStatus status) {
+    switch (status) {
+      case TripStatus.draft:
+        return 'Draft';
+      case TripStatus.scheduled:
+        return 'Scheduled';
+      case TripStatus.inprogress:
+        return 'In Progress';
+      case TripStatus.completed:
+        return 'Completed';
+    }
+  }
 
   // @override
   // String skipReasonText(SkipReason reason) {

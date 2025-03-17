@@ -1,3 +1,4 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
 
 import '../real_number.dart';
@@ -96,9 +97,6 @@ class Volume extends Equatable {
         (r) => ifRight(r),
       );
 
-  @override
-  List<Object?> get props => [_valueInGallons];
-
   static double _fromUnitToGallonsUS(double unit) {
     switch (si) {
       case SI.metric:
@@ -139,5 +137,22 @@ class Volume extends Equatable {
           };
 
     return RealDouble(_valueInGallons.getOrCrash * ratio);
+  }
+
+  @override
+  List<Object?> get props => [_valueInGallons];
+}
+
+class VolumeMapper extends SimpleMapper<Volume> {
+  const VolumeMapper();
+
+  @override
+  Volume decode(dynamic value) {
+    return Volume._fromGallonsUS(value);
+  }
+
+  @override
+  dynamic encode(Volume self) {
+    return self._valueInGallons.getOrCrash;
   }
 }

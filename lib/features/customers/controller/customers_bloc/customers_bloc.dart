@@ -23,10 +23,8 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
     on<CustomersEvent>((event, emit) async {
       await event.map(
         started: (event) async {
-          final stopwatch = Stopwatch()..start();
-          final customers = await repo.getList<Customer>(Entities.customer);
-          stopwatch.stop();
-          print('query time: ${stopwatch.elapsed.inMilliseconds}');
+          final customers =
+              await repo.getCustomers<Customer>(Entities.customer);
 
           final depots = (await repo.getList<Asset>(Entities.asset))
               .whereType<Depot>()
@@ -47,7 +45,7 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
           // final defaultSpecOption = specsRepo.customersPageSpec;
           emit(
             state.copyWith(
-              customers: customers.sublist(0, 100),
+              customers: customers,
               depots: depots,
               tags: {},
               selectedDepotOption: none(),

@@ -300,7 +300,7 @@ class _AddFakeCustomers extends StatelessWidget {
             );
           },
         );
-        sl<Repository>().createManyCustomers(
+        sl<Repository>().createManyItems(
           Entities.customer,
           customers,
         );

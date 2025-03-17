@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nobot/features/trips/view/index/trips_page.dart';
 import 'package:nobot/injection.dart';
 
 import '../../features/assets/view/assets_page.dart';
@@ -62,6 +63,15 @@ class AssetsPageRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) {
     return AssetsPage(sl());
+  }
+}
+
+@TypedGoRoute<TripsPageRoute>(path: '/routes')
+@immutable
+class TripsPageRoute extends GoRouteData {
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    return TripsPage(sl());
   }
 }
 

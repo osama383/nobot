@@ -284,6 +284,9 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
       v.serviceNotificationEmails;
   static const Field<Grease, Set<EmailAddress>> _f$serviceNotificationEmails =
       Field('serviceNotificationEmails', _$serviceNotificationEmails);
+  static Volume _$capacity(Grease v) => v.capacity;
+  static const Field<Grease, Volume> _f$capacity =
+      Field('capacity', _$capacity);
 
   @override
   final MappableFields<Grease> fields = const {
@@ -292,6 +295,7 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
     #lastService: _f$lastService,
     #location: _f$location,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
+    #capacity: _f$capacity,
   };
 
   @override
@@ -307,7 +311,8 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
         dueDate: data.dec(_f$dueDate),
         lastService: data.dec(_f$lastService),
         location: data.dec(_f$location),
-        serviceNotificationEmails: data.dec(_f$serviceNotificationEmails));
+        serviceNotificationEmails: data.dec(_f$serviceNotificationEmails),
+        capacity: data.dec(_f$capacity));
   }
 
   @override
@@ -366,7 +371,8 @@ abstract class GreaseCopyWith<$R, $In extends Grease, $Out>
       UtcOption? dueDate,
       UtcOption? lastService,
       LatLng? location,
-      Set<EmailAddress>? serviceNotificationEmails});
+      Set<EmailAddress>? serviceNotificationEmails,
+      Volume? capacity});
   GreaseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -388,14 +394,16 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
           UtcOption? dueDate,
           UtcOption? lastService,
           LatLng? location,
-          Set<EmailAddress>? serviceNotificationEmails}) =>
+          Set<EmailAddress>? serviceNotificationEmails,
+          Volume? capacity}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
         if (dueDate != null) #dueDate: dueDate,
         if (lastService != null) #lastService: lastService,
         if (location != null) #location: location,
         if (serviceNotificationEmails != null)
-          #serviceNotificationEmails: serviceNotificationEmails
+          #serviceNotificationEmails: serviceNotificationEmails,
+        if (capacity != null) #capacity: capacity
       }));
   @override
   Grease $make(CopyWithData data) => Grease(
@@ -404,7 +412,8 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
       lastService: data.get(#lastService, or: $value.lastService),
       location: data.get(#location, or: $value.location),
       serviceNotificationEmails: data.get(#serviceNotificationEmails,
-          or: $value.serviceNotificationEmails));
+          or: $value.serviceNotificationEmails),
+      capacity: data.get(#capacity, or: $value.capacity));
 
   @override
   GreaseCopyWith<$R2, Grease, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
