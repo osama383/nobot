@@ -23,6 +23,10 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
     on<CustomersEvent>((event, emit) async {
       await event.map(
         started: (event) async {
+          await Future.delayed(const Duration(milliseconds: 200));
+          // repo
+          //     .list<Customer>(Entities.customer)
+          //     .listen((e) => add(_OnCustomersReceived(e)));
           final customers =
               await repo.getCustomers<Customer>(Entities.customer);
 
@@ -52,6 +56,14 @@ class CustomersBloc extends Bloc<CustomersEvent, CustomersState> {
               customersUpdated: (state.customersUpdated + 1) % 3,
               isLoading: false,
               hasError: false,
+            ),
+          );
+        },
+        onCustomersReceived: (event) {
+          emit(
+            state.copyWith(
+              customers: event.customers,
+              customersUpdated: (state.customersUpdated + 1) % 3,
             ),
           );
         },

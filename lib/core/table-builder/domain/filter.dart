@@ -3,9 +3,8 @@ import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nobot/core/util/extensions/extensions.dart';
-import 'package:nobot/navigator_key.dart';
 
+import '../../../navigator_key.dart';
 import '../../models/real_number.dart';
 import '../../models/utc.dart';
 import '../../models/volume/volume.dart';
@@ -13,7 +12,6 @@ import '../controller/table_builder_bloc/table_builder_bloc.dart';
 import '../view/table_builder/table_builder.dart';
 import 'criteria.dart';
 import '../../spec/table_spec/table_spec.dart';
-
 part 'filter.freezed.dart';
 
 @freezed
@@ -24,12 +22,10 @@ sealed class TableColumn<T extends Object, V extends Object>
     required bool showFilter,
     required Columnar<T, V> column,
   }) = PrimitiveColumn;
-
   const factory TableColumn.collection({
     required Columnar<T, String> column,
     required MultiselectFilter<T, V> multiselectFilter,
   }) = CollectionColumn;
-
   Filter<T, V>? get filter {
     return switch (this) {
       CollectionColumn<T, V> e => e.multiselectFilter,
@@ -83,15 +79,12 @@ class TableData<V extends Object> {
   final V value;
   final Widget? child;
   final CellValue? excel;
-
   TableData({
     required this.value,
     this.child,
     CellValue? excel = const FormulaCellValue(''),
   }) : excel = excel == const FormulaCellValue('') ? excelValue(value) : excel;
-
   factory TableData.optionalString(Option<String> val) {
-    final labels = navigatorKey.currentContext!.localizationLabels;
     return val.fold(
       () => TableData(
         value: labels.hyphen,
@@ -101,14 +94,12 @@ class TableData<V extends Object> {
       (a) => TableData(value: a),
     ) as TableData<V>;
   }
-
   factory TableData.money(RealNumber val) {
     return TableData(
       value: val.getOrCrash as V,
       child: Text(val.getOrCrash.toStringAsFixed(2)),
     );
   }
-
   factory TableData.optionalMoney(Option<RealNumber> val) {
     return val.fold(
       () => TableData(
@@ -119,7 +110,6 @@ class TableData<V extends Object> {
       (a) => TableData.money(a),
     );
   }
-
   factory TableData.realNumber(RealNumber val) {
     final number = val.getOrCrash;
     return TableData(
@@ -132,7 +122,6 @@ class TableData<V extends Object> {
           : DoubleCellValue(number.toDouble()),
     );
   }
-
   factory TableData.optionalRealNumber(Option<RealNumber> val) {
     return val.fold(
       () => TableData(
@@ -144,26 +133,26 @@ class TableData<V extends Object> {
     );
   }
 
-  factory TableData.dateTime(Utc val) {
+  static TableData<Utc> dateTime(Utc val) {
     return TableData(
-      value: val as V,
+      value: val,
       child: Text(val.toNumericMonthDayYearTime),
       excel: DateTimeCellValue.fromDateTime(val.ctz),
     );
   }
 
-  factory TableData.dateOnly(Utc val) {
-    return TableData(
-      value: val as V,
+  static TableData<Utc> dateOnly(Utc val) {
+    return TableData<Utc>(
+      value: val,
       child: Text(val.toNumericMonthDayYear),
       excel: DateCellValue.fromDateTime(val.ctz),
     );
   }
 
-  factory TableData.optionalDateTime(Option<Utc> val) {
+  static TableData<Utc> optionalDateTime(UtcOption val) {
     return val.fold(
       () => TableData(
-        value: Utc.epoch() as V,
+        value: Utc.epoch(),
         child: const SizedBox.shrink(),
         excel: null,
       ),
@@ -171,10 +160,10 @@ class TableData<V extends Object> {
     );
   }
 
-  factory TableData.optionalDateOnly(Option<Utc> val) {
+  static TableData<Utc> optionalDateOnly(UtcOption val) {
     return val.fold(
       () => TableData(
-        value: Utc.epoch() as V,
+        value: Utc.epoch(),
         child: const SizedBox.shrink(),
         excel: null,
       ),
@@ -185,7 +174,6 @@ class TableData<V extends Object> {
   factory TableData.volume(Volume val) {
     return TableData(value: val.unitsRound() as V);
   }
-
   factory TableData.optionalVolume(Option<Volume> val) {
     return val.fold(
       () => TableData(
@@ -202,7 +190,7 @@ CellValue? excelValue(v) {
   if (v is String) {
     return TextCellValue(v);
   } else if (v is DateTime) {
-    return DateTimeCellValue.fromDateTime(v.toLocal());
+    return DateTimeCellValue.fromDateTime(v);
   } else if (v is int) {
     return IntCellValue(v);
   } else if (v is double) {
@@ -222,7 +210,6 @@ sealed class Filter<T extends Object, V extends Object> with _$Filter<T, V> {
     @Default(null) Widget? filterIcon,
     @Default(null) Widget? filteredIcon,
   }) = PrimitiveFilter;
-
   const factory Filter.multiselect({
     required String columnId,
     @Default('') String groupId,
@@ -236,7 +223,6 @@ sealed class Filter<T extends Object, V extends Object> with _$Filter<T, V> {
     @Default(null) Widget? filterIcon,
     @Default(null) Widget? filteredIcon,
   }) = MultiselectFilter;
-
   Filter<T, V> copyFromSpec(FilterSpec spec) {
     switch (this) {
       case PrimitiveFilter<T, V> filter:

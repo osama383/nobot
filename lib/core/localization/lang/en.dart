@@ -1,11 +1,13 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../models/product/due_and_scheduled_combo.dart';
 import '../../models/product/product.dart';
 import '../../models/tasks/service_grease/service_grease.dart';
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
 import '../../smart_dates/smart_dates.dart';
+import '../../tables/columns/customer/customer_columns.dart';
 import '../localization_labels.dart';
 
 class EnLocalizations extends DefaultLocalizations
@@ -1721,31 +1723,31 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get after => 'After';
 
-  // @override
-  // String longName(CustomerColumn columns) {
-  //   switch (columns) {
-  //     case CustomerColumn.name:
-  //       return 'Name';
-  //     case CustomerColumn.fill:
-  //       return 'Fill %';
-  //     case CustomerColumn.vol:
-  //       return 'Volume ${volumeUnit(abrv: true)}';
-  //     case CustomerColumn.dueDate:
-  //       return 'Due';
-  //     case CustomerColumn.nextService:
-  //       return 'Next service';
-  //     case CustomerColumn.lastService:
-  //       return 'Last service';
-  //     case CustomerColumn.customerId:
-  //       return 'ID';
-  //     case CustomerColumn.address:
-  //       return 'Address';
-  //     case CustomerColumn.tags:
-  //       return 'Tags';
-  //     case CustomerColumn.created:
-  //       return 'Created';
-  //   }
-  // }
+  @override
+  String longName(CustomerColumn columns) {
+    switch (columns) {
+      case CustomerColumn.name:
+        return 'Name';
+      case CustomerColumn.fill:
+        return 'Fill %';
+      case CustomerColumn.vol:
+        return 'Volume ${volumeUnit(abrv: true)}';
+      case CustomerColumn.dueDate:
+        return 'Due';
+      case CustomerColumn.nextService:
+        return 'Next service';
+      case CustomerColumn.lastService:
+        return 'Last service';
+      case CustomerColumn.customerId:
+        return 'ID';
+      case CustomerColumn.address:
+        return 'Address';
+      case CustomerColumn.tags:
+        return 'Tags';
+      case CustomerColumn.created:
+        return 'Created';
+    }
+  }
 
   @override
   String get type => 'Type';
@@ -1760,31 +1762,31 @@ class EnLocalizations extends DefaultLocalizations
         : '${duration.inHours}$abbrvHours ${duration.inMinutes.remainder(60)}$abbrvMinutes';
   }
 
-  // @override
-  // String shortName(CustomerColumn columns) {
-  //   switch (columns) {
-  //     case CustomerColumn.name:
-  //       return 'Name';
-  //     case CustomerColumn.fill:
-  //       return 'Fill %';
-  //     case CustomerColumn.vol:
-  //       return 'Vol (${volumeUnit(abrv: true)})';
-  //     case CustomerColumn.dueDate:
-  //       return 'Due';
-  //     case CustomerColumn.nextService:
-  //       return 'Next';
-  //     case CustomerColumn.lastService:
-  //       return 'Last';
-  //     case CustomerColumn.customerId:
-  //       return 'ID';
-  //     case CustomerColumn.address:
-  //       return 'Address';
-  //     case CustomerColumn.tags:
-  //       return 'Tags';
-  //     case CustomerColumn.created:
-  //       return 'Created';
-  //   }
-  // }
+  @override
+  String shortName(CustomerColumn columns) {
+    switch (columns) {
+      case CustomerColumn.name:
+        return 'Name';
+      case CustomerColumn.fill:
+        return 'Fill %';
+      case CustomerColumn.vol:
+        return 'Vol (${volumeUnit(abrv: true)})';
+      case CustomerColumn.dueDate:
+        return 'Due';
+      case CustomerColumn.nextService:
+        return 'Next';
+      case CustomerColumn.lastService:
+        return 'Last';
+      case CustomerColumn.customerId:
+        return 'ID';
+      case CustomerColumn.address:
+        return 'Address';
+      case CustomerColumn.tags:
+        return 'Tags';
+      case CustomerColumn.created:
+        return 'Created';
+    }
+  }
 
   @override
   String get depotAssignment => 'Depot assignment(s)';
@@ -2811,18 +2813,18 @@ class EnLocalizations extends DefaultLocalizations
   @override
   String get selectAll => 'Select all';
 
-  // @override
-  // String needForScheduling(DueAndNextCombo combo, {required bool abrv}) {
-  //   return switch (combo) {
-  //     DueAndNextCombo.scheduled => abrv ? 'Scheduled' : 'Scheduled',
-  //     DueAndNextCombo.overdue => abrv ? 'Overdue' : 'Overdue',
-  //     DueAndNextCombo.dueIn3 => abrv ? '< 3 days' : 'Due within 3 days',
-  //     DueAndNextCombo.dueIn7 => abrv ? '< 7 days' : 'Due within 7 days',
-  //     DueAndNextCombo.dueAfter7 => abrv ? '7+ days' : 'Due after 7 days',
-  //     DueAndNextCombo.noDueDate => abrv ? 'Due n/a' : 'No due date',
-  //     DueAndNextCombo.inactive => abrv ? 'Inactive' : 'Inactive',
-  //   };
-  // }
+  @override
+  String needForScheduling(DueAndNextCombo combo, {required bool abrv}) {
+    return switch (combo) {
+      DueAndNextCombo.scheduled => abrv ? 'Scheduled' : 'Scheduled',
+      DueAndNextCombo.overdue => abrv ? 'Overdue' : 'Overdue',
+      DueAndNextCombo.dueIn3 => abrv ? '< 3 days' : 'Due within 3 days',
+      DueAndNextCombo.dueIn7 => abrv ? '< 7 days' : 'Due within 7 days',
+      DueAndNextCombo.dueAfter7 => abrv ? '7+ days' : 'Due after 7 days',
+      DueAndNextCombo.noDueDate => abrv ? 'Due n/a' : 'No due date',
+      DueAndNextCombo.inactive => abrv ? 'Inactive' : 'Inactive',
+    };
+  }
 
   @override
   String get canNotBeChangedWhenCloning => 'Can not be changed when cloning';

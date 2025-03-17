@@ -116,11 +116,14 @@ seedData({
             faker.geo.longitude(),
           ),
         ),
+        locationNotes: faker.lorem.sentence(),
+        createdDate: Utc.now(),
         products: {
           Grease(
             status: ServiceStatus.active,
-            dueDate: UtcOption.none(),
-            lastService: UtcOption.none(),
+            dueDateOption: UtcOption.none(),
+            lastServiceOption: UtcOption.none(),
+            scheduledDateOption: UtcOption.none(),
             location: LatLng(faker.geo.latitude(), faker.geo.longitude()),
             serviceNotificationEmails: {EmailAddress(faker.internet.email())},
             capacity: Volume.fromUnits(

@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:nobot/core/models/assets/assets.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 import 'package:nobot/core/models/firestore_document.dart';
 import 'package:nobot/core/models/tasks/service_grease/service_grease.dart';
 import 'package:nobot/core/models/user/user.dart';
+import 'package:nobot/navigator_key.dart';
 
 enum Entities { user, customer, waypoint, trip, asset }
 
@@ -85,9 +87,15 @@ class Repository {
     final batch = db.batch();
     final collRef = _ref(entity);
     for (final item in items) {
-      batch.set(collRef.doc(item.id), item);
+      batch.set(collRef.doc(), item);
     }
-    batch.commit();
+    batch.commit().then((_) {
+      Future.delayed(Duration(seconds: 4), () {
+        final context = navigatorKey.currentContext!;
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('done')));
+      });
+    });
   }
 
   Future<void> edit<T extends FirestoreDocument>(

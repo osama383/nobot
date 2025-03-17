@@ -7,6 +7,8 @@ import 'package:nobot/core/util/extensions/extensions.dart';
 
 import '../../../../core/models/address/address.dart';
 import '../../../../core/models/customer/customer.dart';
+import '../../../../core/models/product/product.dart';
+import '../../../../core/models/utc.dart';
 import '../../../../core/models/value_object/value_object.dart';
 import '../../../../core/repository.dart';
 import '../../../../core/routes/routes.dart';
@@ -284,9 +286,9 @@ class _AddFakeCustomers extends StatelessWidget {
     return TextButton(
       onPressed: () {
         final customers = List.generate(
-          10000,
+          4000,
           (index) {
-            return Customer(
+            var customer = Customer(
               id: Faker().guid.guid(),
               name: VString(faker.person.name()),
               address: Address(
@@ -297,7 +299,13 @@ class _AddFakeCustomers extends StatelessWidget {
                 ),
               ),
               products: {},
+              createdDate: Utc.now(),
+              locationNotes: faker.lorem.sentence(),
             );
+
+            return customer
+                .activateProduct(Products.uco)
+                .activateProduct(Products.grease);
           },
         );
         sl<Repository>().createManyItems(

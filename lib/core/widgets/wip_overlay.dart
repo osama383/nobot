@@ -19,7 +19,7 @@ class WipOverlay extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         child: Visibility(
           visible: isBusy,
-          child: const Center(child: CircularProgressIndicator()),
+          child: const Center(child: Text('Loading...')),
         ),
       ),
     );

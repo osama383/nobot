@@ -1,11 +1,13 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:nobot/core/models/customer/customer.dart';
 
+import '../../models/product/due_and_scheduled_combo.dart';
 import '../../models/product/product.dart';
 import '../../models/tasks/service_grease/service_grease.dart';
 import '../../models/volume/volume.dart';
 import '../../scaffold/nav/nav.dart';
 import '../../smart_dates/smart_dates.dart';
+import '../../tables/columns/customer/customer_columns.dart';
 import '../localization_labels.dart';
 
 class EsLocalizations extends DefaultLocalizations
@@ -1705,31 +1707,31 @@ class EsLocalizations extends DefaultLocalizations
   @override
   String get sortDescending => 'Orden descendiente';
 
-  // @override
-  // String longName(CustomerColumn column) {
-  //   switch (column) {
-  //     case CustomerColumn.name:
-  //       return 'Nombre';
-  //     case CustomerColumn.fill:
-  //       return 'Llenar %';
-  //     case CustomerColumn.vol:
-  //       return 'Volumen (${volumeUnit(abrv: true)})';
-  //     case CustomerColumn.dueDate:
-  //       return 'Vencimiento';
-  //     case CustomerColumn.nextService:
-  //       return 'Próximo servicio';
-  //     case CustomerColumn.lastService:
-  //       return 'Último servicio';
-  //     case CustomerColumn.customerId:
-  //       return 'identificación';
-  //     case CustomerColumn.address:
-  //       return 'Dirección';
-  //     case CustomerColumn.tags:
-  //       return 'Etiquetas';
-  //     case CustomerColumn.created:
-  //       return 'Creada';
-  //   }
-  // }
+  @override
+  String longName(CustomerColumn column) {
+    switch (column) {
+      case CustomerColumn.name:
+        return 'Nombre';
+      case CustomerColumn.fill:
+        return 'Llenar %';
+      case CustomerColumn.vol:
+        return 'Volumen (${volumeUnit(abrv: true)})';
+      case CustomerColumn.dueDate:
+        return 'Vencimiento';
+      case CustomerColumn.nextService:
+        return 'Próximo servicio';
+      case CustomerColumn.lastService:
+        return 'Último servicio';
+      case CustomerColumn.customerId:
+        return 'identificación';
+      case CustomerColumn.address:
+        return 'Dirección';
+      case CustomerColumn.tags:
+        return 'Etiquetas';
+      case CustomerColumn.created:
+        return 'Creada';
+    }
+  }
 
   @override
   String get type => 'Tipo';
@@ -1744,31 +1746,31 @@ class EsLocalizations extends DefaultLocalizations
         : '${duration.inHours}$abbrvHours ${duration.inMinutes % 60}$abbrvMinutes';
   }
 
-  // @override
-  // String shortName(CustomerColumn column) {
-  //   switch (column) {
-  //     case CustomerColumn.name:
-  //       return 'Nombre';
-  //     case CustomerColumn.fill:
-  //       return 'Llenar %';
-  //     case CustomerColumn.vol:
-  //       return 'Volumen ${volumeUnit(abrv: true)}';
-  //     case CustomerColumn.dueDate:
-  //       return 'Vencimiento';
-  //     case CustomerColumn.nextService:
-  //       return 'Próximo';
-  //     case CustomerColumn.lastService:
-  //       return 'Último';
-  //     case CustomerColumn.customerId:
-  //       return 'Identificación';
-  //     case CustomerColumn.address:
-  //       return 'Dirección';
-  //     case CustomerColumn.tags:
-  //       return 'Etiquetas';
-  //     case CustomerColumn.created:
-  //       return 'Creada';
-  //   }
-  // }
+  @override
+  String shortName(CustomerColumn column) {
+    switch (column) {
+      case CustomerColumn.name:
+        return 'Nombre';
+      case CustomerColumn.fill:
+        return 'Llenar %';
+      case CustomerColumn.vol:
+        return 'Volumen ${volumeUnit(abrv: true)}';
+      case CustomerColumn.dueDate:
+        return 'Vencimiento';
+      case CustomerColumn.nextService:
+        return 'Próximo';
+      case CustomerColumn.lastService:
+        return 'Último';
+      case CustomerColumn.customerId:
+        return 'Identificación';
+      case CustomerColumn.address:
+        return 'Dirección';
+      case CustomerColumn.tags:
+        return 'Etiquetas';
+      case CustomerColumn.created:
+        return 'Creada';
+    }
+  }
 
   @override
   String get depotAssignment => 'Asignación(es) de almacén';
@@ -2804,18 +2806,18 @@ class EsLocalizations extends DefaultLocalizations
   @override
   String get selectAll => 'Seleccionar todo';
 
-  // @override
-  // String needForScheduling(DueAndNextCombo combo, {required bool abrv}) {
-  //   return switch (combo) {
-  //     DueAndNextCombo.scheduled => 'Programada',
-  //     DueAndNextCombo.overdue => 'Programada',
-  //     DueAndNextCombo.dueIn3 => 'Con vencimiento en 3 días',
-  //     DueAndNextCombo.dueIn7 => 'Con vencimiento en 7 días',
-  //     DueAndNextCombo.dueAfter7 => 'Vencimiento después de 7 días',
-  //     DueAndNextCombo.noDueDate => 'Sin fecha de vencimiento',
-  //     DueAndNextCombo.inactive => 'Inactiva',
-  //   };
-  // }
+  @override
+  String needForScheduling(DueAndNextCombo combo, {required bool abrv}) {
+    return switch (combo) {
+      DueAndNextCombo.scheduled => 'Programada',
+      DueAndNextCombo.overdue => 'Programada',
+      DueAndNextCombo.dueIn3 => 'Con vencimiento en 3 días',
+      DueAndNextCombo.dueIn7 => 'Con vencimiento en 7 días',
+      DueAndNextCombo.dueAfter7 => 'Vencimiento después de 7 días',
+      DueAndNextCombo.noDueDate => 'Sin fecha de vencimiento',
+      DueAndNextCombo.inactive => 'Inactiva',
+    };
+  }
 
   @override
   String get canNotBeChangedWhenCloning =>

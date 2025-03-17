@@ -19,6 +19,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -29,6 +30,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -39,6 +41,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -50,6 +53,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -60,6 +64,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -70,6 +75,7 @@ mixin _$CustomersEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -137,6 +143,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -150,6 +157,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -163,6 +171,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -180,6 +189,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -193,6 +203,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -206,6 +217,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -222,6 +234,179 @@ class _$StartedImpl implements _Started {
 
 abstract class _Started implements CustomersEvent {
   const factory _Started() = _$StartedImpl;
+}
+
+/// @nodoc
+abstract class _$$OnCustomersReceivedImplCopyWith<$Res> {
+  factory _$$OnCustomersReceivedImplCopyWith(_$OnCustomersReceivedImpl value,
+          $Res Function(_$OnCustomersReceivedImpl) then) =
+      __$$OnCustomersReceivedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<Customer> customers});
+}
+
+/// @nodoc
+class __$$OnCustomersReceivedImplCopyWithImpl<$Res>
+    extends _$CustomersEventCopyWithImpl<$Res, _$OnCustomersReceivedImpl>
+    implements _$$OnCustomersReceivedImplCopyWith<$Res> {
+  __$$OnCustomersReceivedImplCopyWithImpl(_$OnCustomersReceivedImpl _value,
+      $Res Function(_$OnCustomersReceivedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? customers = null,
+  }) {
+    return _then(_$OnCustomersReceivedImpl(
+      null == customers
+          ? _value._customers
+          : customers // ignore: cast_nullable_to_non_nullable
+              as List<Customer>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnCustomersReceivedImpl implements _OnCustomersReceived {
+  const _$OnCustomersReceivedImpl(final List<Customer> customers)
+      : _customers = customers;
+
+  final List<Customer> _customers;
+  @override
+  List<Customer> get customers {
+    if (_customers is EqualUnmodifiableListView) return _customers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_customers);
+  }
+
+  @override
+  String toString() {
+    return 'CustomersEvent.onCustomersReceived(customers: $customers)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnCustomersReceivedImpl &&
+            const DeepCollectionEquality()
+                .equals(other._customers, _customers));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_customers));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnCustomersReceivedImplCopyWith<_$OnCustomersReceivedImpl> get copyWith =>
+      __$$OnCustomersReceivedImplCopyWithImpl<_$OnCustomersReceivedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
+    required TResult Function(Option<Depot> depotOption) onDepotSelected,
+    required TResult Function(List<Customer> customers) importCustomers,
+    required TResult Function(Customer customer) onCustomerCreated,
+    required TResult Function(Customer customer) onCustomerUpdated,
+    required TResult Function(UniqueId customerId) onCustomerDeleted,
+  }) {
+    return onCustomersReceived(customers);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
+    TResult? Function(Option<Depot> depotOption)? onDepotSelected,
+    TResult? Function(List<Customer> customers)? importCustomers,
+    TResult? Function(Customer customer)? onCustomerCreated,
+    TResult? Function(Customer customer)? onCustomerUpdated,
+    TResult? Function(UniqueId customerId)? onCustomerDeleted,
+  }) {
+    return onCustomersReceived?.call(customers);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
+    TResult Function(Option<Depot> depotOption)? onDepotSelected,
+    TResult Function(List<Customer> customers)? importCustomers,
+    TResult Function(Customer customer)? onCustomerCreated,
+    TResult Function(Customer customer)? onCustomerUpdated,
+    TResult Function(UniqueId customerId)? onCustomerDeleted,
+    required TResult orElse(),
+  }) {
+    if (onCustomersReceived != null) {
+      return onCustomersReceived(customers);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
+    required TResult Function(_OnDepotSelected value) onDepotSelected,
+    required TResult Function(_ImportCustomers value) importCustomers,
+    required TResult Function(_OnCustomerCreated value) onCustomerCreated,
+    required TResult Function(_OnCustomerUpdated value) onCustomerUpdated,
+    required TResult Function(_OnCustomerDeleted value) onCustomerDeleted,
+  }) {
+    return onCustomersReceived(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
+    TResult? Function(_OnDepotSelected value)? onDepotSelected,
+    TResult? Function(_ImportCustomers value)? importCustomers,
+    TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
+    TResult? Function(_OnCustomerUpdated value)? onCustomerUpdated,
+    TResult? Function(_OnCustomerDeleted value)? onCustomerDeleted,
+  }) {
+    return onCustomersReceived?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
+    TResult Function(_OnDepotSelected value)? onDepotSelected,
+    TResult Function(_ImportCustomers value)? importCustomers,
+    TResult Function(_OnCustomerCreated value)? onCustomerCreated,
+    TResult Function(_OnCustomerUpdated value)? onCustomerUpdated,
+    TResult Function(_OnCustomerDeleted value)? onCustomerDeleted,
+    required TResult orElse(),
+  }) {
+    if (onCustomersReceived != null) {
+      return onCustomersReceived(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnCustomersReceived implements CustomersEvent {
+  const factory _OnCustomersReceived(final List<Customer> customers) =
+      _$OnCustomersReceivedImpl;
+
+  List<Customer> get customers;
+  @JsonKey(ignore: true)
+  _$$OnCustomersReceivedImplCopyWith<_$OnCustomersReceivedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -291,6 +476,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -304,6 +490,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -317,6 +504,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -334,6 +522,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -347,6 +536,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -360,6 +550,7 @@ class _$OnDepotSelectedImpl implements _OnDepotSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -458,6 +649,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -471,6 +663,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -484,6 +677,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -501,6 +695,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -514,6 +709,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -527,6 +723,7 @@ class _$ImportCustomersImpl implements _ImportCustomers {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -618,6 +815,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -631,6 +829,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -644,6 +843,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -661,6 +861,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -674,6 +875,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -687,6 +889,7 @@ class _$OnCustomerCreatedImpl implements _OnCustomerCreated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -778,6 +981,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -791,6 +995,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -804,6 +1009,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -821,6 +1027,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -834,6 +1041,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -847,6 +1055,7 @@ class _$OnCustomerUpdatedImpl implements _OnCustomerUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -938,6 +1147,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
+    required TResult Function(List<Customer> customers) onCustomersReceived,
     required TResult Function(Option<Depot> depotOption) onDepotSelected,
     required TResult Function(List<Customer> customers) importCustomers,
     required TResult Function(Customer customer) onCustomerCreated,
@@ -951,6 +1161,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
+    TResult? Function(List<Customer> customers)? onCustomersReceived,
     TResult? Function(Option<Depot> depotOption)? onDepotSelected,
     TResult? Function(List<Customer> customers)? importCustomers,
     TResult? Function(Customer customer)? onCustomerCreated,
@@ -964,6 +1175,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
+    TResult Function(List<Customer> customers)? onCustomersReceived,
     TResult Function(Option<Depot> depotOption)? onDepotSelected,
     TResult Function(List<Customer> customers)? importCustomers,
     TResult Function(Customer customer)? onCustomerCreated,
@@ -981,6 +1193,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_OnCustomersReceived value) onCustomersReceived,
     required TResult Function(_OnDepotSelected value) onDepotSelected,
     required TResult Function(_ImportCustomers value) importCustomers,
     required TResult Function(_OnCustomerCreated value) onCustomerCreated,
@@ -994,6 +1207,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult? Function(_OnDepotSelected value)? onDepotSelected,
     TResult? Function(_ImportCustomers value)? importCustomers,
     TResult? Function(_OnCustomerCreated value)? onCustomerCreated,
@@ -1007,6 +1221,7 @@ class _$OnCustomerDeletedImpl implements _OnCustomerDeleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_OnCustomersReceived value)? onCustomersReceived,
     TResult Function(_OnDepotSelected value)? onDepotSelected,
     TResult Function(_ImportCustomers value)? importCustomers,
     TResult Function(_OnCustomerCreated value)? onCustomerCreated,

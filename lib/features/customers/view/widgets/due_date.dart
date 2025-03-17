@@ -13,7 +13,7 @@ class DueDateWidget extends StatelessWidget {
     return ListTile(
       title: Text(labels.dueDate),
       subtitle: Text(
-        product.dueDate.fold(
+        product.dueDateOption.fold(
           () => labels.notAvailableSymbol,
           (date) => date.toNumericMonthDayYear,
         ),

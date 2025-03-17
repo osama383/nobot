@@ -1,6 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:nobot/core/models/firestore_document.dart';
 import 'package:nobot/core/models/product/service_status.dart';
+import 'package:nobot/core/models/utc.dart';
 import 'package:nobot/core/util/extensions/extensions.dart';
 
 import '../address/address.dart';
@@ -13,14 +14,16 @@ part 'customer.mapper.dart';
 class Customer extends FirestoreDocument with CustomerMappable {
   final VString name;
   final Address address;
-  // final Set<String> tags;
   final Set<Product> products;
+  final String locationNotes;
+  final Utc createdDate;
 
   Customer({
     required super.id,
     required this.name,
     required this.address,
-    // required this.tags,
+    required this.createdDate,
+    required this.locationNotes,
     required this.products,
   });
 
@@ -33,7 +36,7 @@ class Customer extends FirestoreDocument with CustomerMappable {
     if (existingProduct != null) {
       return copyWith(
         products: products
-          ..remove(product(type))
+          ..remove(existingProduct)
           ..add(existingProduct.copyWith(status: ServiceStatus.active)),
       );
     }
@@ -45,4 +48,7 @@ class Customer extends FirestoreDocument with CustomerMappable {
 
     return copyWith(products: products..add(initializedProduct));
   }
+
+  Grease get grease => products.whereType<Grease>().first;
+  Uco get uco => products.whereType<Uco>().first;
 }

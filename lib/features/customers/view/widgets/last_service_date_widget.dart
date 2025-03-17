@@ -13,7 +13,7 @@ class LastServiceWidget extends StatelessWidget {
     return ListTile(
       title: Text(labels.lastService),
       subtitle: Text(
-        product.lastService.fold(
+        product.lastServiceOption.fold(
           () => labels.notAvailableSymbol,
           (date) => date.toNumericMonthDayYear,
         ),

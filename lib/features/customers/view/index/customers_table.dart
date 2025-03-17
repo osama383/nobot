@@ -61,5 +61,27 @@ List<TableColumn<Customer, Object>> _columns(
   return [
     columns.name(const EdgeInsets.only(left: 16, right: 8)),
     columns.address(),
+    columns.needForScheduling(
+      Products.uco,
+      title: labels.products(Products.uco),
+      includeHelperText: true,
+      includeInactive: true,
+      groupId: Columns.customerOil.name,
+      showNameInHeader: true,
+    ),
+    columns.ucoDue(),
+    columns.ucoNext(),
+    columns.ucoLast(),
+    columns.needForScheduling(
+      Products.grease,
+      title: labels.products(Products.grease),
+      includeHelperText: true,
+      includeInactive: true,
+      groupId: Columns.customerTrap.name,
+      showNameInHeader: true,
+    ),
+    columns.greaseDue(),
+    columns.greaseLast(),
+    columns.greaseNext(),
   ];
 }

@@ -3,6 +3,9 @@ part of 'customers_bloc.dart';
 @freezed
 class CustomersEvent with _$CustomersEvent {
   const factory CustomersEvent.started() = _Started;
+  const factory CustomersEvent.onCustomersReceived(
+    List<Customer> customers,
+  ) = _OnCustomersReceived;
   const factory CustomersEvent.onDepotSelected(
     Option<Depot> depotOption,
   ) = _OnDepotSelected;

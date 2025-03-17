@@ -14,6 +14,7 @@ class CustomerMapper extends ClassMapperBase<Customer> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = CustomerMapper._());
       AddressMapper.ensureInitialized();
+      UtcMapper.ensureInitialized();
       ProductMapper.ensureInitialized();
     }
     return _instance!;
@@ -29,6 +30,12 @@ class CustomerMapper extends ClassMapperBase<Customer> {
   static Address _$address(Customer v) => v.address;
   static const Field<Customer, Address> _f$address =
       Field('address', _$address);
+  static Utc _$createdDate(Customer v) => v.createdDate;
+  static const Field<Customer, Utc> _f$createdDate =
+      Field('createdDate', _$createdDate);
+  static String _$locationNotes(Customer v) => v.locationNotes;
+  static const Field<Customer, String> _f$locationNotes =
+      Field('locationNotes', _$locationNotes);
   static Set<Product> _$products(Customer v) => v.products;
   static const Field<Customer, Set<Product>> _f$products =
       Field('products', _$products);
@@ -38,6 +45,8 @@ class CustomerMapper extends ClassMapperBase<Customer> {
     #id: _f$id,
     #name: _f$name,
     #address: _f$address,
+    #createdDate: _f$createdDate,
+    #locationNotes: _f$locationNotes,
     #products: _f$products,
   };
 
@@ -46,6 +55,8 @@ class CustomerMapper extends ClassMapperBase<Customer> {
         id: data.dec(_f$id),
         name: data.dec(_f$name),
         address: data.dec(_f$address),
+        createdDate: data.dec(_f$createdDate),
+        locationNotes: data.dec(_f$locationNotes),
         products: data.dec(_f$products));
   }
 
@@ -99,8 +110,14 @@ extension CustomerValueCopy<$R, $Out> on ObjectCopyWith<$R, Customer, $Out> {
 abstract class CustomerCopyWith<$R, $In extends Customer, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   AddressCopyWith<$R, Address, Address> get address;
+  UtcCopyWith<$R, Utc, Utc> get createdDate;
   $R call(
-      {String? id, VString? name, Address? address, Set<Product>? products});
+      {String? id,
+      VString? name,
+      Address? address,
+      Utc? createdDate,
+      String? locationNotes,
+      Set<Product>? products});
   CustomerCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -116,15 +133,22 @@ class _CustomerCopyWithImpl<$R, $Out>
   AddressCopyWith<$R, Address, Address> get address =>
       $value.address.copyWith.$chain((v) => call(address: v));
   @override
+  UtcCopyWith<$R, Utc, Utc> get createdDate =>
+      $value.createdDate.copyWith.$chain((v) => call(createdDate: v));
+  @override
   $R call(
           {String? id,
           VString? name,
           Address? address,
+          Utc? createdDate,
+          String? locationNotes,
           Set<Product>? products}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,
         if (address != null) #address: address,
+        if (createdDate != null) #createdDate: createdDate,
+        if (locationNotes != null) #locationNotes: locationNotes,
         if (products != null) #products: products
       }));
   @override
@@ -132,6 +156,8 @@ class _CustomerCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       name: data.get(#name, or: $value.name),
       address: data.get(#address, or: $value.address),
+      createdDate: data.get(#createdDate, or: $value.createdDate),
+      locationNotes: data.get(#locationNotes, or: $value.locationNotes),
       products: data.get(#products, or: $value.products));
 
   @override

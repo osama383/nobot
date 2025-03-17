@@ -16,7 +16,6 @@ class ProductMapper extends ClassMapperBase<Product> {
       UcoMapper.ensureInitialized();
       GreaseMapper.ensureInitialized();
       ServiceStatusMapper.ensureInitialized();
-      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -27,12 +26,15 @@ class ProductMapper extends ClassMapperBase<Product> {
   static ServiceStatus _$status(Product v) => v.status;
   static const Field<Product, ServiceStatus> _f$status =
       Field('status', _$status);
-  static UtcOption _$dueDate(Product v) => v.dueDate;
-  static const Field<Product, UtcOption> _f$dueDate =
-      Field('dueDate', _$dueDate);
-  static UtcOption _$lastService(Product v) => v.lastService;
-  static const Field<Product, UtcOption> _f$lastService =
-      Field('lastService', _$lastService);
+  static UtcOption _$dueDateOption(Product v) => v.dueDateOption;
+  static const Field<Product, UtcOption> _f$dueDateOption =
+      Field('dueDateOption', _$dueDateOption);
+  static UtcOption _$lastServiceOption(Product v) => v.lastServiceOption;
+  static const Field<Product, UtcOption> _f$lastServiceOption =
+      Field('lastServiceOption', _$lastServiceOption);
+  static UtcOption _$scheduledDateOption(Product v) => v.scheduledDateOption;
+  static const Field<Product, UtcOption> _f$scheduledDateOption =
+      Field('scheduledDateOption', _$scheduledDateOption);
   static Set<EmailAddress> _$serviceNotificationEmails(Product v) =>
       v.serviceNotificationEmails;
   static const Field<Product, Set<EmailAddress>> _f$serviceNotificationEmails =
@@ -44,15 +46,16 @@ class ProductMapper extends ClassMapperBase<Product> {
   @override
   final MappableFields<Product> fields = const {
     #status: _f$status,
-    #dueDate: _f$dueDate,
-    #lastService: _f$lastService,
+    #dueDateOption: _f$dueDateOption,
+    #lastServiceOption: _f$lastServiceOption,
+    #scheduledDateOption: _f$scheduledDateOption,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
     #location: _f$location,
   };
 
   static Product _instantiate(DecodingData data) {
     throw MapperException.missingSubclass(
-        'Product', 'type', '${data.value['type']}');
+        'Product', 'runtimeType', '${data.value['runtimeType']}');
   }
 
   @override
@@ -75,12 +78,11 @@ mixin ProductMappable {
 
 abstract class ProductCopyWith<$R, $In extends Product, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
   $R call(
       {ServiceStatus? status,
-      UtcOption? dueDate,
-      UtcOption? lastService,
+      UtcOption? dueDateOption,
+      UtcOption? lastServiceOption,
+      UtcOption? scheduledDateOption,
       Set<EmailAddress>? serviceNotificationEmails,
       LatLng? location});
   ProductCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -95,7 +97,6 @@ class UcoMapper extends SubClassMapperBase<Uco> {
       MapperContainer.globals.use(_instance = UcoMapper._());
       ProductMapper.ensureInitialized().addSubMapper(_instance!);
       ServiceStatusMapper.ensureInitialized();
-      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -105,11 +106,15 @@ class UcoMapper extends SubClassMapperBase<Uco> {
 
   static ServiceStatus _$status(Uco v) => v.status;
   static const Field<Uco, ServiceStatus> _f$status = Field('status', _$status);
-  static UtcOption _$dueDate(Uco v) => v.dueDate;
-  static const Field<Uco, UtcOption> _f$dueDate = Field('dueDate', _$dueDate);
-  static UtcOption _$lastService(Uco v) => v.lastService;
-  static const Field<Uco, UtcOption> _f$lastService =
-      Field('lastService', _$lastService);
+  static UtcOption _$dueDateOption(Uco v) => v.dueDateOption;
+  static const Field<Uco, UtcOption> _f$dueDateOption =
+      Field('dueDateOption', _$dueDateOption);
+  static UtcOption _$lastServiceOption(Uco v) => v.lastServiceOption;
+  static const Field<Uco, UtcOption> _f$lastServiceOption =
+      Field('lastServiceOption', _$lastServiceOption);
+  static UtcOption _$scheduledDateOption(Uco v) => v.scheduledDateOption;
+  static const Field<Uco, UtcOption> _f$scheduledDateOption =
+      Field('scheduledDateOption', _$scheduledDateOption);
   static Set<EmailAddress> _$serviceNotificationEmails(Uco v) =>
       v.serviceNotificationEmails;
   static const Field<Uco, Set<EmailAddress>> _f$serviceNotificationEmails =
@@ -122,15 +127,16 @@ class UcoMapper extends SubClassMapperBase<Uco> {
   @override
   final MappableFields<Uco> fields = const {
     #status: _f$status,
-    #dueDate: _f$dueDate,
-    #lastService: _f$lastService,
+    #dueDateOption: _f$dueDateOption,
+    #lastServiceOption: _f$lastServiceOption,
+    #scheduledDateOption: _f$scheduledDateOption,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
     #location: _f$location,
     #oilPrice: _f$oilPrice,
   };
 
   @override
-  final String discriminatorKey = 'type';
+  final String discriminatorKey = 'runtimeType';
   @override
   final dynamic discriminatorValue = 'uco';
   @override
@@ -139,8 +145,9 @@ class UcoMapper extends SubClassMapperBase<Uco> {
   static Uco _instantiate(DecodingData data) {
     return Uco(
         status: data.dec(_f$status),
-        dueDate: data.dec(_f$dueDate),
-        lastService: data.dec(_f$lastService),
+        dueDateOption: data.dec(_f$dueDateOption),
+        lastServiceOption: data.dec(_f$lastServiceOption),
+        scheduledDateOption: data.dec(_f$scheduledDateOption),
         serviceNotificationEmails: data.dec(_f$serviceNotificationEmails),
         location: data.dec(_f$location),
         oilPrice: data.dec(_f$oilPrice));
@@ -193,14 +200,11 @@ extension UcoValueCopy<$R, $Out> on ObjectCopyWith<$R, Uco, $Out> {
 abstract class UcoCopyWith<$R, $In extends Uco, $Out>
     implements ProductCopyWith<$R, $In, $Out> {
   @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
-  @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
-  @override
   $R call(
       {ServiceStatus? status,
-      UtcOption? dueDate,
-      UtcOption? lastService,
+      UtcOption? dueDateOption,
+      UtcOption? lastServiceOption,
+      UtcOption? scheduledDateOption,
       Set<EmailAddress>? serviceNotificationEmails,
       LatLng? location,
       int? oilPrice});
@@ -214,23 +218,20 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
   @override
   late final ClassMapperBase<Uco> $mapper = UcoMapper.ensureInitialized();
   @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate =>
-      $value.dueDate.copyWith.$chain((v) => call(dueDate: v));
-  @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService =>
-      $value.lastService.copyWith.$chain((v) => call(lastService: v));
-  @override
   $R call(
           {ServiceStatus? status,
-          UtcOption? dueDate,
-          UtcOption? lastService,
+          UtcOption? dueDateOption,
+          UtcOption? lastServiceOption,
+          UtcOption? scheduledDateOption,
           Set<EmailAddress>? serviceNotificationEmails,
           LatLng? location,
           int? oilPrice}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
-        if (dueDate != null) #dueDate: dueDate,
-        if (lastService != null) #lastService: lastService,
+        if (dueDateOption != null) #dueDateOption: dueDateOption,
+        if (lastServiceOption != null) #lastServiceOption: lastServiceOption,
+        if (scheduledDateOption != null)
+          #scheduledDateOption: scheduledDateOption,
         if (serviceNotificationEmails != null)
           #serviceNotificationEmails: serviceNotificationEmails,
         if (location != null) #location: location,
@@ -239,8 +240,11 @@ class _UcoCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Uco, $Out>
   @override
   Uco $make(CopyWithData data) => Uco(
       status: data.get(#status, or: $value.status),
-      dueDate: data.get(#dueDate, or: $value.dueDate),
-      lastService: data.get(#lastService, or: $value.lastService),
+      dueDateOption: data.get(#dueDateOption, or: $value.dueDateOption),
+      lastServiceOption:
+          data.get(#lastServiceOption, or: $value.lastServiceOption),
+      scheduledDateOption:
+          data.get(#scheduledDateOption, or: $value.scheduledDateOption),
       serviceNotificationEmails: data.get(#serviceNotificationEmails,
           or: $value.serviceNotificationEmails),
       location: data.get(#location, or: $value.location),
@@ -260,7 +264,6 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
       MapperContainer.globals.use(_instance = GreaseMapper._());
       ProductMapper.ensureInitialized().addSubMapper(_instance!);
       ServiceStatusMapper.ensureInitialized();
-      UtcOptionMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -271,12 +274,15 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   static ServiceStatus _$status(Grease v) => v.status;
   static const Field<Grease, ServiceStatus> _f$status =
       Field('status', _$status);
-  static UtcOption _$dueDate(Grease v) => v.dueDate;
-  static const Field<Grease, UtcOption> _f$dueDate =
-      Field('dueDate', _$dueDate);
-  static UtcOption _$lastService(Grease v) => v.lastService;
-  static const Field<Grease, UtcOption> _f$lastService =
-      Field('lastService', _$lastService);
+  static UtcOption _$dueDateOption(Grease v) => v.dueDateOption;
+  static const Field<Grease, UtcOption> _f$dueDateOption =
+      Field('dueDateOption', _$dueDateOption);
+  static UtcOption _$lastServiceOption(Grease v) => v.lastServiceOption;
+  static const Field<Grease, UtcOption> _f$lastServiceOption =
+      Field('lastServiceOption', _$lastServiceOption);
+  static UtcOption _$scheduledDateOption(Grease v) => v.scheduledDateOption;
+  static const Field<Grease, UtcOption> _f$scheduledDateOption =
+      Field('scheduledDateOption', _$scheduledDateOption);
   static LatLng _$location(Grease v) => v.location;
   static const Field<Grease, LatLng> _f$location =
       Field('location', _$location);
@@ -291,15 +297,16 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   @override
   final MappableFields<Grease> fields = const {
     #status: _f$status,
-    #dueDate: _f$dueDate,
-    #lastService: _f$lastService,
+    #dueDateOption: _f$dueDateOption,
+    #lastServiceOption: _f$lastServiceOption,
+    #scheduledDateOption: _f$scheduledDateOption,
     #location: _f$location,
     #serviceNotificationEmails: _f$serviceNotificationEmails,
     #capacity: _f$capacity,
   };
 
   @override
-  final String discriminatorKey = 'type';
+  final String discriminatorKey = 'runtimeType';
   @override
   final dynamic discriminatorValue = 'grease';
   @override
@@ -308,8 +315,9 @@ class GreaseMapper extends SubClassMapperBase<Grease> {
   static Grease _instantiate(DecodingData data) {
     return Grease(
         status: data.dec(_f$status),
-        dueDate: data.dec(_f$dueDate),
-        lastService: data.dec(_f$lastService),
+        dueDateOption: data.dec(_f$dueDateOption),
+        lastServiceOption: data.dec(_f$lastServiceOption),
+        scheduledDateOption: data.dec(_f$scheduledDateOption),
         location: data.dec(_f$location),
         serviceNotificationEmails: data.dec(_f$serviceNotificationEmails),
         capacity: data.dec(_f$capacity));
@@ -362,14 +370,11 @@ extension GreaseValueCopy<$R, $Out> on ObjectCopyWith<$R, Grease, $Out> {
 abstract class GreaseCopyWith<$R, $In extends Grease, $Out>
     implements ProductCopyWith<$R, $In, $Out> {
   @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate;
-  @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService;
-  @override
   $R call(
       {ServiceStatus? status,
-      UtcOption? dueDate,
-      UtcOption? lastService,
+      UtcOption? dueDateOption,
+      UtcOption? lastServiceOption,
+      UtcOption? scheduledDateOption,
       LatLng? location,
       Set<EmailAddress>? serviceNotificationEmails,
       Volume? capacity});
@@ -383,23 +388,20 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
   @override
   late final ClassMapperBase<Grease> $mapper = GreaseMapper.ensureInitialized();
   @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get dueDate =>
-      $value.dueDate.copyWith.$chain((v) => call(dueDate: v));
-  @override
-  UtcOptionCopyWith<$R, UtcOption, UtcOption> get lastService =>
-      $value.lastService.copyWith.$chain((v) => call(lastService: v));
-  @override
   $R call(
           {ServiceStatus? status,
-          UtcOption? dueDate,
-          UtcOption? lastService,
+          UtcOption? dueDateOption,
+          UtcOption? lastServiceOption,
+          UtcOption? scheduledDateOption,
           LatLng? location,
           Set<EmailAddress>? serviceNotificationEmails,
           Volume? capacity}) =>
       $apply(FieldCopyWithData({
         if (status != null) #status: status,
-        if (dueDate != null) #dueDate: dueDate,
-        if (lastService != null) #lastService: lastService,
+        if (dueDateOption != null) #dueDateOption: dueDateOption,
+        if (lastServiceOption != null) #lastServiceOption: lastServiceOption,
+        if (scheduledDateOption != null)
+          #scheduledDateOption: scheduledDateOption,
         if (location != null) #location: location,
         if (serviceNotificationEmails != null)
           #serviceNotificationEmails: serviceNotificationEmails,
@@ -408,8 +410,11 @@ class _GreaseCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Grease, $Out>
   @override
   Grease $make(CopyWithData data) => Grease(
       status: data.get(#status, or: $value.status),
-      dueDate: data.get(#dueDate, or: $value.dueDate),
-      lastService: data.get(#lastService, or: $value.lastService),
+      dueDateOption: data.get(#dueDateOption, or: $value.dueDateOption),
+      lastServiceOption:
+          data.get(#lastServiceOption, or: $value.lastServiceOption),
+      scheduledDateOption:
+          data.get(#scheduledDateOption, or: $value.scheduledDateOption),
       location: data.get(#location, or: $value.location),
       serviceNotificationEmails: data.get(#serviceNotificationEmails,
           or: $value.serviceNotificationEmails),

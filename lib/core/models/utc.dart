@@ -130,8 +130,7 @@ class Utc with UtcMappable, EquatableMixin implements Comparable<Utc> {
   List<Object?> get props => [_valueInUtc];
 }
 
-@MappableClass(includeCustomMappers: [OptionUtcMapper()])
-class UtcOption with UtcOptionMappable, EquatableMixin {
+class UtcOption with EquatableMixin {
   final Option<Utc> _option;
 
   UtcOption.none() : _option = none();
@@ -154,18 +153,18 @@ class UtcOption with UtcOptionMappable, EquatableMixin {
   List<Object?> get props => [_option];
 }
 
-class OptionUtcMapper extends SimpleMapper<Option<Utc>> {
+class OptionUtcMapper extends SimpleMapper<UtcOption> {
   const OptionUtcMapper();
 
   @override
-  Option<Utc> decode(dynamic value) {
+  UtcOption decode(dynamic value) {
     return value['type'] == 'none'
-        ? none()
-        : some(UtcMapper.fromMap(value['value']));
+        ? UtcOption.none()
+        : UtcOption.some(UtcMapper.fromMap(value['value']));
   }
 
   @override
-  dynamic encode(Option<Utc> self) {
+  dynamic encode(UtcOption self) {
     return self.fold(
       () => {'type': 'none'},
       (date) => {

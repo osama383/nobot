@@ -8,6 +8,7 @@ import 'package:nobot/core/models/value_object/mappers.dart';
 import 'package:nobot/core/models/volume/volume.dart';
 import 'package:nobot/injection.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:timezone/browser.dart';
 
 import 'app.dart';
 import 'core/routes/routes.dart';
@@ -16,7 +17,13 @@ import 'firebase_options.dart';
 
 void main() async {
   usePathUrlStrategy();
+
   WidgetsFlutterBinding.ensureInitialized();
+  MapperContainer.globals.use(const VStringMapper());
+  MapperContainer.globals.use(const VolumeMapper());
+  MapperContainer.globals.use(const EmailMapper());
+  MapperContainer.globals.use(const LatLngMapper());
+  MapperContainer.globals.use(const OptionUtcMapper());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -31,12 +38,6 @@ void main() async {
   sl<Auth>().currentUserStream.distinct().listen((event) {
     goRouter.refresh();
   });
-
-  MapperContainer.globals.use(const VStringMapper());
-  MapperContainer.globals.use(const VolumeMapper());
-  MapperContainer.globals.use(const EmailMapper());
-  MapperContainer.globals.use(const LatLngMapper());
-  MapperContainer.globals.use(const OptionUtcMapper());
-
+  await initializeTimeZone();
   runApp(const Nobot());
 }

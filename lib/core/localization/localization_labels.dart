@@ -1,11 +1,13 @@
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 
 import '../models/customer/customer.dart';
+import '../models/product/due_and_scheduled_combo.dart';
 import '../models/product/product.dart';
 import '../models/tasks/service_grease/service_grease.dart';
 import '../models/volume/volume.dart';
 import '../scaffold/nav/nav.dart';
 import '../smart_dates/smart_dates.dart';
+import '../tables/columns/customer/customer_columns.dart';
 
 abstract class LocalizationLabels extends DefaultLocalizations {
   String smartDateRanges(SmartDates range);
@@ -25,8 +27,8 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get notesAdded;
 
   String filterCriterion(Enum criterion);
-  // String longName(CustomerColumn column);
-  // String shortName(CustomerColumn column);
+  String longName(CustomerColumn column);
+  String shortName(CustomerColumn column);
 
   // Basic
   String get permissions;
@@ -35,7 +37,7 @@ abstract class LocalizationLabels extends DefaultLocalizations {
   String get noDocumnets;
   String get userPreviligesIncludeAccessToOnlyThisDepot;
   String get filters;
-  // String needForScheduling(DueAndNextCombo combo, {required bool abrv});
+  String needForScheduling(DueAndNextCombo combo, {required bool abrv});
   String get show;
   String get selectAll;
   String get filter;
